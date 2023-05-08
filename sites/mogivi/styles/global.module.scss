@@ -1,0 +1,86 @@
+@use "variables";
+
+.layout {
+  //--- Default
+  font-family: "Roboto", sans-serif;
+  // font-family: "Neue-Haas-Unica-Pro", sans-serif;
+  font-size: 1rem;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+    }
+  }
+
+  svg {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  //--- Color
+  [class~="text-internal-orange"] {
+    color: variables.$internal-orange;
+  }
+
+  [class~="text-dark-cerulean"] {
+    color: variables.$dark-cerulean;
+  }
+
+  [class~="text-dark-shade"] {
+    color: variables.$dark-shade;
+  }
+
+  //--- Background color
+  [class~="bg-black-russian"] {
+    background-color: variables.$black-russian;
+  }
+
+  [class~="bg-internal-orange"] {
+    background-color: variables.$internal-orange;
+  }
+
+  [class~="bg-solitude"] {
+    background-color: variables.$solitude;
+  }
+
+  //--- Font size
+  [class~="fs-1rem"] {
+    font-size: 1rem;
+  }
+
+  [class~="fs-1-875rem"] {
+    font-size: 1.875rem;
+  }
+
+  [class~="fs-0-875rem"] {
+    font-size: 0.875rem;
+  }
+
+  //--- Utils
+  [class~="svg-white"] {
+    fill: variables.$white;
+    stroke: variables.$white;
+
+    path {
+      fill: variables.$white;
+      stroke: variables.$white;
+    }
+  }
+
+  [class~="svg-manatee"] {
+    fill: variables.$manatee;
+    stroke: variables.$manatee;
+
+    path {
+      fill: variables.$manatee;
+      stroke: variables.$manatee;
+    }
+  }
+}

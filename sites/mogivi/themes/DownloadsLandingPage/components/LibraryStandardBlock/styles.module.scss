@@ -1,0 +1,45 @@
+@import "../../../../styles/deviceWidth";
+@import "../../../../styles/variables";
+
+.downloadDocContainer {
+  .sectionGap {
+    margin: 7rem 0;
+  }
+}
+
+.searchInput {
+  .label {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #1e1e1e;
+  }
+
+  .input,
+  .select {
+    height: 50px;
+  }
+
+  @include mobile {
+    margin-bottom: 2rem;
+  }
+}
+
+.searchBtn {
+  display: grid;
+  align-items: end;
+
+  button {
+    height: 50px;
+  }
+}
+
+.filterContainer {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}

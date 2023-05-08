@@ -1,0 +1,19 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.h2Styled {
+  color: $black-1;
+  font-size: 1.125rem;
+  font-weight: 700;
+  position: relative;
+  display: inline;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.1875rem;
+    left: 0;
+    bottom: -0.5rem;
+    background-color: $internal-orange;
+  }
+}

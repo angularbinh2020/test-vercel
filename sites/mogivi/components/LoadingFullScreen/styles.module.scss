@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.loadingContainer {
+  z-index: 999;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: $grey02;
+  [class="spinner-border"] {
+    color: $internal-orange !important;
+  }
+}

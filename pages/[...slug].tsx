@@ -1,0 +1,154 @@
+import type { NextPage } from "next";
+import IContext from "models/IContext";
+import getNodeDetailByContext from "utils/getNodeIdByContex";
+import Layout from "components/Layout";
+import useViewMode from "hooks/useViewMode";
+import IPath from "models/IPath";
+import {
+  getAllPaths,
+  getHotSpotIcon,
+  getPageNodeDetail,
+  getSubPageNodeDetail,
+  getTagHotSpotIcon,
+  getVRTourAds,
+  getVRTourFooterImages,
+} from "apis/server";
+import logger from "utils/logger";
+import IPageData from "models/IPageData";
+import dynamic from "next/dynamic";
+import BlockRender from "components/BlockRender";
+import DefaultMissingBlock from "components/DefaultMissingBlock";
+import { IMogiverseStatus } from "sites/mogivi/models/IMogiverseStatus";
+import { getUrlPathName } from "sites/mogivi/utils";
+import { isPanoramaTour, getTourSettingUpdateApi } from "utils";
+const ProjectDetailPage = dynamic(
+  () => import("sites/mogivi/layout/components/ProjectDetailPage")
+);
+const MogiverserPage = dynamic(
+  () => import("sites/mogivi/themes/MogiversePage")
+);
+interface DefaultPageProps {
+  site: string;
+  pageData: IPageData;
+}
+
+const DefaultPage: NextPage<DefaultPageProps> = (props: DefaultPageProps) => {
+  const { pageData } = props;
+  const { isDesktop, isMobile, isMobileApp } = useViewMode();
+  if (pageData?.isMogiversePage) {
+    return <MogiverserPage pageData={pageData as any} />;
+  }
+  if (pageData?.isSubPage) {
+    return <ProjectDetailPage pageData={pageData} />;
+  }
+  if (pageData) {
+    return (
+      <Layout pageData={pageData}>
+        {pageData?.currentNode?.fields?.blocks?.map((block) => (
+          <BlockRender
+            block={block}
+            key={`block-id-${block.system.id}`}
+            isDesktop={isDesktop}
+            isMobile={isMobile}
+            isMobileApp={isMobileApp}
+            theme={pageData.currentNode.system.contentType}
+          />
+        ))}
+      </Layout>
+    );
+  }
+  return <DefaultMissingBlock />;
+};
+
+export async function getStaticProps(context: IContext) {
+  const routerPath = context.params.slug.join("/");
+  logger.info(`Start generating ${routerPath}`);
+  try {
+    let pageData: any = null;
+    const {
+      nodeId,
+      subPageGetDetailApi,
+      mogiverseGetDetailApi,
+      isMogiverseUrl,
+      mogiversePageType,
+      mogiverserId,
+      isPageNotExist,
+    } = await getNodeDetailByContext(context);
+    if (isPageNotExist) {
+      return {
+        notFound: true,
+      };
+    }
+    const isMogiversePageNotFound = isMogiverseUrl && !mogiverseGetDetailApi;
+    if (nodeId) {
+      pageData = await getPageNodeDetail(nodeId);
+      pageData.siteId = nodeId;
+    }
+    if (subPageGetDetailApi) {
+      pageData = await getSubPageNodeDetail(subPageGetDetailApi);
+      pageData.subPageData = await getPageNodeDetail(2087);
+      pageData.isSubPage = true;
+    }
+
+    if (mogiverseGetDetailApi) {
+      pageData = await getSubPageNodeDetail(mogiverseGetDetailApi);
+      pageData.isMogiversePage = true;
+      pageData.mogiversePageType = mogiversePageType;
+      pageData.isPanoramaTour = isPanoramaTour(mogiversePageType);
+      if (pageData.isPanoramaTour) {
+        pageData.tagIcons = await getTagHotSpotIcon();
+        pageData.hotSpotIcons = await getHotSpotIcon();
+        pageData.ads = await getVRTourAds();
+        pageData.footerImages = await getVRTourFooterImages();
+        pageData.isEditView =
+          `/${routerPath}` === getUrlPathName(pageData.data?.vr_tour_url);
+        pageData.mogiverserId = mogiverserId;
+        pageData.mogiverseGetDetailApi = mogiverseGetDetailApi;
+        pageData.updateTourSettingApi =
+          getTourSettingUpdateApi(mogiversePageType) + mogiverserId;
+        if (!pageData.isEditView) delete pageData.data?.vr_tour_url;
+      }
+    }
+
+    if (isMogiversePageNotFound) {
+      pageData = {
+        isMogiversePage: true,
+        mogiversePageType,
+        data: {
+          status: IMogiverseStatus.UN_PUBLISH,
+        },
+      };
+    }
+
+    if (pageData)
+      return {
+        props: {
+          pageData,
+        },
+      };
+  } catch (e) {
+    logger.error(`Generating page error: ${routerPath}`);
+    logger.error(e);
+  }
+  throw "Page generate fail";
+}
+
+export async function getStaticPaths() {
+  logger.info("Start get paths");
+  let paths: IPath[] = [];
+
+  try {
+    paths = await getAllPaths();
+  } catch (e) {
+    logger.error(e);
+  }
+
+  logger.info("Get paths completed");
+
+  return {
+    paths: paths,
+    fallback: "blocking",
+  };
+}
+
+export default DefaultPage;

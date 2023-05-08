@@ -1,0 +1,13 @@
+@use "../../styles.module.scss";
+@import "sites/mogivi/styles/index.scss";
+
+.locationContent {
+  .locationContentAdress {
+    padding: 8px;
+    // max-width: 640px;
+    i {
+      color: $internal-orange;
+      margin-right: 0.5rem;
+    }
+  }
+}

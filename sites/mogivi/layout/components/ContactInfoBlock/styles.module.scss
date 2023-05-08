@@ -1,0 +1,60 @@
+@import "sites/mogivi/styles/index";
+
+.contactInfoContainer {
+  .contactInfoBox {
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+    padding: 2rem 1rem 0;
+    margin-bottom: 2rem;
+    border-top: 1px solid $gray-4;
+    gap: 2rem;
+
+    @include desktop {
+      gap: 0;
+    }
+
+    .content {
+      padding: 0 1rem;
+
+      .btnLink {
+        @include btnLink;
+        @include btnArrow;
+        width: 50%;
+        padding: 0.5rem 2.5rem;
+
+        @include desktop {
+          width: unset;
+        }
+
+        .arrowIcon {
+          @include arrowIcon;
+        }
+
+        &:hover {
+          .arrowIcon {
+            opacity: 1;
+            right: 0.5rem;
+          }
+        }
+      }
+
+      h3 {
+        @include desktop {
+          font-size: 1.5rem;
+        }
+      }
+
+      p {
+        color: $manatee;
+        @include desktop {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .flexReverse {
+    flex-direction: row-reverse;
+  }
+}

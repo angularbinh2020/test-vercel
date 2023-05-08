@@ -1,0 +1,134 @@
+@import "../../../../styles/deviceWidth";
+@import "../../../../styles/variables";
+
+.slickCustom {
+  [class~="slick-slider"] {
+    [class~="slick-dots"] {
+      bottom: -40px;
+
+      li {
+        button {
+          &::before {
+            font-size: 10px;
+          }
+
+          &:hover {
+            &::before {
+              color: #f05023;
+              opacity: 0.8;
+            }
+          }
+        }
+
+        &[class~="slick-active"] {
+          button {
+            &::before {
+              color: #f05023;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.carouselStandardContainer {
+  padding: 50px 0 70px 0;
+
+  .carouselStandardBody {
+    .title {
+      font-weight: 700;
+      color: $dark-shade;
+      text-align: center;
+      font-size: 46px;
+      line-height: 63px;
+
+      @include mobile {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 15px;
+      }
+
+      @include tablet {
+        font-size: 25px;
+        line-height: 27px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .subTitle {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 27px;
+      color: $dark-shade;
+      text-align: center;
+      margin-bottom: 50px;
+
+      @include mobile {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 25px;
+      }
+
+      @include tablet {
+        font-size: 20px;
+        line-height: 22px;
+        margin-bottom: 25px;
+      }
+    }
+
+    .slider {
+      width: 100%;
+
+      .sliderItemContainer {
+        padding: 0 15px;
+
+        .sliderItem {
+          background: $white;
+          border: 0.5px solid $gray77;
+          border-radius: 5px;
+
+          .sliderTitle {
+            text-align: left;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 33px;
+            color: $dark-shade;
+            border-bottom: 1px solid rgba(195, 192, 192, 0.3978);
+            padding: 24px 15px;
+
+            @include mobile {
+              font-size: 16px;
+              line-height: 20px;
+            }
+
+            @include tablet {
+              font-size: 20px;
+              line-height: 25px;
+            }
+          }
+
+          .sliderDate {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: $text-orange;
+            text-align: left;
+            padding: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.arrow {
+  color: #484848;
+  width: 2rem !important;
+  height: 2rem !important;
+
+  &:hover {
+    color: #484848;
+  }
+}

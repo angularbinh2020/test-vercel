@@ -1,0 +1,80 @@
+@import "sites/mogivi/styles/deviceWidth";
+
+.downloadItemContainer {
+  .iconVision {
+    background: linear-gradient(90deg, #f5b31a 0%, #f59d1a 100%);
+    border-radius: 10px;
+    padding: 0.5rem 0.7rem;
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+
+  .downloadItem {
+    border-bottom: 2px solid #b1b1b1;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+
+    @include mobile {
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  .itemHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      font-size: 1.625rem;
+      font-weight: 500;
+      width: 100%;
+
+      @include mobile {
+        font-size: 1.3rem;
+      }
+    }
+
+    .actionGroup {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10rem;
+
+      @include mobile {
+        justify-content: space-between;
+      }
+    }
+
+    .itemPublishDate {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .actionBox {
+      display: flex;
+      gap: 1rem;
+
+      .downloadBtn {
+        cursor: pointer;
+      }
+    }
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  .docType {
+    span {
+      font-size: 1.1rem;
+      font-size: 500;
+
+      @include mobile {
+        font-size: 1rem;
+      }
+    }
+  }
+}

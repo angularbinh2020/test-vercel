@@ -1,0 +1,113 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.userInfo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $white;
+  margin-right: 25px;
+
+  @include tabletDown {
+    &:hover {
+      color: $white;
+    }
+  }
+
+  @include mobile {
+    margin-right: 0;
+  }
+
+  &:hover {
+    color: $internal-orange;
+  }
+
+  h5,
+  h1 {
+    margin: 0 1rem;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+.userDetail {
+  position: relative;
+  background: rgba(43, 43, 43, 0.67) !important;
+  min-width: 325px;
+  padding: 10px;
+  color: $white !important;
+  border-radius: 12px !important;
+  transform: translateY(-20px) translateX(-12px);
+
+  .closeButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    svg {
+      fill: $white;
+      stroke: $white;
+    }
+
+    &:hover {
+      svg {
+        fill: $internal-orange;
+        stroke: $internal-orange;
+      }
+    }
+  }
+
+  .information {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: $white;
+
+    .icAvatar {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+      position: relative;
+      border-radius: 20px;
+      overflow: auto;
+    }
+
+    h5,
+    h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+
+      a:hover {
+        color: $internal-orange;
+      }
+    }
+
+    .icon {
+      margin-right: 15px;
+      margin-left: 12px;
+    }
+
+    h6,
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+
+      a {
+        color: $white;
+      }
+    }
+  }
+
+  @include mobile {
+    transform: translateY(-20px) translateX(-11px);
+    width: 90vw;
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  border-radius: 20px;
+}

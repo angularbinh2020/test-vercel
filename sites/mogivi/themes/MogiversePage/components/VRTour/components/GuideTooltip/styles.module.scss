@@ -1,0 +1,50 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.content {
+  ul {
+    li {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
+
+.exampleSquare {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-color: $internal-orange;
+}
+
+.rotateX {
+  animation: rotateOnX 5s infinite linear;
+}
+
+@keyframes rotateOnX {
+  to {
+    -webkit-transform: rotateX(360deg);
+    transform: rotateX(360deg);
+  }
+}
+
+.rotateY {
+  animation: rotateOnY 5s infinite linear;
+}
+
+@keyframes rotateOnY {
+  to {
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+.rotateZ {
+  animation: rotateOnZ 5s infinite linear;
+}
+
+@keyframes rotateOnZ {
+  to {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}

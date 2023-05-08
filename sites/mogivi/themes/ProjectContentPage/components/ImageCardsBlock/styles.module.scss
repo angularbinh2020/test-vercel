@@ -1,0 +1,106 @@
+@import "sites/mogivi/styles/index.scss";
+
+@mixin imgCard {
+  height: 350px;
+  object-fit: cover;
+
+  @include mobile {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+.imageSlider {
+  .frame {
+    position: absolute;
+    background-color: $white;
+    top: 15rem;
+    left: 0;
+    height: 1rem;
+    z-index: 999;
+    border-radius: 1rem 1rem 0 0;
+    width: 100%;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  .img {
+    @include imgCard;
+  }
+}
+
+.singleBanner {
+  position: relative;
+  color: $white;
+  > span {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .imageBox {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .address {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: $transparent05;
+
+    small {
+      @supports (-webkit-line-clamp: 2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .imageTag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+
+    .imageTagItem {
+      padding: 0.5rem 2.5rem;
+      background-color: $transparent05;
+      color: $white;
+      text-align: center;
+      border-radius: 0.2rem;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .imageTagColor {
+      background-color: $internal-orange05;
+    }
+  }
+}
+
+.imgCardsContent {
+  max-width: 100%;
+  margin: auto;
+
+  .img {
+    @include imgCard;
+  }
+}

@@ -1,0 +1,81 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.tourDetailContainer {
+  .tourDetailList {
+    h2 {
+      .tourDetailBadge {
+        position: absolute;
+        right: -10px;
+      }
+    }
+  }
+
+  .tourDetailAction {
+    .btnEdit {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $white;
+      border-radius: 50px;
+      color: $internal-orange;
+      font-weight: bold;
+      border: 1px solid $gray-1;
+      width: 190px;
+      height: 40px;
+      font-size: 14px;
+      margin-left: 15px;
+
+      &:hover {
+        border: 1px solid $internal-orange;
+      }
+    }
+
+    .btnPreview {
+      border: 1px solid $internal-orange;
+      width: 190px;
+      height: 40px;
+      border-radius: 50px;
+      background-color: $internal-orange;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 15px;
+
+      &:hover {
+        border: 1px solid $black;
+      }
+
+      span {
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        color: $white;
+      }
+    }
+  }
+}
+
+.settingAdsIcon {
+  fill: $internal-orange;
+  stroke: $internal-orange;
+  width: 16px;
+  height: 16px;
+}
+
+.tourDetailInfo {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+
+  span {
+    color: $gray-2;
+    font-size: 0.875rem;
+    margin-right: 0.625rem;
+  }
+
+  h6 {
+    margin: 0;
+    color: $black-1;
+    font-size: 1.125rem;
+  }
+}

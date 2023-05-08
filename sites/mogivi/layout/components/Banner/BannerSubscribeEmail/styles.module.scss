@@ -1,0 +1,91 @@
+@import "sites/mogivi/styles/index.scss";
+
+.bannerSubscribeContainer {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 750px;
+  padding: 12.625rem 0;
+  text-align: center;
+
+  @include mobile {
+    padding: 4.625rem 1rem;
+    min-height: unset;
+  }
+
+  .bannerSubscribe {
+    background: #ffffffe6;
+    box-shadow: 0px 1.875rem 3.75rem #f0502326;
+    border-radius: 1.25rem;
+    padding: 6rem 3rem;
+    max-width: 800px;
+    margin: auto;
+
+    .formContainer {
+      width: 400px;
+      margin: auto;
+
+      @include mobile {
+        width: unset;
+      }
+    }
+
+    .formEmail {
+      input {
+        height: 50px;
+      }
+    }
+
+    .btnSubmit {
+      width: 100%;
+      height: 50px;
+      border-color: transparent;
+    }
+
+    @include mobile {
+      padding: 4rem 2.5rem;
+    }
+  }
+
+  .contentWrapper {
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: $text-orange;
+      text-transform: uppercase;
+
+      @include mobile {
+        font-size: 1.5rem;
+      }
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 1.875rem;
+      text-align: center;
+      width: 90%;
+      margin: auto;
+      color: $black;
+    }
+  }
+
+  .btnBannerContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    [class="btn-white--outline"] {
+      font-weight: 700;
+
+      &:hover {
+        color: $text-orange;
+      }
+    }
+  }
+}

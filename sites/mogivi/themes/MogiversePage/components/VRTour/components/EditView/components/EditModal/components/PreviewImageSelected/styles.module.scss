@@ -1,0 +1,17 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.initViewButton {
+  position: absolute !important;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(43, 43, 43, 0.67);
+  backdrop-filter: blur(4px) !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+
+  &:hover {
+    background-color: $internal-orange !important;
+  }
+}

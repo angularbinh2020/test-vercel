@@ -1,0 +1,44 @@
+@import "../../styles/variables";
+
+.btn {
+  &:hover {
+    outline: none !important;
+    outline-offset: none !important;
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.orange {
+  background-color: $text-orange !important;
+  color: #ffffff !important;
+  border-color: $text-orange !important;
+
+  &:hover {
+    background-color: $white !important;
+    color: $text-orange !important;
+  }
+
+  &:focus {
+    background-color: $white !important;
+    color: $text-orange !important;
+  }
+}
+
+.outline-orange {
+  background-color: $white !important;
+  color: $text-orange !important;
+  border-color: $text-orange !important;
+
+  &:hover {
+    background-color: $text-orange !important;
+    color: $white !important;
+  }
+
+  &:focus {
+    background-color: $text-orange !important;
+    color: $white !important;
+  }
+}

@@ -1,0 +1,13 @@
+@import "../../../styles/variables";
+@import "../../../styles/deviceWidth";
+
+.imgBlockContainer {
+  text-align: center;
+  width: 100%;
+}
+
+.imgBorderRadius {
+  img {
+    border-radius: 1.875rem;
+  }
+}

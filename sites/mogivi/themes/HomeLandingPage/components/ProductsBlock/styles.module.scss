@@ -1,0 +1,156 @@
+@import "sites/mogivi/styles/index";
+
+$card-height: 300px;
+$card-width: calc(var(--card-height) / 1.5);
+
+.productContainer {
+  .productBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    @include desktop {
+      flex-direction: row;
+    }
+  }
+  .productItem {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 2rem 2.5rem;
+    border-radius: 0.04rem;
+    background: #fff;
+    box-shadow: 0.1rem 0.1rem 1rem 0.2rem rgba(49, 49, 49, 0.05);
+    cursor: pointer;
+    transition: background 0.3s ease-out 0s, box-shadow 0.3s ease-out 0s;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    overflow: hidden;
+
+    @include desktop {
+      width: 20rem;
+    }
+
+    a {
+      color: $black;
+    }
+
+    .description {
+      p {
+        display: block;
+        color: $manatee;
+      }
+    }
+
+    &:hover {
+      z-index: 10;
+      background-color: #fcfcfc;
+      box-shadow: 0 0.1rem 0.2rem 0 rgba(211, 130, 9, 0.1),
+        0.05rem 0.05rem 0.08rem 0 rgba(223, 199, 171, 0.2);
+      cursor: pointer;
+      height: auto;
+
+      .product {
+        opacity: 1;
+        transition: all 0.5s;
+
+        @include desktop {
+          transform: translateY(-50px);
+        }
+      }
+
+      .description {
+        margin-bottom: 1rem;
+        @include desktop {
+          display: none;
+        }
+      }
+
+      .wrapper {
+        transition: 0.3s ease-out 0s;
+
+        @include desktop {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    right: 0;
+    transition: 0.3s ease-out 0s;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    perspective: 2500px;
+  }
+
+  //   .cover-image {
+  //     width: 100%;
+  //     height: 100%;
+  //     object-fit: cover;
+  //   }
+
+  //   .wrapper {
+  //     transition: all 0.5s;
+  //     position: absolute;
+  //     width: 100%;
+  //     z-index: -1;
+  //   }
+
+  //   .card {
+  //     display: inline-block;
+
+  //   }
+
+  //   .wrapper {
+  //     &::before,
+  //     &::after {
+  //       content: "";
+  //       opacity: 0;
+  //       width: 100%;
+  //       height: 80px;
+  //       transition: all 0.5s;
+  //       position: absolute;
+  //       left: 0;
+  //     }
+  //   }
+
+  .product {
+    opacity: 1;
+    transition: all 0.5s;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+
+    @include desktop {
+      opacity: 0;
+      position: absolute;
+      bottom: 0;
+    }
+
+    a {
+      border-radius: 0.3rem;
+    }
+
+    .seeDetail {
+      background-color: $white-smoke;
+      padding: 0.5rem 1rem;
+      color: $black;
+    }
+
+    .contactUs {
+      background-color: $manatee;
+      padding: 0.5rem 1rem;
+      color: $white;
+    }
+  }
+}

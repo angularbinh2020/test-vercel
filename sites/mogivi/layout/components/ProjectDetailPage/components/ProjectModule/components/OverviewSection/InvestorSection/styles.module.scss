@@ -1,0 +1,14 @@
+@use "../../../styles.module.scss";
+@import "sites/mogivi/styles/index.scss";
+
+.investorContent {
+  .investorContentItem {
+    a {
+      color: $black;
+
+      &:hover {
+        color: $internal-orange;
+      }
+    }
+  }
+}

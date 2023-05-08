@@ -1,0 +1,75 @@
+$white: #ffffff;
+$black: #000000;
+$black-russian: #1d1e20;
+$black-gray: #313131;
+$semi-gray: #484848;
+$light-orange: #f05023;
+$internal-orange: #ff4e00;
+$internal-orange05: rgb(255 77 0 / 80%);
+$mid-grey: #696b6f;
+$dark-cerulean: #123e74;
+$manatee: #8e9399;
+$denim: #155aa9;
+$oil: #303330;
+$rust: #b44616;
+$smoke-tree: #b45c36;
+$pacific-blue: #00adbb;
+$white-smoke: #ececec;
+$light-grey: #d3d3d3;
+$light-gray: #f7f7f7;
+$solitude: #f4f5f9;
+$text-orange: #f05023;
+$yellow: #ff9d09;
+$blue: #1155cc;
+$dark-shade: #1e1e1e;
+$gray77: #c4c4c4;
+$shadow: #1018281a;
+$success: #25a248;
+$danger: #c62427;
+$bisque: bisque;
+$transparent05: rgba(0, 0, 0, 0.5);
+$grey02: rgba(155, 155, 155, 0.2);
+$transparent1: rgba(0, 0, 0, 1);
+$black-transparent-1: rgba(0, 0, 0, 0.459);
+$black-1: #2f2f2b;
+$gray-1: #d2d1d1;
+$gray-2: #939292;
+$gray-3: #dedede;
+$gray-4: #d2d1d169;
+$zircon: #dee2e6;
+$mogivi-1: #f7a683;
+$transparent-1: rgba(43, 43, 43, 0.67);
+$gray: #808080;
+$head-text: #32325c;
+$gray-description: #dddddd;
+
+//--- Media
+@mixin mobile {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin mobile-landscape {
+  @media only screen and (min-device-width: 480px) and (max-device-width: 900px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tabletDown {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1025px) {
+    @content;
+  }
+}

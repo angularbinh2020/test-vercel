@@ -1,0 +1,31 @@
+.slick-custom {
+  .slick-slider {
+    .slick-dots {
+      bottom: -40px;
+
+      li {
+        button {
+          &::before {
+            font-size: 10px;
+          }
+
+          &:hover {
+            &::before {
+              color: #f05023;
+              opacity: 0.8;
+            }
+          }
+        }
+
+        &.slick-active {
+          button {
+            &::before {
+              color: #f05023;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

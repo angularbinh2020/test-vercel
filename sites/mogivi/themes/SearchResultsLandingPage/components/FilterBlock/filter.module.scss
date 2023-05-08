@@ -1,0 +1,9 @@
+@import "../../../../styles/deviceWidth";
+
+.filterContainer {
+  padding: 50px;
+
+  @include mobile {
+    padding: 20px;
+  }
+}

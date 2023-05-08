@@ -1,0 +1,13 @@
+@use "../../styles/variables";
+
+.socialIcon {
+  &:hover {
+    fill: variables.$internal-orange !important;
+    stroke: variables.$internal-orange !important;
+
+    path {
+      fill: variables.$internal-orange !important;
+      stroke: variables.$internal-orange !important;
+    }
+  }
+}

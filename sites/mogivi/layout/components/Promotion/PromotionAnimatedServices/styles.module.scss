@@ -1,0 +1,117 @@
+@import "sites/mogivi/styles/index.scss";
+
+.promotionContainer {
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 9.375rem 0;
+  background-color: #feeee9;
+
+  @include mobile {
+    background-position: center;
+    padding: 4.6875rem 0;
+  }
+
+  .promotionTextGroup {
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      font-size: 3rem;
+
+      @include mobile {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .promotionBox {
+    justify-content: center;
+    align-items: center;
+
+    .cardImg {
+      display: block;
+    }
+  }
+
+  .promotionBoxWithoutImage {
+    .textCardBox {
+      margin-bottom: 1rem;
+
+      &:nth-child(3) {
+        .textCard {
+          height: 30rem;
+
+          @include mobile {
+            height: auto;
+          }
+        }
+      }
+      &:nth-child(4) {
+        .textCard {
+          height: 30rem;
+
+          @include mobile {
+            height: auto;
+          }
+        }
+      }
+    }
+
+    .textCard {
+      p {
+        font-size: 1.0625rem;
+        text-align: justify;
+        padding-right: 1.6rem;
+      }
+
+      @include mobile {
+        height: 100%;
+        flex-direction: column;
+      }
+    }
+
+    .cardImg {
+      @include mobile {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .cardContent {
+      h3 {
+        @include mobile {
+          padding: 0 1rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .textCard {
+    background: #fff;
+    border-radius: 1.25rem;
+    text-align: left;
+    box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    p {
+      margin-bottom: 0;
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 1.875rem;
+    }
+
+    .cardContent {
+      width: 100%;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $text-orange;
+      }
+    }
+  }
+}

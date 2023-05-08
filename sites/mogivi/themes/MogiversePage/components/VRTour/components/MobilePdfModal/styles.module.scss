@@ -1,0 +1,15 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  background-color: $white;
+  z-index: 1;
+  .pdfView {
+    height: calc(100% - 50px);
+  }
+}

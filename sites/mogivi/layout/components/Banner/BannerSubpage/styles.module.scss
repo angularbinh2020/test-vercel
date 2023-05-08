@@ -1,0 +1,109 @@
+@import "sites/mogivi/styles/index";
+
+.bannerContainer {
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  position: relative;
+
+  .bannerContentCover {
+    background-color: #0000004d;
+    padding: 2.5em;
+    border-radius: 0.5rem;
+  }
+
+  .bgPadding {
+    padding: 1rem;
+
+    @include desktop {
+      padding: 0;
+    }
+  }
+
+  @include desktop {
+    background-position: top;
+  }
+
+  .bannerContent {
+    padding: 2rem 0;
+    text-align: center;
+    z-index: 2;
+
+    @include desktop {
+      padding: 10rem 0;
+      text-align: start;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+
+      @include desktop {
+        font-size: 3rem;
+      }
+    }
+
+    p {
+      @include desktop {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  .btnLink {
+    @include btnLink;
+    @include btnArrow;
+    padding: 0.5rem;
+    width: 50%;
+
+    @include desktop {
+      width: unset;
+    }
+
+    .arrowIcon {
+      @include arrowIcon;
+
+      > span {
+        display: block !important;
+      }
+    }
+
+    &:hover {
+      .arrowIcon {
+        opacity: 1;
+        right: 0.5rem;
+      }
+    }
+  }
+
+  .linkContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    @include desktop {
+      flex-direction: row;
+    }
+  }
+
+  .linkActive {
+    background-color: $white;
+    color: $black-russian;
+  }
+
+  .positionCenter {
+    justify-content: center;
+    text-align: center;
+  }
+  .positionRight {
+    justify-content: flex-end;
+    text-align: left;
+  }
+}
+
+.imgBanner {
+  z-index: -1;
+}

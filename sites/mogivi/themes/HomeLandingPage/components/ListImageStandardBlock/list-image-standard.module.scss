@@ -1,0 +1,87 @@
+@import "../../../../styles/deviceWidth";
+@import "../../../../styles/variables";
+
+.listImageStandardContainer {
+  padding: 50px 0;
+
+  .listImageStandardBody {
+    .title {
+      font-weight: 700;
+      color: $dark-shade;
+      text-align: center;
+      font-size: 46px;
+      line-height: 63px;
+
+      @include mobile {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 10px;
+      }
+
+      @include tablet {
+        font-size: 25px;
+        line-height: 27px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .subTitle {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 27px;
+      color: $dark-shade;
+      text-align: center;
+      margin-bottom: 50px;
+
+      @include mobile {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 25px;
+      }
+
+      @include tablet {
+        font-size: 20px;
+        line-height: 22px;
+        margin-bottom: 25px;
+      }
+    }
+
+    .imagesContainer {
+      .imageItem {
+        position: relative;
+
+        .label {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 20px;
+          color: $white;
+          font-weight: 700;
+          font-size: 32px;
+          line-height: 44px;
+
+          @include mobile {
+            font-size: 16px;
+            line-height: 18px;
+            bottom: 15px;
+          }
+
+          @include tablet {
+            font-size: 16px;
+            line-height: 18px;
+            bottom: 15px;
+          }
+        }
+      }
+    }
+
+    .showMore {
+      text-align: center;
+      margin-top: 50px;
+
+      @include mobile {
+        margin-top: 20px;
+      }
+    }
+  }
+}

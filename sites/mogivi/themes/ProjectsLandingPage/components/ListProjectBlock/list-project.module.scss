@@ -1,0 +1,423 @@
+@import "sites/mogivi/styles/deviceWidth";
+@import "sites/mogivi/styles/index.scss";
+
+.header {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 68px;
+  text-align: center;
+  color: $dark-shade;
+  margin-bottom: 40px;
+
+  @include tablet {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+
+  @include mobile {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 15px;
+  }
+}
+
+.cardContainer {
+  border-radius: 30px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: unset;
+    gap: 1rem;
+  }
+
+  .cardImage {
+    margin-bottom: 0;
+    width: 60%;
+    height: 347px;
+    transition: all ease-in-out 0.2s;
+    z-index: 2;
+
+    &:hover {
+      opacity: 0.9;
+      transition: all ease-in-out 0.2s;
+    }
+
+    @include tablet {
+      width: 80%;
+    }
+
+    @include mobile {
+      width: 100%;
+      height: unset;
+    }
+
+    .cardProjectListImg {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 2px;
+      cursor: pointer;
+      border-radius: 1rem;
+      overflow: hidden;
+      border-radius: 16px;
+
+      .playIcon {
+        position: absolute;
+        top: 35%;
+        left: 45%;
+        z-index: 2;
+        opacity: 0.9;
+
+        svg {
+          fill: $white;
+          width: 50px;
+          height: 50px;
+        }
+
+        &:hover {
+          opacity: 1;
+          svg {
+            fill: $internal-orange;
+          }
+        }
+      }
+
+      .blurBackground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.25);
+        font-size: 1.875rem;
+        line-height: 40px;
+        color: #ffffff;
+        z-index: 1;
+      }
+    }
+
+    .cardImageItem {
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 86px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @include mobile {
+        width: 100%;
+        height: 64px;
+      }
+
+      &:first-child {
+        grid-column: 1/4;
+        height: 260px;
+        width: 100%;
+
+        @include tablet {
+          width: unset;
+        }
+
+        @include mobile {
+          width: 100%;
+          height: 176px;
+        }
+      }
+
+      .cardImageCount {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.35);
+        font-size: 1.875rem;
+        line-height: 40px;
+        color: #ffffff;
+        z-index: 10;
+      }
+    }
+  }
+
+  .cardBody {
+    padding: 0;
+    width: 100%;
+
+    .cardTitle {
+      font-weight: 700;
+      font-size: 1.875rem;
+      line-height: 33px;
+      margin-bottom: 0;
+      margin-top: 1rem;
+
+      a {
+        color: $text-orange;
+      }
+
+      @include mobile {
+        font-size: 20px;
+        line-height: 35px;
+      }
+    }
+
+    .cardHeader {
+      .tag {
+        border-radius: 4px;
+        padding: 5px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 12px;
+        text-align: center;
+        color: #ffffff;
+
+        @include tablet {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        @include mobile {
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+    }
+
+    .cardDescription {
+      padding: 20px 0;
+
+      .descriptionText {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #484848;
+
+        @include tablet {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        @include mobile {
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+
+    .cardSubDescription {
+      padding-top: 20px;
+
+      @include mobile {
+        padding-top: 10px;
+      }
+
+      .price {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #f05023;
+        display: flex;
+
+        span {
+          color: $black-russian;
+          margin-right: 0.5rem;
+        }
+
+        p {
+          font-weight: 600;
+
+          strong {
+            font-weight: 600;
+          }
+        }
+
+        @include tablet {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        @include mobile {
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
+  .briefInfoBox {
+    background-color: $white;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+
+    .iconGroup {
+    }
+
+    .briefInfoText {
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 22px;
+      color: #484848;
+
+      p {
+        margin-bottom: 0;
+        max-width: 300px;
+
+        @supports (-webkit-line-clamp: 2) {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: initial;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 22px;
+        color: #484848;
+      }
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      @include mobile {
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .investorLogo {
+    width: 100px;
+  }
+
+  .investorInfo {
+    .investorTitle {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 20px;
+      font-weight: 700;
+      color: $black-russian;
+    }
+
+    .investorDesc {
+      margin: 0;
+      font-size: 0.75rem;
+      line-height: 16px;
+      color: hsl(0deg, 0%, 50%);
+    }
+  }
+}
+
+.seeMore {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.videoModalContainer {
+  [class~="modal-body"] {
+    padding: unset;
+  }
+
+  [class~="modal-content"] {
+    background-color: unset;
+  }
+}
+
+.videoModal {
+  background-color: unset;
+  --bs-modal-bg: unset;
+  --bs-modal-border-color: unset;
+  border: unset;
+  padding: 0;
+
+  .videoModalBox {
+    iframe {
+      width: 800px;
+      height: 500px;
+
+      @include mobile {
+        width: 100%;
+        height: 300px;
+      }
+    }
+  }
+}
+
+.notFoundContainer {
+  position: relative;
+  // padding: 5rem 0 10rem;
+
+  .contentNotfound {
+    text-align: center;
+    margin-bottom: 2rem;
+    z-index: 2;
+    h2 {
+      color: $text-orange;
+      font-size: 2.5rem;
+
+      @include mobile {
+        margin-top: 1rem;
+        font-size: 2rem;
+      }
+    }
+    p {
+      color: $mid-grey;
+      font-size: 1rem;
+      font-weight: 700;
+      max-width: 388px;
+      width: 100%;
+      margin: 0 auto;
+
+      @include mobile {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .errorImg {
+    width: 40rem;
+    margin: auto;
+
+    @include mobile {
+      width: unset;
+    }
+
+    svg {
+      width: 40rem;
+      height: auto;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.formHeaderTitle {
+  h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+    .submitBtn {
+      width: 100%;
+    }
+  }
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .submitBtn {
+    width: 100%;
+  }
+
+  .projectImage {
+    display: none;
+  }
+}

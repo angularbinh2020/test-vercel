@@ -1,0 +1,76 @@
+@import "sites/mogivi/styles/index.scss";
+@import "sites/mogivi/styles/deviceWidth";
+
+.bannerSlider {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 750px;
+  padding-top: 10.625rem;
+  padding-bottom: 15.625rem;
+  text-align: center;
+
+  & > span:first-child {
+    z-index: -1;
+  }
+
+  @include mobile {
+    min-height: 550px;
+    padding-top: 6.625rem;
+    padding-bottom: 6.625rem;
+  }
+
+  .contentWrapper {
+    margin-bottom: 3.5rem;
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 3.125rem;
+
+      @include mobile {
+        font-size: 2.2rem;
+      }
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 1.5rem;
+      line-height: 1.875rem;
+      text-align: center;
+      color: $white;
+    }
+  }
+
+  .textBackground {
+    display: inline-block;
+    padding: 3rem 4rem;
+    background-color: #0000005d;
+    border-radius: 1rem;
+  }
+
+  .btnBannerContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    .active {
+      padding: 0.5rem 2rem;
+      font-weight: 700;
+      background-color: $white;
+      color: $text-orange;
+    }
+
+    [class="btn-white--outline"] {
+      font-weight: 700;
+      padding: 0.5rem 2rem;
+
+      &:hover {
+        color: $text-orange;
+      }
+    }
+  }
+}

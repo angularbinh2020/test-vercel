@@ -1,0 +1,56 @@
+@import "sites/mogivi/styles/index.scss";
+
+.paginationContainer {
+  max-width: 750px;
+  margin: 1rem auto;
+  position: relative;
+
+  [class~="pagination"] {
+    --bs-pagination-color: $black;
+    --bs-pagination-border-width: unset;
+    --bs-pagination-bg: transparent;
+    --bs-pagination-disabled-bg: transparent;
+    --bs-pagination-active-bg: #ff4e00;
+    --bs-pagination-hover-color: $text-orange;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    [class="page-link"] {
+      border-radius: 0.5rem;
+
+      @include mobile {
+        font-size: 0.75rem;
+      }
+
+      &:focus {
+        color: $black-russian;
+        box-shadow: unset;
+        background-color: unset;
+      }
+
+      &:hover {
+        background-color: #ffd0bb79;
+      }
+
+      span {
+        font-size: 2rem;
+      }
+    }
+
+    [class~="active"] {
+      background-color: $internal-orange;
+      border-radius: 0.5rem;
+      a {
+        color: $white;
+      }
+      &:hover {
+        background-color: $internal-orange;
+      }
+    }
+
+    @include mobile {
+      gap: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.previewWindowContainer {
+  height: 100%;
+  position: relative;
+
+  canvas + div {
+    cursor: url("../../../../../../assets/icons/defaultMouseCursor.svg") 25 25,
+      auto;
+  }
+
+  [class~="mobile-hidden"] {
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+.miniMap {
+  top: 25px;
+  right: 25px;
+
+  @include mobile {
+    top: 40px;
+    right: 0px;
+    transform: scale(0.7);
+  }
+
+  @include mobile-landscape {
+    display: none !important;
+  }
+
+  @include tablet {
+    top: 80px;
+  }
+}

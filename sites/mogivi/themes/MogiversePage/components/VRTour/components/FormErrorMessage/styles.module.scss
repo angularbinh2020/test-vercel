@@ -1,0 +1,8 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.errorMessage {
+  font-size: 80%;
+  color: $danger;
+  margin-top: 0.375rem;
+  text-align: left;
+}

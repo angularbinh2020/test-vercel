@@ -1,0 +1,173 @@
+@import "sites/mogivi/styles/index.scss";
+
+.footer {
+  color: $white;
+
+  @include mobile {
+    padding: 0 0.5rem;
+  }
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $internal-orange;
+    }
+  }
+
+  .mogiviLogo {
+    @include tablet {
+      text-align: center;
+    }
+  }
+
+  .mogiviMission {
+    font-size: 13px;
+    line-height: 26px;
+    padding-right: 5px;
+
+    @include tablet {
+      text-align: center;
+      padding: 0 4rem;
+    }
+  }
+
+  .detailInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+
+    .detailInfoItem {
+      display: flex;
+      align-items: center;
+
+      @include tablet {
+        justify-content: center;
+      }
+    }
+
+    .location {
+      svg {
+        width: 1.5rem;
+      }
+    }
+  }
+
+  .phone {
+    color: $white;
+  }
+
+  .copyRight {
+    color: $mid-grey;
+    font-size: 13px;
+
+    @include tablet {
+      text-align: start;
+    }
+  }
+
+  .footerBorder {
+    border-top: 1px solid $grey02;
+  }
+
+  .ancillaryLinksContainer {
+    @include desktop {
+      display: flex;
+    }
+
+    @include tablet {
+      display: none;
+      margin-bottom: 1rem;
+    }
+
+    @include mobile {
+      border-top: 0;
+    }
+  }
+
+  .footerAncillaryLinks {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    @include mobile {
+      justify-content: center;
+    }
+
+    li {
+      a {
+        font-size: 13px;
+        color: $mid-grey;
+
+        &:hover {
+          color: $text-orange;
+        }
+      }
+    }
+  }
+
+  .footerCompanyInfo {
+    font-size: 13px;
+    line-height: 26px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .socialMedia {
+    @include mobile {
+      margin-bottom: 1rem;
+    }
+
+    .socialLink {
+      margin-right: 1rem;
+      svg {
+        height: 1.2rem;
+        width: 1.2rem;
+      }
+      i {
+        font-size: 1.2rem;
+        &:hover {
+          color: $internal-orange;
+        }
+      }
+    }
+  }
+
+  .linkServicesContainer {
+    padding-left: 1.5rem;
+    h1 {
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+  }
+
+  .linkServices {
+    li {
+      margin: 1.5rem 0;
+    }
+  }
+
+  @include mobile {
+    .copyRight {
+      margin: 0.938rem 0;
+      text-align: center;
+    }
+  }
+}
+
+.accordionContainer {
+  background-color: transparent;
+
+  .accordionBody {
+    padding: 0;
+
+    li {
+      margin-top: 0.5rem;
+    }
+  }
+}

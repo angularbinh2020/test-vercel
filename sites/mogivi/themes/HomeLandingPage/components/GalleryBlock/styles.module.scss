@@ -1,0 +1,153 @@
+@import "sites/mogivi/styles/index";
+
+.galleryContainer {
+  padding: 3rem 0 1rem;
+
+  @include desktop {
+    margin: 4rem 0;
+  }
+
+  .title {
+    padding: 1rem 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.articleSlideContainer {
+  // [class="slick-track"] {
+  //   text-align: center;
+  // }
+  // [class~="slick-cloned"] {
+  //   height: 400px;
+  //   overflow: hidden;
+  //   transition: ease-in-out all 0.5s;
+  // }
+
+  // [class~="slick-slide"] {
+  //   height: 400px;
+  //   overflow: hidden;
+  //   transition: ease-in-out all 0.5s;
+  // }
+
+  // [class~="slick-active"] {
+  //   transition: ease-in-out all 0.5s;
+  // }
+
+  // [class~="slick-current"] {
+  //   height: 650px;
+  //   overflow: hidden;
+  //   transition: ease-in-out all 0.5s;
+  // }
+
+  // Swiper
+  // [class="swiper-wrapper"] {
+  //   text-align: center;
+  // }
+
+  // [class~="swiper-slide-active"] {
+  //   transition: ease-in-out all 0.5s;
+  // }
+
+  // [class="swiper-container"] {
+  //   position: relative;
+  //   width: 90vw;
+  //   height: 300px;
+  // }
+
+  [class="swiper-scrollbar"] {
+    display: none;
+  }
+  [class~="swiper-pagination-bullet-active"] {
+    background: $internal-orange;
+  }
+}
+
+.articleItem {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 0 1rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+
+  @include desktop {
+    padding: 0;
+
+    &:hover {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        border-radius: 0.5rem;
+        background: #0000002d;
+        content: "";
+      }
+    }
+  }
+
+  .serviceInfo {
+    background-color: $white;
+    box-shadow: 0 2px 20px 0 rgb(148 146 145 / 20%);
+    padding: 2rem 1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    overflow: hidden;
+    min-height: 15rem;
+
+    @include desktop {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 2;
+      background-color: #00000080;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      min-height: unset;
+    }
+
+    .serviceName {
+      position: relative;
+      // border-bottom: 3px solid $white;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+
+      @include desktop {
+        color: $white;
+      }
+    }
+
+    .description {
+      p {
+        @include desktop {
+          color: $gray-description;
+        }
+      }
+    }
+
+    .link {
+      @include link;
+      font-weight: 600;
+      color: $internal-orange;
+    }
+  }
+
+  .articleImg {
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    > span {
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+    }
+    img {
+      border-radius: 0.5rem 0.5rem 0 0 !important;
+      @include desktop {
+        border-radius: 0.5rem !important;
+      }
+    }
+  }
+}

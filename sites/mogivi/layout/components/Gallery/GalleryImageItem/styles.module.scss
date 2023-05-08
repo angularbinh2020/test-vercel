@@ -1,0 +1,147 @@
+@import "sites/mogivi/styles/deviceWidth";
+@import "sites/mogivi/styles/variables";
+
+.textImageItem {
+  width: calc(33.3% - 20px);
+  margin-bottom: 1.5rem;
+
+  @include tablet {
+    width: calc(50% - 50px);
+    margin-bottom: 1.5rem;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+
+  &:hover {
+    transform: translate(0, -2px);
+  }
+
+  .cardImageContainer {
+    position: relative;
+    padding: 0;
+
+    &::before {
+      content: "";
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      bottom: 0;
+      left: 0;
+      //   border-radius: 1.5rem;
+      background: linear-gradient(0deg, #1e1e1e 0%, rgba(30, 30, 30, 0) 100%);
+      z-index: 1;
+      transition: 0.3s;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+
+  .cardHeader {
+    flex-wrap: wrap;
+    margin: 0.5rem 0;
+
+    .tag {
+      border-radius: 4px;
+      padding: 5px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 12px;
+      text-align: center;
+      color: #ffffff;
+
+      @include tablet {
+        line-height: 20px;
+        padding: 2px 5px;
+      }
+
+      @include mobile {
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+
+    .noTag {
+      height: 30px;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .cardImg {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 240px;
+    //   top: 0;
+    //   left: 0;
+    //   background: linear-gradient(0deg, #1e1e1e 0%, rgba(30, 30, 30, 0) 100%);
+    // }
+  }
+
+  .cardContent {
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+    z-index: 2;
+
+    .cardInfo {
+      color: $white;
+      position: relative;
+
+      p {
+        font-size: 0.9rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+        color: $white;
+      }
+    }
+
+    .cardPosition {
+      color: $white;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0;
+      padding-right: 1rem;
+    }
+
+    .cardStatus {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+
+  .cardDescription {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    color: $white;
+    text-align: center;
+    padding: 1rem 2rem;
+    z-index: 5;
+
+    h6 {
+      color: #7c1c01;
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      font-weight: 700;
+    }
+  }
+}

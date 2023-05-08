@@ -1,0 +1,14 @@
+@import "../../styles/variables";
+
+.container {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  right: 25px;
+  width: 250px;
+  [class~="bg-success"] {
+    [class~="toast-body"] {
+      color: $white;
+    }
+  }
+}

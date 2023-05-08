@@ -1,0 +1,67 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.chatPopupContainer {
+  background-color: $white;
+  width: 420px;
+  border-radius: 12px;
+  transform: translateY(-10px);
+
+  @include mobile {
+    height: auto;
+    width: 90%;
+    transform: translateY(-15px) translateX(15px);
+    padding-bottom: 30px;
+  }
+
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $internal-orange;
+    border-radius: 8px 8px 0 0;
+    color: $white;
+
+    @include desktop {
+      padding: 15px;
+    }
+
+    @include tablet {
+      padding: 15px;
+    }
+  }
+}
+
+.logo {
+  height: 29px;
+  border: 2px solid;
+}
+
+.onlineDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid;
+  background-color: $success;
+  bottom: 2px;
+  right: 0px;
+}
+
+.mobileContainer {
+  .title {
+    flex: 1;
+  }
+
+  .appBar {
+    position: relative;
+    background-color: $internal-orange;
+    color: $white;
+
+    .icClose {
+      padding-right: 0;
+    }
+
+    @include mobile {
+      box-shadow: none;
+    }
+  }
+}

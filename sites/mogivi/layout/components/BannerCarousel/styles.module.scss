@@ -1,0 +1,106 @@
+@import "sites/mogivi/styles/mixins";
+
+.bannerContainer {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: seashell;
+
+  h1 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    line-height: 1.8rem;
+  }
+
+  [class~="swiper-pagination-bullet-active"] {
+    background: $internal-orange;
+  }
+
+  [class~="swiper-pagination-bullet"] {
+    width: 2rem;
+    height: 0.5rem;
+    border-radius: 1rem;
+  }
+
+  // .bannerBox {
+  //   height: 582px;
+  //   padding-top: 5.8rem;
+  //   padding-left: 0.5rem;
+  //   background-image: url(../../assets/images/inner-section-bg.png);
+  //   background-position: center bottom;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   background-color: #f1fcff;
+  //   display: block;
+
+  //   @include desktop {
+  //     padding-top: 8.8rem;
+  //     padding-left: 0;
+  //   }
+  // }
+  .bannerBox2 {
+    height: 35rem;
+    display: block;
+    padding-top: 5.8rem;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $black-russian;
+    z-index: 999;
+    position: relative;
+    @include desktop {
+      padding-top: 7rem;
+    }
+
+    @include tablet {
+      background-position: 75% 100%;
+    }
+
+    @include mobile {
+      padding: 5rem 0;
+    }
+  }
+
+  .content {
+    @include tablet {
+      width: 60%;
+    }
+  }
+
+  .link {
+    position: relative;
+  }
+
+  .btnLink {
+    @include btnLink;
+    @include btnArrow;
+    padding: 0.5rem;
+    width: 50%;
+
+    @include desktop {
+      width: unset;
+    }
+
+    .arrowIcon {
+      @include arrowIcon;
+
+      > span {
+        display: block !important;
+      }
+    }
+
+    &:hover {
+      .arrowIcon {
+        opacity: 1;
+        right: 0.5rem;
+      }
+    }
+  }
+}
+
+.zNegative1 {
+  z-index: -1;
+}

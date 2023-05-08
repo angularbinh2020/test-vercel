@@ -1,0 +1,76 @@
+@import "sites/mogivi/styles/index.scss";
+
+.tabHeader {
+  line-height: 59px;
+  color: $black;
+
+  a {
+    color: $black;
+    text-decoration: none;
+  }
+
+  &:not(:first-child) {
+    margin-left: 20px;
+  }
+
+  &:hover {
+    color: $internal-orange;
+    cursor: pointer;
+  }
+}
+
+.active {
+  border-bottom: 2px solid $internal-orange;
+  font-weight: bold;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  line-height: normal;
+  margin-bottom: 0;
+}
+.placeViral {
+  display: inline-block;
+  color: rgb(8 9 12 / 60%);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.projectMobuleContainer {
+  [class~="accordion-item"] {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  [class~="accordion-button"] {
+    padding-left: 0;
+    padding-right: 0;
+
+    &:focus {
+      border-color: unset;
+      box-shadow: unset;
+    }
+  }
+
+  [class~="accordion-body"] {
+    @include desktop {
+      padding: var(--bs-accordion-body-padding-y) 0;
+    }
+  }
+
+  [class="accordion-button"] {
+    color: $black;
+    background-color: $white;
+
+    &::after {
+      background-image: var(--bs-accordion-btn-icon);
+    }
+  }
+
+  @include mobile {
+    padding: 0 1.5rem;
+  }
+}

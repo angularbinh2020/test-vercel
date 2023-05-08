@@ -1,0 +1,45 @@
+@use "../../../styles.module.scss";
+@use "../../../../../../../styles/variables";
+
+.investorContent {
+  .investorContentItem {
+    a {
+      color: variables.$black;
+
+      &:hover {
+        color: variables.$internal-orange;
+      }
+    }
+  }
+}
+
+.container {
+  [class~="accordion-item"] {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  [class~="accordion-button"] {
+    padding-left: 0;
+    padding-right: 0;
+
+    &:focus {
+      border-color: unset;
+      box-shadow: unset;
+    }
+  }
+
+  [class~="accordion-body"] {
+    padding: var(--bs-accordion-body-padding-y) 0;
+  }
+
+  [class="accordion-button"] {
+    color: variables.$black;
+    background-color: variables.$white;
+
+    &::after {
+      background-image: var(--bs-accordion-btn-icon);
+    }
+  }
+}

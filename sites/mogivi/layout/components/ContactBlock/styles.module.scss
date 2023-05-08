@@ -1,0 +1,71 @@
+@import "sites/mogivi/styles/index.scss";
+
+.contactSupportContainer {
+  .contactWrapper {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+
+    @include tablet {
+      gap: 0.5rem;
+    }
+  }
+
+  .contactForm {
+    max-width: 475px;
+    margin: auto;
+    background: #fff;
+    border: 1px solid rgba(131, 131, 131, 0.2);
+    padding: 50px;
+    box-shadow: 0 2px 20px 0 #00000015;
+
+    input {
+      border-radius: 0;
+
+      &:focus {
+        box-shadow: unset;
+        border-color: $mid-grey;
+      }
+    }
+
+    .contactFormContainer {
+      textarea {
+        border-radius: 0;
+
+        &:focus {
+          box-shadow: unset;
+          border-color: $mid-grey;
+        }
+      }
+    }
+  }
+
+  .infoDetail {
+    h2 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $text-orange;
+    }
+
+    [class="address-content"] {
+      a {
+        color: $black-gray;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .btnSubmit {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 0;
+    background-color: $text-orange;
+    border-color: unset;
+
+    &:hover {
+      background-color: $white;
+      color: $text-orange;
+    }
+  }
+}

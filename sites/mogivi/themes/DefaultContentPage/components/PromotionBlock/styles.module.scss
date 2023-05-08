@@ -1,0 +1,38 @@
+@import "sites/mogivi/styles/index";
+
+.promotionContainer {
+  .promotionBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+
+    .content {
+      @include desktop {
+        width: 26rem;
+        margin: auto;
+      }
+
+      h3 {
+        @include desktop {
+          font-size: 2.5rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .text {
+        p {
+          @include desktop {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .flexReverse {
+    flex-direction: row-reverse;
+  }
+}

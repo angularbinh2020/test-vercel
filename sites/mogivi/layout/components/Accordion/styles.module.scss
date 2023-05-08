@@ -1,0 +1,50 @@
+@import "sites/mogivi/styles/index.scss";
+
+.accordionItem {
+  line-height: 50px;
+  border-top: 1px solid #ffffff1f;
+  color: #fff;
+  overflow: hidden;
+  cursor: pointer;
+
+  .accordionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h6,
+    h1 {
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+  }
+
+  .accordionContent {
+    a {
+      color: $white;
+    }
+  }
+}
+
+.burgerTheme {
+  color: $black-russian;
+
+  .linkServices {
+    .linkServiceItem {
+      padding-bottom: 0;
+      margin-bottom: 0;
+
+      h6 {
+        margin-top: 1rem;
+      }
+
+      .subMenuItem {
+        display: block;
+        text-decoration: none;
+        color: $black-russian;
+      }
+    }
+  }
+}

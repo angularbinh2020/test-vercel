@@ -1,0 +1,121 @@
+@import "sites/mogivi/styles/index.scss";
+
+.jobsContainer {
+  position: relative;
+  height: 100%;
+  background-color: $light-gray;
+  padding: 5rem 0;
+
+  @include mobile {
+    padding: 3rem 1rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+
+    @include mobile {
+      font-size: 2rem;
+      width: 20rem;
+      margin: auto;
+    }
+  }
+
+  [class~="nav-tabs"] {
+    border-bottom: 0;
+
+    [class="nav-link"] {
+      color: $black;
+      border: 0;
+    }
+
+    [class="nav-link active"] {
+      border: 0;
+      position: relative;
+      color: $text-orange;
+      background-color: transparent;
+    }
+  }
+
+  .tabPanel {
+    text-align: center;
+    max-width: 837px;
+    margin: auto;
+    margin-top: 6.25rem;
+
+    button {
+      font-weight: 700;
+      font-size: 24px;
+      padding-left: 0;
+    }
+
+    li {
+      padding: 0;
+      background-color: transparent;
+      margin-right: 3rem;
+
+      @include mobile {
+        margin-right: 0;
+      }
+    }
+
+    @include mobile {
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+  }
+
+  .accordionItem {
+    background: #ffffff;
+    box-shadow: 4px 4px 40px rgba(196, 196, 196, 0.25);
+    border: 0.5px solid #dbdbdb;
+    border-radius: 6px;
+    max-width: 837px;
+    margin: auto;
+    padding: 8px 32px;
+    margin-bottom: 10px;
+
+    @include mobile {
+      padding: 0.5rem 0;
+    }
+  }
+
+  [class="accordion-button"] {
+    &:not(.collapsed) {
+      color: $text-orange;
+
+      &::after {
+        transform: rotate(-45deg);
+        color: $yellow;
+      }
+    }
+  }
+
+  .accordionHeader {
+    button {
+      font-size: 24px;
+      font-weight: 700;
+      color: $black;
+
+      &::after {
+        content: "\002B";
+        color: $yellow;
+        font-size: 2rem;
+        font-weight: 500;
+        width: unset;
+        height: unset;
+        background-image: unset;
+      }
+    }
+  }
+
+  .accordionBody {
+    line-height: 32px;
+
+    a {
+      color: $text-orange;
+      text-decoration: underline;
+    }
+  }
+}

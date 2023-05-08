@@ -1,0 +1,127 @@
+@import "sites/mogivi/styles/index.scss";
+
+.mainBlock {
+  padding: 5.6rem 0;
+}
+
+.bannerFeatureContainer {
+  .blockFeature {
+    margin-top: 5rem;
+
+    @include mobile {
+      margin-top: 0;
+    }
+
+    .commonTitle {
+      display: flex;
+      justify-content: center;
+
+      h3 {
+        width: 80%;
+        text-align: center;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        color: #eb5400;
+
+        span {
+          color: $black-russian;
+        }
+
+        @include largeDesktop {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  .mainContentFeature {
+    display: flex;
+    margin-top: 5rem;
+    justify-content: space-between;
+
+    @include mobile {
+      flex-direction: column;
+      margin-top: 3rem;
+    }
+
+    .pathFeature {
+      width: 33.3%;
+
+      @include mobile {
+        width: 100%;
+      }
+
+      .itemFeature {
+        text-align: center;
+        margin-bottom: 3.75rem;
+
+        p {
+          text-align: right;
+
+          @include mobile {
+            text-align: left;
+          }
+        }
+
+        @include mobile {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .blockImgFeature {
+        position: relative;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .leftContent {
+      .blockImgFeature {
+        &::after {
+          position: absolute;
+          content: url(https://mogivi.vn/Styles/mogivi-app-intro/images/line-feature.png);
+          right: -2.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+
+          @include mobile {
+            content: unset;
+          }
+        }
+      }
+    }
+
+    .rightContent {
+      .blockImgFeature {
+        &::after {
+          position: absolute;
+          content: url(https://mogivi.vn/Styles/mogivi-app-intro/images/line-feature.png);
+          left: -2.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 7.5rem;
+
+          @include mobile {
+            content: unset;
+          }
+        }
+      }
+
+      .itemFeature {
+        p {
+          text-align: left;
+        }
+      }
+    }
+
+    .middleContentFeature {
+      width: 33.3%;
+      position: relative;
+
+      @include mobile {
+        display: none;
+      }
+    }
+  }
+}

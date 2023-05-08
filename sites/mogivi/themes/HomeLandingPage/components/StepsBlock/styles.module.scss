@@ -1,0 +1,61 @@
+@import "sites/mogivi/styles/index";
+
+.stepsContainer {
+  //   height: 30rem;
+  padding: 5rem 0;
+  text-align: center;
+
+  .title {
+    margin-bottom: 3rem;
+  }
+
+  .stepsBox {
+    .stepItemBox {
+      display: flex;
+      flex-direction: column;
+
+      @include desktop {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stepIcon {
+      background-color: #fff1dcdf;
+      padding: 1.3rem 1.5rem;
+      border-radius: 3rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      line-height: 1rem;
+      // box-shadow: 0.05rem 0.05rem 1rem 0rem #f26417b0;
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      path {
+        fill: $internal-orange;
+      }
+    }
+
+    .stepItem {
+      font-weight: 600;
+      text-align: center;
+      flex: 1.2;
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        color: $manatee;
+        font-weight: 500;
+        margin-top: 0.04rem;
+        font-weight: 400;
+      }
+    }
+  }
+  .stepBg {
+    width: 100%;
+    height: 5.4rem;
+  }
+}

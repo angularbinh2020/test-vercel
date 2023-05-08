@@ -1,0 +1,175 @@
+@import "sites/mogivi/styles/deviceWidth";
+@import "sites/mogivi/styles/variables";
+
+.galleryInfoContainer {
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 4rem 0;
+
+  // @include mobile {
+  //   margin-top: 0;
+  // }
+
+  .galleryInfoTextGroup {
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      font-size: 3rem;
+
+      @include mobile {
+        font-size: 2rem;
+        width: 70%;
+        margin: 3rem auto;
+      }
+    }
+  }
+
+  .textCard {
+    justify-content: center;
+    gap: 1.25rem;
+
+    .cardImgContainer {
+      position: relative;
+      display: inline-flex;
+      width: 26.25rem;
+    }
+
+    .cardImgHover {
+      &::before {
+        content: "";
+        width: 100%;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: transparent;
+        z-index: 2;
+        transition: 0.3s;
+      }
+
+      &:hover {
+        &::before {
+          background: rgba(240, 80, 35, 0.8);
+          z-index: 2;
+        }
+
+        .cardDescription {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 2rem;
+          text-align: center;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    .cardImg {
+      display: block;
+      width: 26.25rem;
+      max-height: 20rem;
+      overflow: hidden;
+
+      @include mobile {
+        max-height: 17rem;
+        width: 100%;
+      }
+    }
+
+    .cardContent {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 2rem;
+
+      .cardInfo {
+        h3 {
+          color: $white;
+        }
+      }
+
+      .cardPosition {
+        color: $text-orange;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+    }
+
+    .cardDescription {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $white;
+      text-align: center;
+      padding: 1rem 2rem;
+      z-index: 5;
+      display: none;
+      transition: all ease-in 0.3s;
+
+      h4 {
+        font-weight: 700;
+      }
+    }
+
+    @include mobile {
+      padding: 0 1rem;
+    }
+  }
+
+  [class~="slick-track"] {
+    display: flex;
+    gap: 1rem;
+  }
+
+  [class="slick-dots"] {
+    bottom: -60px;
+    button {
+      &::before {
+        content: "";
+        border: 2px solid #ff9d09;
+        width: 10px;
+        height: 10px;
+        background-color: transparent;
+        border-radius: 2rem;
+      }
+    }
+
+    [class~="slick-active"] {
+      button {
+        &::before {
+          border-color: transparent;
+          background-color: $text-orange;
+        }
+      }
+    }
+
+    @include mobile {
+      bottom: -40px;
+    }
+  }
+
+  [class~="slick-slider"] {
+    svg {
+      fill: $black;
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  [class~="slick-prev"] {
+    left: -50px;
+  }
+
+  [class~="slick-next"] {
+    right: -50px;
+  }
+}

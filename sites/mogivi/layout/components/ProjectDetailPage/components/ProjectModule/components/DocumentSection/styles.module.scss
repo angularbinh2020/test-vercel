@@ -1,0 +1,16 @@
+@use "../../styles.module.scss";
+@import "sites/mogivi/styles/index.scss";
+
+.downloadContentItem {
+  .documentImg {
+    border: 1px solid $white-smoke;
+  }
+  .downloadBtn {
+    display: inline-block;
+    background-color: $internal-orange;
+    color: $white;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding: 10px 20px;
+  }
+}

@@ -1,0 +1,144 @@
+@import "sites/mogivi/styles/index.scss";
+
+.carouselsTabContainer {
+  background-color: #f7f7f7;
+  padding: 9.375rem 0;
+
+  @include mobile {
+    padding: 4.6875rem 0;
+  }
+
+  .headerTitle {
+    text-align: center;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-weight: 700;
+      font-size: 3rem;
+
+      @include mobile {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+      max-width: 1024px;
+      margin: auto;
+    }
+  }
+
+  .tabPanel {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+
+    .featureTabs {
+      font-size: 15px;
+      line-height: 24px;
+      width: 9.375rem;
+      cursor: pointer;
+      transition: transform step-start 150ms;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      fill: #898d9a;
+      margin: auto;
+      filter: grayscale(100%);
+
+      .tabName {
+        margin-top: 1rem;
+        font-size: 18px;
+        margin-bottom: 1.5rem;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+
+      @include mobile {
+        width: 7.8125rem;
+      }
+    }
+
+    [class~="nav-item"] {
+      margin: auto;
+
+      [class~="nav-link"] {
+        background-color: transparent !important;
+        border-bottom: 5px solid $mid-grey;
+        border-radius: 0;
+        text-transform: uppercase;
+        text-align: center;
+
+        &:focus {
+          color: $black-russian;
+        }
+      }
+
+      [class~="active"] {
+        color: $text-orange !important;
+        border-bottom: 5px solid $text-orange;
+
+        .featureTabs {
+          filter: none;
+        }
+
+        &:focus {
+          color: $text-orange;
+        }
+      }
+
+      @include desktop {
+        &:nth-child(1) {
+          .tabName {
+            margin-bottom: 2.4rem;
+          }
+        }
+      }
+    }
+  }
+
+  [class="nav-link active"] {
+    border: 0;
+    position: relative;
+  }
+
+  .tabContent {
+    .tabContentContainer {
+      padding: 0 4.375rem;
+
+      @include mobile {
+        padding: 0 1rem;
+      }
+    }
+
+    .contentWrapper {
+      h3 {
+        color: $text-orange;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        font-size: 2.25rem;
+      }
+
+      p {
+        line-height: 2rem;
+      }
+
+      @include mobile {
+        margin-bottom: 1rem;
+      }
+    }
+    .contentImg {
+      text-align: right;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

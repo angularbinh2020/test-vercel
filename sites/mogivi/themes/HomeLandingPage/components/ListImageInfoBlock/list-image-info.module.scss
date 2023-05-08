@@ -1,0 +1,184 @@
+@import "../../../../styles/deviceWidth";
+@import "../../../../styles/variables";
+
+.listImageInfoContainer {
+  padding: 50px 0;
+  background-color: $light-gray;
+
+  .listImageInfoBody {
+    .title {
+      font-weight: 700;
+      color: #1e1e1e;
+      text-align: center;
+      font-size: 46px;
+      line-height: 63px;
+      margin-bottom: 20px;
+
+      @include mobile {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 15px;
+      }
+
+      @include tablet {
+        font-size: 25px;
+        line-height: 27px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .subTitle {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 27px;
+      color: #1e1e1e;
+      text-align: center;
+      margin-bottom: 50px;
+
+      @include mobile {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 25px;
+      }
+
+      @include tablet {
+        font-size: 20px;
+        line-height: 22px;
+        margin-bottom: 25px;
+      }
+    }
+
+    .imagesContainer {
+      .imageItem {
+        position: relative;
+        cursor: pointer;
+        border-radius: 10px;
+
+        &:hover {
+          .overlay {
+            opacity: 1;
+          }
+
+          .information {
+            opacity: 1;
+          }
+        }
+
+        .nextImage {
+          width: 100%;
+          border-radius: 10px;
+          max-width: 100%;
+          width: 100%;
+          border-radius: 10px;
+          height: 400px;
+          position: relative;
+          overflow: hidden;
+
+          @include mobile {
+            height: 300px;
+          }
+        }
+
+        .image {
+          width: 100%;
+          border-radius: 10px;
+
+          img {
+            object-fit: cover;
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            height: 400px;
+
+            @include mobile {
+              height: 100%;
+            }
+          }
+
+          @include mobile {
+            height: 300px;
+          }
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0px;
+          right: 0px;
+          border-radius: 10px;
+          height: 100%;
+          width: 100%;
+          opacity: 0;
+          transition: 0.5s ease;
+          background: linear-gradient(
+            0deg,
+            #1e1e1e 0%,
+            rgba(30, 30, 30, 0) 100%
+          );
+
+          @include mobile {
+            opacity: 1;
+          }
+
+          @include tablet {
+            opacity: 1;
+          }
+        }
+
+        .information {
+          transition: opacity 0.3s;
+          opacity: 0;
+          position: absolute;
+          left: 30px;
+          bottom: 15px;
+          color: $white;
+
+          @include mobile {
+            left: 15px;
+            opacity: 1;
+          }
+
+          @include tablet {
+            left: 15px;
+            opacity: 1;
+          }
+
+          h5 {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 27px;
+            color: #ffffff;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            max-width: 350px;
+          }
+
+          h6 {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #f05023;
+          }
+        }
+      }
+    }
+
+    .showMore {
+      text-align: center;
+      margin-top: 50px;
+
+      @include mobile {
+        margin-top: 20px;
+      }
+    }
+  }
+}

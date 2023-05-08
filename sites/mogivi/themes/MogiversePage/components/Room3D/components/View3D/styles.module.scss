@@ -1,0 +1,192 @@
+@use "/sites/mogivi/styles/variables";
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.blocker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: variables.$transparent05;
+  z-index: 10;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: variables.$white;
+    font-size: 14px;
+    cursor: pointer;
+
+    h1 {
+      font-size: 36px;
+    }
+  }
+}
+
+.joystick {
+  position: fixed;
+  left: 50%;
+  bottom: 15vh;
+  width: 120px;
+  height: 120px;
+  padding: 5px;
+  transform: translateX(-50%);
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.portraitBlock {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: variables.$transparent1;
+  display: none;
+  text-align: center;
+
+  img {
+    margin: auto;
+  }
+}
+
+.heightSlider {
+  display: none;
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  margin-left: -67px;
+  width: 135px;
+  height: 45px;
+  color: variables.$white;
+  text-align: center;
+
+  input {
+    orientation: horizontal;
+    margin: auto;
+  }
+}
+
+.inactive {
+  transform: scale(0.85);
+}
+
+.active {
+  border: 2px solid variables.$internal-orange !important;
+  box-sizing: border-box !important;
+}
+
+.sliderContainer {
+  width: 40vw;
+  padding: 10px;
+}
+
+.previewImage {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.tourContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.resetBtn {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+}
+
+.startViewBtn {
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 10px 25px;
+  margin-top: 20px;
+  border-width: 0;
+}
+
+.moveBtn {
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+  width: 250px;
+}
+
+.escBtn {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 50px;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.rulerBtn {
+  background-color: variables.$white;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 22px;
+  cursor: pointer;
+}
+
+.isUsingMeasureTool {
+  background-color: variables.$blue;
+
+  svg,
+  svg path {
+    stroke: variables.$white;
+  }
+}
+
+.mogiviLogo {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  width: 100px;
+}
+
+.mobileRange {
+  position: absolute;
+  right: 30px;
+  top: 100px;
+  left: unset;
+  transform: translateX(60px);
+  width: unset;
+
+  input {
+    appearance: slider-vertical;
+  }
+
+  span {
+    display: none;
+  }
+}
+
+.measurementLabel {
+  background: variables.$grey02;
+  color: variables.$internal-orange;
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid variables.$internal-orange;
+}

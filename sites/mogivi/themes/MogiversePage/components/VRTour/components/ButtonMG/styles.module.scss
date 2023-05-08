@@ -1,0 +1,27 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.button {
+  background-color: $internal-orange;
+  color: $white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.3125rem;
+  border: 1px solid $internal-orange;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+.primary {
+  background-color: $white;
+  color: $internal-orange;
+  border-color: $gray-1;
+  &:hover {
+    border-color: $internal-orange;
+  }
+}

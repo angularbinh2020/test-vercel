@@ -1,0 +1,36 @@
+@import "sites/mogivi/styles/deviceWidth";
+@import "sites/mogivi/styles/variables";
+
+.galleryImageContainer {
+  max-width: 1140px;
+  margin: 4rem auto;
+
+  @include mobile {
+    padding: 0 1rem;
+    margin: 2rem auto;
+  }
+
+  .galleryImageGroup {
+    h2 {
+      text-align: left;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+
+      @include tablet {
+        text-align: center;
+      }
+    }
+  }
+
+  .textImageCard {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    @include tablet {
+      justify-content: center;
+    }
+  }
+}

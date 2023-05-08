@@ -1,0 +1,59 @@
+@import "sites/mogivi/styles/index";
+
+.bannerContainer {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  background-color: #f3f3f3;
+
+  @include desktop {
+    min-height: 32rem;
+  }
+
+  .bannerContent {
+    padding: 2rem 0;
+    text-align: center;
+
+    @include desktop {
+      padding: 10rem 0;
+      text-align: start;
+    }
+
+    h1 {
+      @include desktop {
+        font-size: 3rem;
+        font-weight: 600;
+      }
+    }
+
+    p {
+      @include desktop {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  .btnLink {
+    @include btnLink;
+    @include btnArrow;
+    width: fit-content;
+    padding: 0.4rem 2.5rem;
+
+    @include desktop {
+      width: unset;
+      font-size: 1.1rem;
+    }
+
+    .arrowIcon {
+      @include arrowIcon;
+    }
+
+    &:hover {
+      .arrowIcon {
+        opacity: 1;
+        right: 1.5rem;
+      }
+    }
+  }
+}

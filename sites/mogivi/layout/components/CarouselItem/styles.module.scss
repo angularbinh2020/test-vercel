@@ -1,0 +1,89 @@
+@use "sites/mogivi/styles/deviceWidth";
+@import "sites/mogivi/styles/index.scss";
+
+.investorContainer {
+  max-width: 1140px;
+  margin: 4rem auto;
+
+  .headerGroup {
+    display: flex;
+    justify-content: space-between;
+
+    .readMoreBtn {
+      a {
+        color: $manatee;
+
+        svg {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    @include mobile {
+      padding: 0 1rem;
+    }
+  }
+
+  [class~="slick-slider"] {
+    svg {
+      fill: $black;
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  [class~="slick-prev"] {
+    left: -50px;
+  }
+
+  [class~="slick-next"] {
+    right: -50px;
+  }
+
+  .headerTitle {
+    text-align: left;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+
+      @include mobile {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  [class~="slick-track"] {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .investorLogo {
+    border: 1px solid $light-grey;
+    padding: 1rem;
+  }
+
+  .investorCarousel {
+    @include mobile {
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 0 1rem;
+      gap: 1rem;
+      overflow: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .investorItem {
+      .investorLogo {
+        @include mobile {
+          display: block;
+          width: 10rem;
+        }
+      }
+    }
+  }
+}

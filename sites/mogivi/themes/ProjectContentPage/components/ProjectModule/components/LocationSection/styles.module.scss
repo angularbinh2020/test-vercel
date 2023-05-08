@@ -1,0 +1,23 @@
+@use "../../styles.module.scss";
+@use "../../../../../../styles/variables";
+
+.locationContent {
+  > span {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  img {
+    width: 100%;
+  }
+  .locationContentAdress {
+    padding: 8px;
+    width: 100%;
+
+    i {
+      color: variables.$internal-orange;
+      margin-right: 0.5rem;
+    }
+  }
+}

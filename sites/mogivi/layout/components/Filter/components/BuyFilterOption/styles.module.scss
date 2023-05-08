@@ -1,0 +1,190 @@
+@import "../../../../../styles/deviceWidth";
+@import "../../../../../styles/variables";
+
+.searchInput {
+  padding-left: 2.5rem;
+  border-radius: 0.2rem;
+
+  &:focus {
+    outline: unset;
+    box-shadow: unset;
+    border-color: $manatee;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  left: 1rem;
+  fill: $manatee;
+}
+
+.row {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+
+  .rowLabel {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #484848;
+    margin-bottom: 10px;
+  }
+
+  .rowControl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .iconDiff {
+      cursor: pointer;
+    }
+
+    .iconPlus {
+      cursor: pointer;
+    }
+
+    .control {
+      width: 100%;
+    }
+
+    .select {
+      @include mobile {
+        font-size: 14px;
+      }
+    }
+
+    .icon {
+      margin: 0 10px;
+    }
+  }
+
+  .control {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0.5rem;
+
+    label {
+      font-size: 0.85rem;
+    }
+
+    [type="checkbox"] {
+      display: none;
+    }
+
+    input[type="checkbox"] {
+      &:checked + label {
+        &::before {
+          background-color: $text-orange;
+          border: unset;
+        }
+
+        &::after {
+          transform: scale(1);
+        }
+      }
+    }
+
+    .checkBox {
+      padding-left: 0;
+
+      label {
+        position: relative;
+
+        &::before {
+          content: "";
+          margin-right: 10px;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border-radius: 2px;
+          border: 2px solid #30333a;
+          transform: translateY(0.075em);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 4px;
+          left: 3px;
+          width: 0.65em;
+          height: 0.65em;
+          clip-path: polygon(
+            14% 44%,
+            0 65%,
+            50% 100%,
+            100% 16%,
+            80% 0%,
+            43% 62%
+          );
+          transform: scale(0);
+          transform-origin: bottom left;
+          transition: 120ms transform ease-in-out;
+          box-shadow: inset 1em 1em $white;
+          background-color: CanvasText;
+        }
+      }
+    }
+
+    [class="form-check-input"] {
+      &:checked {
+        background-color: $text-orange;
+        border-color: $text-orange;
+      }
+
+      &:focus {
+        box-shadow: unset;
+        border-color: transparent;
+        outline: unset;
+      }
+    }
+
+    .select {
+      @include mobile {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .radioBtnGroup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+
+  .label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #484848;
+    margin-bottom: 10px;
+  }
+}
+
+.advanceFilterFooter {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  button {
+    width: 100%;
+    border-radius: 5px;
+
+    @include tablet {
+      width: 80px;
+      font-size: 14px;
+    }
+  }
+
+  @include mobile {
+    justify-content: center;
+  }
+}

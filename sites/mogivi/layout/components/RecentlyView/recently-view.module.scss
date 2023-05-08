@@ -1,0 +1,108 @@
+@import "../../../styles/deviceWidth";
+@import "../../../styles/variables";
+
+.rootContainer {
+  background: #ffffff;
+  border: 0.5px solid #c4c4c4;
+  border-radius: 5px;
+  padding: 20px;
+
+  .sectionHeader {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    color: #1e1e1e;
+    margin-bottom: 30px;
+
+    @include mobile {
+      margin-bottom: 20px;
+      font-size: 25px;
+      line-height: 30px;
+    }
+
+    @include tablet {
+      margin-bottom: 15px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  .container {
+    .row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .image {
+        margin-right: 15px;
+
+        span:first-child {
+          width: 100px !important;
+          height: 100px !important;
+
+          @include tablet {
+            width: 70px !important;
+            height: 70px !important;
+          }
+        }
+      }
+
+      .infoContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .name {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 27px;
+          color: #1e1e1e;
+
+          @include tablet {
+            font-size: 14px;
+            line-height: 20px;
+          }
+
+          @include mobile {
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+
+        .price {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 27px;
+          color: #f05023;
+
+          @include tablet {
+            font-size: 14px;
+            line-height: 20px;
+          }
+
+          @include mobile {
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+
+        .detailInfo {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 22px;
+          color: #484848;
+
+          @include tablet {
+            font-size: 14px;
+            line-height: 20px;
+          }
+
+          @include mobile {
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+}

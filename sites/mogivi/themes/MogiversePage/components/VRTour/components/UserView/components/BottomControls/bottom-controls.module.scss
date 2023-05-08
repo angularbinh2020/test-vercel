@@ -1,0 +1,147 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.bottomActionsBar {
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include tablet {
+    position: fixed;
+    bottom: 10px;
+  }
+
+  @include mobile {
+    position: fixed;
+    padding: 0 20px;
+    bottom: 10px;
+  }
+
+  @include mobile-landscape {
+    justify-content: center;
+  }
+
+  .zoomContainer {
+    display: inline-block;
+    background: rgba(43, 43, 43, 0.67);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    padding: 8px 15px;
+    position: relative;
+
+    button {
+      background-color: transparent;
+      box-shadow: none;
+      border: 0;
+
+      svg {
+        fill: $white;
+        stroke: $white;
+      }
+
+      &:hover {
+        span {
+          color: $internal-orange;
+        }
+
+        svg {
+          fill: $internal-orange;
+          stroke: $internal-orange;
+        }
+      }
+
+      &:disabled {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .actionContainer {
+    display: inline-block;
+    background: rgba(43, 43, 43, 0.67);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    padding: 8px 15px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include tablet {
+      margin-right: 15px;
+    }
+
+    @include mobile {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @include mobile-landscape {
+      margin-left: 20px;
+    }
+
+    button {
+      background-color: transparent;
+      box-shadow: none;
+      border: 0;
+
+      svg {
+        fill: $white;
+        stroke: $white;
+      }
+
+      &:hover {
+        span {
+          color: $internal-orange;
+        }
+
+        svg {
+          fill: $internal-orange;
+          stroke: $internal-orange;
+        }
+      }
+
+      &:disabled {
+        opacity: 0.6;
+      }
+    }
+
+    span {
+      color: $white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+
+  .btnBack {
+    margin-left: 20px;
+    height: 45px;
+    border: 0;
+    color: $white;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: transparent;
+
+    @include mobile {
+      margin-left: 0;
+    }
+
+    svg {
+      margin-right: 10px;
+    }
+
+    img {
+      width: 21px;
+      height: 20px;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

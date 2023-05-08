@@ -1,0 +1,129 @@
+@import "sites/mogivi/styles/index.scss";
+
+.mainBlock {
+  padding: 5.6rem 0;
+}
+
+.blockHighlightFeature {
+  background-color: #eb55000f;
+}
+
+.bannerDetailFeatureContainer {
+  .mainHighlightFeature {
+    border-left: 1px solid #d1cdca;
+  }
+
+  .commonTitle {
+    h3 {
+      text-transform: uppercase;
+      color: #eb5400;
+      font-size: 2.6rem;
+      line-height: 1.4;
+      margin-bottom: 0;
+
+      span {
+        color: $black-russian;
+      }
+
+      @include largeDesktop {
+        font-size: 2.5rem;
+      }
+
+      @include mobile {
+        font-size: 2rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .itemHighlightFeature {
+    margin-top: 1.87rem;
+
+    h4 {
+      margin-bottom: 1.25rem;
+      padding-left: 1rem;
+      position: relative;
+      font-size: 1.5rem;
+      padding-top: 5px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 2.2rem;
+        background-color: #eb5500;
+        top: 4px;
+        left: -3px;
+      }
+    }
+
+    .titleHighlight {
+      h4 {
+        margin-bottom: 1.25rem;
+        padding-left: 1rem;
+        position: relative;
+        font-size: 1.5rem;
+        padding-top: 5px;
+      }
+    }
+
+    .smallContentHighlight {
+      display: flex;
+
+      @include mobile {
+        flex-direction: column;
+      }
+
+      .pathHighlight {
+        padding-left: 3.1rem;
+
+        @include mobile {
+          padding-left: 2rem;
+        }
+      }
+
+      ul {
+        li {
+          &::before {
+            content: "•";
+            color: #d2d2d2;
+            font-size: 1.5rem;
+            margin-right: 1.25rem;
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .blockSecondHighlight {
+    display: flex;
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+    }
+
+    .blockTextHighlight {
+      width: 60%;
+      padding-right: 1.87rem;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+
+    .blockImgHighlight {
+      width: 40%;
+
+      img {
+        max-width: 100%;
+      }
+
+      @include mobile {
+        width: 100%;
+        margin-top: 2rem;
+      }
+    }
+  }
+}

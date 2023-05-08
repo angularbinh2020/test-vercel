@@ -1,0 +1,69 @@
+@import "sites/mogivi/styles/deviceWidth";
+@import "sites/mogivi/styles/variables";
+
+.galleryImageContainer {
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 4rem 0;
+
+  @include mobile {
+    margin-top: 0;
+  }
+
+  .galleryImageTextGroup {
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      font-size: 3rem;
+    }
+  }
+
+  [class~="slick-track"] {
+    display: flex;
+    gap: 1rem;
+  }
+
+  [class="slick-dots"] {
+    bottom: -60px;
+    button {
+      &::before {
+        content: "";
+        border: 2px solid #ff9d09;
+        width: 10px;
+        height: 10px;
+        background-color: transparent;
+        border-radius: 2rem;
+      }
+    }
+
+    [class~="slick-active"] {
+      button {
+        &::before {
+          border-color: transparent;
+          background-color: $text-orange;
+        }
+      }
+    }
+
+    @include mobile {
+      bottom: -40px;
+    }
+  }
+
+  [class~="slick-slider"] {
+    svg {
+      fill: $black;
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  [class~="slick-prev"] {
+    left: -50px;
+  }
+
+  [class~="slick-next"] {
+    right: -50px;
+  }
+}

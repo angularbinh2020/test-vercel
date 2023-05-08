@@ -1,0 +1,175 @@
+@import "sites/mogivi/styles/index.scss";
+
+.mainBlock {
+  padding: 5.6rem 0;
+}
+
+.blockFAQ {
+  padding-bottom: 3.1rem;
+}
+
+.bannerFAQContainer {
+  .mainHighlightFeature {
+    border-left: 1px solid #d1cdca;
+  }
+
+  .commonTitle {
+    margin-bottom: 3.75rem;
+
+    h3 {
+      text-transform: uppercase;
+      color: #eb5400;
+      font-size: 2.6rem;
+      line-height: 1.4;
+      margin-bottom: 0;
+
+      span {
+        color: $black-russian;
+      }
+
+      @include largeDesktop {
+        font-size: 2.5rem;
+      }
+
+      @include mobile {
+        font-size: 2rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .mainFAQ {
+    @include mobile {
+      flex-direction: column;
+    }
+
+    .leftContentFAQ {
+      width: 60%;
+      padding-right: 2.5rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @include mobile {
+        width: 100%;
+        padding-right: 0;
+      }
+    }
+
+    .itemFAQ {
+      margin-bottom: 1.25rem;
+
+      // .active {
+      //   &::after {
+      //     content: url(https://mogivi.vn/Styles/mogivi-app-intro/images/icon-minus.png);
+      //   }
+      // }
+
+      // .accordion-button:not(.collapsed)::after {
+      //   background-image: var(--bs-accordion-btn-icon);
+      // }
+
+      [class~="accordion-button"] {
+        padding: 0;
+
+        &::after {
+          background-image: url(https://mogivi.vn/Styles/mogivi-app-intro/images/icon-minus.png);
+          font-weight: bold;
+          transform: unset;
+        }
+
+        // &:not([class="collapsed"]) {
+        //   &::after {
+        //     background-image: url(https://mogivi.vn/Styles/mogivi-app-intro/images/icon-minus.png);
+        //     transform: unset;
+        //   }
+        // }
+      }
+
+      [class~="collapsed"] {
+        &::after {
+          background-image: url(https://mogivi.vn/Styles/mogivi-app-intro/images/icon-add.png);
+          transform: unset;
+        }
+      }
+
+      // [class~="accordion-button"] {
+
+      // }
+
+      .collapsible {
+        background-color: rgba(235, 85, 0, 0.06);
+        cursor: pointer;
+        padding: 1.12rem;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 1.12rem;
+        font-weight: 600;
+        position: relative;
+
+        button {
+          color: #3a3737;
+          font-weight: bold;
+        }
+
+        p {
+          margin-bottom: 0;
+        }
+
+        // &::after {
+        //   content: url(https://mogivi.vn/Styles/mogivi-app-intro/images/icon-add.png);
+        //   color: #eb5500;
+        //   font-weight: bold;
+        //   float: right;
+        //   margin-left: 5px;
+        //   top: 50%;
+        //   transform: translateY(-50%);
+        //   position: absolute;
+        //   right: 1.12rem;
+        // }
+
+        &:hover {
+          background-color: rgba(235, 85, 0, 0.1);
+        }
+      }
+
+      .detailContentFAQ {
+        border-top: 1px solid rgba(235, 85, 0, 0.5);
+        padding: 1rem 1.12rem;
+        background-color: rgba(235, 85, 0, 0.1);
+        // max-height: 0;
+        font-size: 1rem;
+        // overflow: hidden;
+        // transition: max-height 0.2s ease-out;
+
+        p {
+          margin-bottom: 0;
+          width: 90%;
+        }
+      }
+    }
+
+    .rightImgFAQ {
+      width: 40%;
+      position: relative;
+      z-index: 1;
+
+      & > span:first-child {
+        margin-bottom: -12.5rem !important;
+        vertical-align: middle;
+        border-style: none;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+  }
+}

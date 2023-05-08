@@ -1,0 +1,22 @@
+@use "../../../styles.module.scss";
+@import "sites/mogivi/styles/index.scss";
+
+.buildingContent {
+  .buildingContentItemBody {
+    .textOrange {
+      font-size: 14px;
+      color: $internal-orange;
+      position: relative;
+      margin-bottom: 1rem;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        content: "";
+        width: 50px;
+        border-bottom: 1px solid $internal-orange;
+      }
+    }
+  }
+}

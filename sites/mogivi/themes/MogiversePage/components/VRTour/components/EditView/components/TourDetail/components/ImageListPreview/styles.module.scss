@@ -1,0 +1,24 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.tourDetailItem {
+  .imgTourDetail {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    position: relative;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    height: 165px;
+  }
+  &:hover {
+    .tourDetailOverlay {
+      top: 0;
+    }
+  }
+
+  h6 {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}

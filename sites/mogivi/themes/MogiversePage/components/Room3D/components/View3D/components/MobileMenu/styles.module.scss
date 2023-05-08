@@ -1,0 +1,64 @@
+@use "/sites/mogivi/styles/variables";
+
+.menuBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px 12px;
+  background-color: variables.$white;
+
+  & > svg {
+    width: 14px;
+  }
+}
+
+.menuContent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: variables.$transparent05;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+
+  & > div {
+    max-width: 90vw;
+    text-align: center;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.previewImage {
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.inactive {
+  transform: scale(0.85);
+}
+
+.active {
+  border: 2px solid variables.$internal-orange !important;
+  box-sizing: border-box !important;
+}
+
+.startViewBtn {
+  margin-top: 25px;
+}
+
+.galleryContainer {
+  max-height: 60vh;
+  overflow: auto;
+  margin-top: 20px;
+}
+
+.roomName {
+  color: variables.$white;
+  font-weight: 600;
+  font-size: 18px;
+}

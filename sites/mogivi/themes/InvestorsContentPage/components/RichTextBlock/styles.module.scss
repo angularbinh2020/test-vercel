@@ -1,0 +1,58 @@
+@import "sites/mogivi/styles/index.scss";
+
+.grayBackgroundColor {
+  background-color: $solitude;
+}
+
+.richTextContainer {
+  max-width: 1140px;
+  margin: 4rem auto 0;
+  padding: 4rem 0;
+
+  @include mobile {
+    margin: 0 auto;
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 600;
+    color: #30333a;
+    margin: 1rem 0 1rem 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    @include mobile {
+      font-size: 1.2rem;
+    }
+  }
+
+  .description {
+    columns: 2;
+    column-gap: 4rem;
+
+    @include mobile {
+      columns: unset;
+    }
+
+    p {
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+      color: #444c59;
+      line-height: 1.5;
+      text-align: justify;
+
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+
+  @include mobile {
+    padding: 2rem 1rem;
+  }
+}

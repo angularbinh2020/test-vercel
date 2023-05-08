@@ -1,0 +1,17 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.labelExisted {
+  padding: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: $gray-3;
+    border-radius: 6px;
+  }
+}
+
+.hoverZoomIn {
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+  }
+}

@@ -1,0 +1,17 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.miniMapContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 180px;
+  height: 180px;
+  padding: 5px;
+  background-color: $black-transparent-1;
+  border-radius: 8px;
+}
+
+.positionIcon {
+  position: absolute;
+  width: 10px;
+}

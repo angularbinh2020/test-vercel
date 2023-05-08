@@ -1,0 +1,113 @@
+@import "../../../../styles/deviceWidth";
+@import "../../../../styles/variables";
+
+.promotionContainer {
+  padding: 100px 0;
+
+  .promotionBody {
+    display: flex;
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+    }
+
+    .imgPromotion {
+      margin-right: 150px;
+
+      @include mobile {
+        margin-right: 20px;
+
+        img {
+          height: 180px;
+          width: auto;
+        }
+      }
+
+      @include tablet {
+        margin-right: 30px;
+
+        img {
+          height: 300px;
+          width: auto;
+        }
+      }
+    }
+
+    .promotionInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @include mobile {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .title {
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 63px;
+        color: $black;
+        margin-bottom: 30px;
+
+        @include mobile {
+          font-size: 1.2rem;
+          padding: 1rem;
+          line-height: unset;
+          margin: 1rem 0;
+        }
+
+        @include tablet {
+          font-size: 20px;
+          line-height: 24px;
+        }
+      }
+
+      .description {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 27px;
+        color: $dark-shade;
+        margin-bottom: 30px;
+
+        @include mobile {
+          font-size: 1rem;
+          line-height: unset;
+          margin-bottom: 1rem;
+        }
+
+        @include tablet {
+          font-size: 14px;
+          line-height: 16px;
+        }
+
+        ul {
+          margin-top: 20px;
+          padding-left: 2rem;
+
+          li {
+            list-style-type: disc;
+          }
+
+          @include mobile {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+
+    .appContainer {
+      display: flex;
+      gap: 1rem;
+
+      @include mobile {
+        justify-content: center;
+      }
+    }
+
+    .icDownload {
+      cursor: pointer;
+    }
+  }
+}

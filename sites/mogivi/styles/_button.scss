@@ -1,0 +1,58 @@
+@import "./variables";
+
+.btn-white--outline {
+  background-color: transparent;
+  color: $white;
+  border: 1px solid $white;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.3rem;
+  font-weight: 700;
+
+  &:hover {
+    background-color: $white;
+    color: $black;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.btn-orange {
+  background-color: $text-orange;
+  color: $white;
+  border: 0;
+  outline: none;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.3rem;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn-outline {
+  border: 1px solid $text-orange;
+  color: $text-orange;
+  background-color: #fff;
+  border-radius: 0.3rem;
+  transition: all 0.2s ease-in-out;
+  padding: 0.5rem 1rem;
+
+  &:hover {
+    color: $white;
+    background-color: $text-orange;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.yellow-gradient {
+  background: linear-gradient(270deg, #f59d1a 0%, #f5b31a 100%), #f5b31a;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 0;
+  border-color: transparent;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

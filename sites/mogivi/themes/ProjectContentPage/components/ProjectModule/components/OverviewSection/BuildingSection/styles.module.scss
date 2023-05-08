@@ -1,0 +1,22 @@
+@use "../../../styles.module.scss";
+@use "../../../../../../../styles/variables";
+
+.buildingContent {
+  .buildingContentItemBody {
+    .textOrange {
+      font-size: 14px;
+      color: variables.$internal-orange;
+      position: relative;
+      margin-bottom: 1rem;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        content: "";
+        width: 50px;
+        border-bottom: 1px solid variables.$internal-orange;
+      }
+    }
+  }
+}

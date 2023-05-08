@@ -1,0 +1,206 @@
+@import "../../../../styles/deviceWidth";
+@import "../../../../styles/variables";
+
+.header {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 68px;
+  text-align: center;
+  color: $dark-shade;
+  margin-bottom: 40px;
+
+  @include tablet {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+
+  @include mobile {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 15px;
+  }
+}
+
+.cardContainer {
+  border-radius: 30px;
+  border: 0;
+
+  .cardTitle {
+    margin-bottom: 0;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+
+  .cardBody {
+    padding: 0;
+    border: 1px solid rgba(195, 192, 192, 0.3978);
+    border-top: 0;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+    .cardHeader {
+      padding: 20px;
+
+      @include tablet {
+        padding: 10px 20px;
+        flex-direction: column;
+      }
+
+      @include mobile {
+        padding: 10px 20px;
+        flex-direction: column;
+      }
+
+      .cardTitle {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 33px;
+        color: $text-orange;
+        margin-bottom: 0;
+
+        @include mobile {
+          font-size: 20px;
+          line-height: 35px;
+        }
+      }
+
+      .tag {
+        background: $text-orange;
+        border-radius: 4px;
+        padding: 5px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: center;
+        color: #ffffff;
+
+        @include tablet {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        @include mobile {
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+
+      .noTag {
+        height: 30px;
+      }
+    }
+
+    .cardDescription {
+      padding: 20px;
+      height: 150px;
+
+      @include tablet {
+        padding: 10px 20px;
+        height: 100px;
+      }
+
+      @include mobile {
+        padding: 10px 20px;
+        height: 80px;
+      }
+
+      .descriptionText {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #484848;
+
+        @include tablet {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        @include mobile {
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+
+    .cardSubDescription {
+      padding: 20px;
+
+      .info {
+        span:first-child {
+          margin-right: 2px !important;
+        }
+
+        .icon {
+          margin-bottom: -2px !important;
+        }
+
+        .infoText {
+          margin-bottom: 10px;
+          margin-right: 10px;
+
+          @include tablet {
+            font-size: 14px;
+            line-height: 20px;
+          }
+
+          @include mobile {
+            font-size: 12px;
+            line-height: 20px;
+          }
+        }
+      }
+
+      .price {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #f05023;
+
+        @include tablet {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        @include mobile {
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
+  .cardFooter {
+    background-color: $white;
+    border: 0;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid rgba(195, 192, 192, 0.3978);
+
+    .address {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 22px;
+      color: #484848;
+      margin-left: 5px;
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      @include mobile {
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+.seeMore {
+  margin-top: 50px;
+  text-align: center;
+}

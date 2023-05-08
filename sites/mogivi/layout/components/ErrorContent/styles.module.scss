@@ -1,0 +1,141 @@
+@import "sites/mogivi/styles/deviceWidth";
+@import "sites/mogivi/styles/index.scss";
+
+.errorContentContainer {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 720px;
+
+  @include largeDesktop {
+    min-height: 860px;
+  }
+
+  @include mobile {
+    background-position: unset;
+  }
+
+  .errorBanner {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: auto;
+    position: relative;
+    top: 20rem;
+
+    @include largeDesktop {
+      max-width: 1466px;
+    }
+
+    @include mobile {
+      top: 7rem;
+      flex-direction: column;
+    }
+
+    .errorLeftContent {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: $white;
+      position: relative;
+      bottom: 2rem;
+
+      @include mobile {
+        position: unset;
+        bottom: unset;
+        margin-bottom: 2rem;
+      }
+
+      h2 {
+        font-weight: 500;
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.75rem;
+        color: #f3cbc0;
+
+        @include mobile {
+          font-size: 1.5rem;
+        }
+      }
+
+      @include largeDesktop {
+        bottom: 0;
+      }
+
+      @include mobile {
+        text-align: center;
+        padding: 0 1rem;
+      }
+    }
+
+    .errorRightContent {
+      position: relative;
+      bottom: 1rem;
+
+      .errorImg {
+        width: 100%;
+
+        svg {
+          width: 45rem;
+          height: auto;
+
+          @include largeDesktop {
+            width: 55rem;
+            height: 40rem;
+          }
+
+          @include mobile {
+            width: 100%;
+          }
+        }
+      }
+
+      @include largeDesktop {
+        bottom: 3rem;
+      }
+    }
+  }
+}
+
+.listPagesContainer {
+  max-width: 1280px;
+  margin: 4rem auto;
+
+  h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    color: $yellow;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .listItemBox {
+    ul {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      max-width: 1120px;
+      margin: auto;
+      gap: 0 13.75rem;
+
+      @include mobile {
+        grid-template-columns: unset;
+        text-align: center;
+      }
+
+      li {
+        margin-bottom: 1rem;
+
+        a {
+          color: #484848;
+          font-weight: 700;
+          font-size: 24px;
+
+          &:hover {
+            color: $text-orange;
+          }
+        }
+      }
+    }
+  }
+}

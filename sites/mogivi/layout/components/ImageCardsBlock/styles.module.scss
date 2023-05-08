@@ -1,0 +1,90 @@
+@import "sites/mogivi/styles/index.scss";
+
+.imageCardContainer {
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 9.375rem 0;
+
+  .imageCardTextGroup {
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      font-size: 3rem;
+    }
+  }
+
+  .imageCardBox {
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
+    border-radius: 20px;
+    overflow: hidden;
+    max-height: 26.8125rem;
+
+    @include mobile {
+      padding-bottom: 1rem;
+    }
+  }
+
+  .imageCardWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3.125rem;
+  }
+
+  .textImageCardFlip {
+    flex-direction: row-reverse;
+
+    .cardImg {
+      position: relative;
+      right: -20px;
+
+      @include mobile {
+        right: unset;
+      }
+    }
+  }
+
+  .textImageCard {
+    text-align: left;
+
+    p {
+      margin-bottom: 0;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    .cardImg {
+      display: block;
+      width: 40rem;
+      max-height: 100%;
+      overflow: hidden;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+
+    .cardContent {
+      width: 100%;
+      padding: 0 3.125rem;
+
+      p {
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 2.75rem;
+
+        @include mobile {
+          font-size: 1.5rem;
+          line-height: unset;
+        }
+      }
+
+      @include mobile {
+        padding: 0 2rem;
+      }
+    }
+  }
+}

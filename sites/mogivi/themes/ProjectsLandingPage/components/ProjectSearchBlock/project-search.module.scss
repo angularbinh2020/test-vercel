@@ -1,0 +1,158 @@
+@import "../../../../styles/deviceWidth";
+@import "../../../../styles/variables";
+
+.projectSearchContainer {
+  position: relative;
+
+  @include mobile {
+    padding: 0 0.5rem;
+  }
+
+  .searchInput {
+    margin-bottom: 20px;
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+
+    .label {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 25px;
+      color: #1e1e1e;
+    }
+
+    .input,
+    .select {
+      height: 50px;
+      border-radius: 0;
+      box-shadow: 0px 4px 8px -2px rgb(16 24 40 / 10%),
+        0px 2px 4px -2px rgb(16 24 40 / 6%);
+      padding-left: 3rem;
+      border: 1px solid #5a5a5a4d;
+
+      &:focus {
+        outline: none;
+        // border-color: #ced4da;
+        box-shadow: 0px 4px 8px -2px rgb(16 24 40 / 10%),
+          0px 2px 4px -2px rgb(16 24 40 / 6%);
+      }
+    }
+  }
+
+  .searchIcon {
+    position: absolute;
+    left: 1.2rem;
+    top: 0.75rem;
+
+    svg {
+      fill: $light-grey;
+    }
+  }
+
+  .spinner {
+    position: absolute;
+    left: 1.2rem;
+    top: 1rem;
+
+    [class~="spinner-border"] {
+      color: $mid-grey !important;
+      width: 1.2rem;
+      border-width: 0.2rem;
+      height: 1.2rem;
+    }
+  }
+
+  .searchBtn {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+
+    button {
+      height: 50px;
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+
+  .suggestionList {
+    background-color: $white;
+    width: 800px;
+    max-height: 450px;
+    overflow: auto;
+    position: absolute;
+    top: 45px;
+    z-index: 99;
+    border: 1px solid #5a5a5a4d;
+    border-top: 0;
+    box-shadow: 0px 4px 8px -2px rgb(16 24 40 / 10%),
+      0px 2px 4px -2px rgb(16 24 40 / 6%);
+
+    .suggestionItem {
+      width: 100%;
+
+      h6 {
+        padding: 1rem 2rem 0;
+        font-weight: 600;
+        color: $mid-grey;
+      }
+
+      .suggestionSubitem {
+        span {
+          padding: 1rem 2rem;
+          display: block;
+          width: 100%;
+          color: $mid-grey;
+
+          &:hover {
+            background-color: #ececec;
+          }
+        }
+        a {
+          padding: 1rem 2rem;
+          display: block;
+          width: 100%;
+          color: $mid-grey;
+
+          &:hover {
+            background-color: #ececec;
+          }
+        }
+      }
+    }
+
+    @include tablet {
+      width: 100%;
+    }
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+}
+
+.recentlySearchTag {
+  max-width: 800px;
+  margin: 1rem auto;
+
+  .recentlySearchTagBox {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    li {
+      padding: 0.2rem 1.5rem;
+      border: 1px solid $light-grey;
+      cursor: pointer;
+      border-radius: 1rem;
+
+      a {
+        color: $black-russian;
+      }
+
+      &:hover {
+        background-color: #ececec;
+      }
+    }
+  }
+}

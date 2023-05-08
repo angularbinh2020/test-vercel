@@ -1,0 +1,58 @@
+@import "sites/mogivi/styles/index.scss";
+
+.contactCardBlockContainer {
+  background-color: $light-gray;
+  padding-bottom: 3rem;
+
+  .contactCardContent {
+    position: relative;
+    align-items: center;
+    justify-content: space-around;
+    padding: 46px 16px;
+  }
+
+  .contactCardBox {
+    max-width: 837px;
+    margin: auto;
+    background: rgba(240, 80, 35, 0.1);
+    border-radius: 6px;
+  }
+
+  .contactCardImg {
+    position: absolute;
+    bottom: -5px;
+    left: 50px;
+    width: 250px;
+    // overflow: hidden;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .bottomText {
+    h2 {
+      color: $text-orange;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-weight: 700;
+    }
+
+    [class~="link-phone"] {
+      font-size: 1.25rem;
+      color: $blue;
+
+      @include mobile {
+        font-size: 1rem;
+      }
+    }
+
+    [class~="link-email"] {
+      font-size: 1rem;
+      color: $yellow;
+    }
+  }
+}

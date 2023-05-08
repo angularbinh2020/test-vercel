@@ -1,0 +1,24 @@
+@import "sites/mogivi/styles/index.scss";
+
+.imageBlockContainer {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  @include mobile {
+    padding: 0 1.2rem;
+    text-align: left;
+  }
+
+  img,
+  .img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: inline-block;
+
+    @include desktop {
+      width: 65%;
+      max-width: 65%;
+    }
+  }
+}

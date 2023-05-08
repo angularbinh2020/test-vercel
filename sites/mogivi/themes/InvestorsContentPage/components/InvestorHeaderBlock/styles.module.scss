@@ -1,0 +1,233 @@
+@import "sites/mogivi/styles/index.scss";
+
+.investorHeaderContainer {
+  max-width: 1140px;
+  margin: 2rem auto;
+
+  @include mobile {
+    margin-top: 1rem;
+  }
+
+  .viewAllInvestor {
+    margin-bottom: 1rem;
+
+    a {
+      color: $mid-grey;
+      display: flex;
+      align-items: center;
+    }
+
+    svg {
+      color: $mid-grey;
+      margin-right: 0.5rem;
+      width: 13px;
+      height: 13px;
+    }
+  }
+
+  .investorHeaderLeft {
+    width: 100%;
+    border: 1px solid $white-smoke;
+    padding: 1rem;
+
+    @include mobile {
+      width: 50%;
+      margin: auto;
+    }
+  }
+  .investorHeaderRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    [class="btn-orange"] {
+      padding: 0.8rem 2.5rem;
+      font-weight: 700;
+      border-radius: 0.2rem;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  .investorHeader {
+    @include mobile {
+      text-align: center;
+    }
+
+    .investorName {
+      font-weight: 700;
+      color: $black-russian;
+
+      @include mobile {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    .investorFullName {
+      font-weight: 500;
+      color: $mid-grey;
+    }
+  }
+
+  .investorInfoDetail {
+    margin-top: 2rem;
+
+    tbody {
+      td {
+        padding-bottom: 0.5rem;
+      }
+    }
+
+    .textLight {
+      color: $mid-grey;
+      font-weight: 500;
+      width: 13%;
+
+      @include mobile {
+        width: 20%;
+        font-size: 14px;
+      }
+    }
+
+    .textBold {
+      font-weight: 600;
+      color: $black-russian;
+      margin-bottom: 0;
+
+      a {
+        color: $black-russian;
+      }
+
+      @include mobile {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .contactBtn {
+    display: inline-flex;
+
+    button {
+      padding: 0.5rem 2rem;
+      border-radius: 0;
+    }
+
+    @include mobile {
+      margin-top: 1rem;
+
+      justify-content: center;
+    }
+  }
+}
+
+.modalContainer {
+  [class="modal-content"] {
+    padding: 1.5rem;
+    border-radius: 0;
+    position: relative;
+
+    @include mobile {
+      padding: unset;
+    }
+  }
+
+  .closeButton {
+    position: absolute;
+    display: inline-block;
+    right: -1rem;
+    top: -1rem;
+    cursor: pointer;
+    background-color: $white;
+    border-radius: 2rem;
+    padding: 0.1rem 0.35rem 0.3rem 0.35rem;
+    box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+    svg {
+      fill: $mid-grey;
+    }
+
+    &:hover {
+      svg {
+        fill: $text-orange;
+      }
+    }
+
+    @include mobile {
+      right: -0.5rem;
+      top: -0.5rem;
+    }
+  }
+
+  .contactFormContainer {
+    input {
+      border-radius: 0;
+
+      &:focus {
+        box-shadow: unset;
+        border-color: $mid-grey;
+      }
+    }
+
+    textarea {
+      border-radius: 0;
+
+      &:focus {
+        box-shadow: unset;
+        border-color: $mid-grey;
+      }
+    }
+  }
+
+  .btnSubmit {
+    border-radius: 0;
+    padding: 0.75rem 0;
+    font-weight: 600;
+  }
+}
+
+.modalSuccessContainer {
+  [class="modal-content"] {
+    border-radius: 0;
+  }
+  .modalHeader {
+    background-color: #ececec;
+  }
+
+  .thanksMessageContainer {
+    text-align: center;
+    padding: 0 1.5rem;
+
+    @include mobile {
+      padding: unset;
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+
+      .logo {
+        color: $text-orange;
+        font-weight: 600;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: 700;
+      color: $black-gray;
+    }
+  }
+
+  .btnCloseContainer {
+    padding: 1.5rem;
+  }
+
+  .btnClose {
+    border-radius: 0;
+    padding: 0.75rem 0;
+    font-weight: 600;
+  }
+}

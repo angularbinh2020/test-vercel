@@ -1,0 +1,66 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.setupStep {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid $gray-3;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.875rem;
+
+  .setupPreviousStep {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.875rem;
+    border: 0;
+    background-color: transparent;
+
+    &:disabled {
+      img {
+        opacity: 0.5;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $internal-orange;
+    }
+
+    span {
+      margin-left: 0.625rem;
+    }
+  }
+
+  .setupNextStep {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.875rem;
+    border: 0;
+    background-color: transparent;
+
+    &:disabled {
+      img {
+        opacity: 0.5;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $internal-orange;
+    }
+
+    span {
+      margin-right: 0.625rem;
+    }
+  }
+
+  .setupStepInfo {
+    display: flex;
+
+    span {
+      font-size: 1.125rem;
+      font-weight: bold;
+    }
+  }
+}

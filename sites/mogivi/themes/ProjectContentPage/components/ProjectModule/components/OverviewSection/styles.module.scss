@@ -1,0 +1,297 @@
+@use "../../styles.module.scss";
+@import "../../../../../../styles/variables";
+@import "sites/mogivi/styles/loading";
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-10deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.introductionTitle {
+  .briefText {
+    overflow-y: hidden;
+    max-height: 168px;
+  }
+
+  .fullText {
+    overflow-y: unset;
+    max-height: 100%;
+  }
+
+  .collapseBtn {
+    cursor: pointer;
+
+    span {
+      color: $internal-orange;
+      margin-right: 0.3rem;
+    }
+
+    .collapseIcon {
+      color: $internal-orange;
+    }
+  }
+}
+
+.contactForDetailContainer {
+  position: relative;
+  background-color: $white;
+  top: -14rem;
+  width: 100%;
+  height: 100%;
+
+  @include mobile {
+    display: none;
+    top: unset;
+  }
+
+  .content {
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 10px 0 #0000001a;
+
+    @include desktop {
+      position: sticky;
+      top: 2rem;
+    }
+
+    h2 {
+      font-weight: 600;
+      color: $semi-gray;
+    }
+
+    .address {
+      font-size: 0.9rem;
+      color: $mid-grey;
+    }
+
+    .price {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $light-grey;
+      padding-bottom: 0.5rem;
+
+      p {
+        margin-bottom: 0.5rem;
+        color: $mid-grey;
+      }
+
+      h3 {
+        color: $text-orange;
+        cursor: pointer;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+    }
+
+    .status {
+      li {
+        display: flex;
+        // line-height: 1rem;
+        margin-bottom: 1rem;
+
+        b {
+          margin-left: 2rem;
+        }
+      }
+
+      .statusContent {
+        p {
+          margin-left: 2rem;
+          margin-bottom: 0;
+          color: $semi-gray;
+        }
+      }
+
+      .statusTitle {
+        width: 5.5rem;
+        color: $mid-grey;
+      }
+    }
+  }
+
+  .hotLine {
+    text-align: center;
+    margin-top: 1rem;
+
+    svg {
+      fill: $text-orange;
+    }
+
+    a {
+      font-weight: 600;
+      color: $text-orange;
+    }
+  }
+
+  .btnContact {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.contactForDetailMobile {
+  display: block;
+  position: fixed;
+  background-color: $white;
+  box-shadow: 0 2px 10px 0 #0000001a;
+  padding: 0.5rem;
+  width: 100%;
+  left: 0;
+  z-index: 999;
+  bottom: 0;
+
+  .contactMobileBox {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .contactNow {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+
+  .contactViaPhoneNumber {
+    width: 100%;
+    button {
+      width: 100%;
+
+      svg {
+        fill: $text-orange;
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
+      }
+
+      &:hover {
+        background-color: unset;
+      }
+
+      a {
+        color: $text-orange;
+        margin-left: 0.3rem;
+      }
+    }
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.modalContainer {
+  [class="modal-content"] {
+    // padding: 1.5rem;
+    border-radius: 0;
+    position: relative;
+
+    @include mobile {
+      padding: unset;
+    }
+  }
+
+  .closeButton {
+    position: absolute;
+    display: inline-block;
+    right: -1rem;
+    top: -1rem;
+    cursor: pointer;
+    background-color: $white;
+    border-radius: 2rem;
+    z-index: 999;
+    padding: 0.1rem 0.35rem 0.3rem 0.35rem;
+    box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+    svg {
+      fill: $mid-grey;
+    }
+
+    &:hover {
+      svg {
+        fill: $text-orange;
+      }
+    }
+
+    @include mobile {
+      right: -0.5rem;
+      top: -0.5rem;
+    }
+  }
+
+  [class~="modal-body"] {
+    padding: 0;
+  }
+
+  .modalBody {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    .contactFormImg {
+      width: 100%;
+      height: 30rem;
+      position: relative;
+      @include mobile {
+        height: 100%;
+      }
+    }
+
+    @include mobile {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  .contactFormContainer {
+    width: 100%;
+    padding: 1.5rem;
+
+    @include mobile {
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    input {
+      border-radius: 0;
+
+      &:focus {
+        box-shadow: unset;
+        border-color: $mid-grey;
+      }
+    }
+
+    textarea {
+      border-radius: 0;
+      resize: none;
+      // height: 10rem;
+
+      &:focus {
+        box-shadow: unset;
+        border-color: $mid-grey;
+      }
+    }
+  }
+
+  .btnSubmit {
+    border-radius: 0;
+    padding: 0.75rem 0;
+    font-weight: 600;
+
+    .threeDotLoader {
+      display: inline-block;
+      margin-right: 1.5rem;
+      @include threeDotLoading;
+    }
+  }
+
+  .btnDisable {
+    opacity: 0.7;
+  }
+}

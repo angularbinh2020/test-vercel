@@ -1,0 +1,16 @@
+@use "../../styles.module.scss";
+@use "../../../../../../styles/variables";
+
+.downloadContentItem {
+  .documentImg {
+    border: 1px solid variables.$white-smoke;
+  }
+  .downloadBtn {
+    display: inline-block;
+    background-color: variables.$internal-orange;
+    color: variables.$white;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding: 10px 20px;
+  }
+}

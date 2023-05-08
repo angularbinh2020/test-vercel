@@ -1,0 +1,10 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.touchAbleCircle {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.showBorder {
+  border: 1px solid $danger;
+}

@@ -1,0 +1,79 @@
+@import "sites/mogivi/styles/index.scss";
+
+.richTextContainer {
+  background-color: $white;
+}
+
+.richTextWrap {
+  max-width: 859px;
+  margin: auto;
+  padding: 1rem 0;
+  text-align: left;
+
+  @include mobile {
+    padding: 1rem 1.2rem;
+    text-align: left;
+  }
+
+  ul {
+    li {
+      margin-left: 1rem;
+      list-style-type: disc;
+      line-height: 2rem;
+    }
+  }
+
+  strong {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #444c59;
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 1rem 0;
+    color: #444c59;
+
+    @include mobile {
+      font-size: 1.5rem;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    margin: auto;
+
+    h3 {
+      color: #444c59;
+      font-weight: 600;
+    }
+
+    p {
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: #444c59;
+      line-height: 1.5;
+      text-align: justify;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      @include mobile {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.imageTitle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: $white;
+  background-color: $transparent-1;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-weight: bolder;
+}

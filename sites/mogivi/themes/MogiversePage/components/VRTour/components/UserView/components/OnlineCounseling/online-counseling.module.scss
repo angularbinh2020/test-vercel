@@ -1,0 +1,65 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.chatButton {
+  margin-right: 20px;
+  @include desktop {
+    button:hover {
+      img,
+      svg {
+        path {
+          fill: $internal-orange;
+          stroke: $internal-orange;
+        }
+      }
+    }
+  }
+
+  @include tablet {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    margin-right: 0;
+  }
+
+  @include mobile {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    margin-right: 0;
+  }
+
+  @include mobile-landscape {
+    display: none;
+  }
+
+  button {
+    margin-left: 20px;
+    border: 0;
+    color: $white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 8px;
+    padding-left: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
+    @include tablet {
+      margin-left: 0;
+    }
+
+    @include mobile-landscape {
+      margin-left: 0;
+    }
+  }
+
+  img,
+  svg {
+    margin-right: 10px;
+
+    @include mobile {
+      margin-right: 0;
+    }
+  }
+}

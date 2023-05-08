@@ -1,0 +1,90 @@
+@import "sites/mogivi/styles/index.scss";
+
+.detailInfo {
+  .detailField {
+    margin-bottom: 0.5rem;
+    h4 {
+      font-size: 13px;
+      line-height: 20px;
+      font-weight: 600;
+      margin-right: 0.5rem;
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 13px;
+      line-height: 20px;
+    }
+  }
+}
+
+.introductionTitle {
+  .briefText {
+    overflow-y: hidden;
+    max-height: 168px;
+  }
+
+  .fullText {
+    overflow-y: unset;
+    max-height: 100%;
+
+    h2 {
+      margin: 1rem 0;
+    }
+  }
+
+  .collapseBtn {
+    cursor: pointer;
+
+    span {
+      color: $internal-orange;
+      margin-right: 0.3rem;
+    }
+
+    .collapseIcon {
+      color: $internal-orange;
+    }
+  }
+}
+
+.socialShare {
+  svg {
+    path {
+      fill: $mid-grey;
+    }
+  }
+}
+
+.container {
+  [class~="accordion-item"] {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  [class~="accordion-button"] {
+    padding-left: 0;
+    padding-right: 0;
+
+    &:focus {
+      border-color: unset;
+      box-shadow: unset;
+    }
+  }
+
+  [class~="accordion-body"] {
+    @include desktop {
+      padding: var(--bs-accordion-body-padding-y) 0;
+    }
+  }
+
+  [class="accordion-button"] {
+    color: $black;
+    background-color: $white;
+
+    &::after {
+      background-image: var(--bs-accordion-btn-icon);
+    }
+  }
+}

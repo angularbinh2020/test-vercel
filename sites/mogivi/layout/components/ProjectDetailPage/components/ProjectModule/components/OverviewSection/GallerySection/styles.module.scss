@@ -1,0 +1,64 @@
+@use "../../../styles.module.scss";
+@import "sites/mogivi/styles/index.scss";
+
+.galleryContent {
+  .imagesGallery {
+    display: block;
+    padding: 0;
+  }
+
+  .imageItem {
+    padding-left: 0;
+  }
+}
+
+.introGalleryVid {
+  position: relative;
+  display: block;
+  max-width: 200px;
+
+  .videoBox {
+    width: 100%;
+    img {
+      height: 220px;
+    }
+  }
+
+  .playIcon {
+    position: absolute;
+    color: $white;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 40%;
+    z-index: 9;
+    width: 50px;
+    height: 50px;
+
+    path {
+      fill: $white;
+    }
+  }
+
+  &::before {
+    content: "";
+    background-color: $black;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+    z-index: 9;
+  }
+
+  &:hover {
+    .playIcon {
+      path {
+        fill: $internal-orange;
+      }
+    }
+  }
+}
