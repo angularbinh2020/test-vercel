@@ -1,0 +1,13 @@
+version: '3.2'
+
+services:
+  multisite-cms-fe:
+    build: .
+    ports:
+      - 3100:3100
+    restart: always
+    container_name: multisite-cms-fe
+networks:
+  default: 
+    external: 
+      name: chat_mogivi-net

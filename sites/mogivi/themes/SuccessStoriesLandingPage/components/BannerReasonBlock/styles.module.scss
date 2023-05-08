@@ -1,0 +1,110 @@
+@import "sites/mogivi/styles/index.scss";
+
+.mainBlock {
+  padding: 5.6rem 0;
+}
+
+.bannerReasonContainer {
+  .blockReason {
+    background-color: #f8f8f8;
+
+    .commonTitle {
+      display: flex;
+
+      h3 {
+        text-align: left;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        color: #eb5400;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+
+        @include mobile {
+          font-size: 1.8rem;
+          text-align: center;
+          margin-bottom: 0;
+        }
+
+        span {
+          color: $black-russian;
+        }
+      }
+    }
+  }
+
+  .mainContentReason {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+      margin-top: 2.5rem;
+    }
+
+    .blockTextReason {
+      width: 50%;
+      padding-right: 2.5rem;
+      margin-top: 2rem;
+
+      @include mobile {
+        margin-top: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+          &::before {
+            content: "•";
+            color: $text-orange;
+            margin-right: 2rem;
+            font-size: 1.5rem;
+
+            @include mobile {
+              margin-right: 1rem;
+            }
+          }
+        }
+
+        @include mobile {
+          padding: 0 0.5rem;
+        }
+      }
+
+      @include mobile {
+        width: 100%;
+      }
+
+      .itemFeature {
+        text-align: center;
+        margin-bottom: 3.75rem;
+
+        p {
+          text-align: right;
+
+          @include mobile {
+            text-align: left;
+          }
+        }
+
+        @include mobile {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    .blockImgReason {
+      width: 50%;
+      padding-top: 1rem;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,177 @@
+@import "sites/mogivi/styles/index.scss";
+
+.mainBlock {
+  padding: 5.6rem 0;
+}
+
+.blockHighlightFeature {
+  background-color: #eb55000f;
+}
+
+.bannerFooterContainer {
+  padding: 9.3rem 0;
+  position: relative;
+
+  & > span:first-child {
+    z-index: -1;
+  }
+
+  @include mobile {
+    padding: 3.3rem 0 4rem;
+  }
+
+  .titleFooter {
+    h3 {
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      width: 60%;
+      margin-left: 20%;
+
+      @include mobile {
+        width: 100%;
+        margin-left: 0;
+        padding-top: 2.5rem;
+      }
+
+      span {
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .footerD {
+    .blockInstall {
+      justify-content: center;
+      margin-top: 3.1rem;
+      align-items: stretch;
+
+      h5 {
+        font-size: 1.2rem;
+      }
+    }
+
+    .appDownload {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .appQR {
+      display: flex;
+      flex-direction: column;
+
+      h5 {
+        font-size: 1.2rem;
+        display: none;
+
+        img {
+          width: 118px;
+        }
+      }
+    }
+
+    .appLink {
+      display: flex;
+      flex-direction: column;
+
+      h5 {
+        display: none;
+        color: #fff;
+      }
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .appLinkInstall {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    a {
+      max-width: 100%;
+      max-height: 54px;
+
+      img {
+        border-radius: 5px;
+      }
+    }
+
+    @include mobile {
+      gap: 0;
+      margin-bottom: 1.1rem;
+
+      a {
+        &:first-child {
+          margin-right: 5px;
+        }
+
+        img {
+          max-height: 34px;
+          border-radius: 3px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  .footerM {
+    display: block;
+
+    .appFooterMobile {
+      display: flex;
+      flex-direction: row;
+      z-index: 999;
+      position: relative;
+      margin-top: 80px;
+      background-color: #fff;
+
+      .appFooterMobileLeft {
+        flex: 1;
+        position: relative;
+        z-index: 2;
+        text-align: right;
+        padding-right: 10px;
+
+        .appFooterPhone {
+          max-width: 85%;
+          position: absolute;
+          left: 20px;
+          bottom: 0;
+        }
+      }
+
+      .appFooterMobileRight {
+        width: 45%;
+        z-index: 2;
+        margin-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        h5 {
+          font-size: 0.8rem;
+        }
+
+        img {
+          max-height: 32px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    @include desktop {
+      display: none;
+    }
+
+    @include tablet {
+      display: none;
+    }
+  }
+}

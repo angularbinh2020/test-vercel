@@ -1,0 +1,177 @@
+@import "sites/mogivi/styles/index.scss";
+
+.bannerStoriesContainer {
+  .blockAboutUs {
+    background-image: url(https://mogivi.vn/Styles/mogivi-app-intro/images/bg-about.webp);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    max-height: 50rem;
+    padding: 2.5rem 0;
+    position: relative;
+
+    @include mobile {
+      max-height: 36rem;
+      padding: 4rem 0;
+    }
+
+    [class="container"] {
+      position: relative;
+    }
+
+    .introText {
+      text-align: center;
+
+      h3 {
+        color: #fff;
+        font-size: 1.87rem;
+        text-transform: uppercase;
+
+        span {
+          font-size: 2.2rem;
+          font-weight: 600;
+        }
+
+        @include mobile {
+          font-size: 1.4rem;
+        }
+      }
+
+      h6 {
+        text-align: center;
+        font-size: 1.75rem;
+        color: $black-russian;
+
+        @include mobile {
+          font-size: 1.25rem;
+        }
+      }
+
+      h1 {
+        color: #fff;
+        text-align: center;
+        font-size: 3.4rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        margin-top: 10px;
+
+        @include mobile {
+          font-size: 2.8rem;
+        }
+      }
+    }
+
+    .textImg {
+      justify-content: center;
+      margin-top: -1rem;
+
+      img {
+        max-height: 5.75rem;
+
+        @include mobile {
+          max-height: 4.75rem;
+        }
+      }
+    }
+
+    .installAppBottom {
+      position: absolute;
+      right: -20px;
+      bottom: 10rem;
+      z-index: 10;
+
+      @include largeDesktop {
+        bottom: 25%;
+      }
+
+      @include mobile {
+        bottom: 15%;
+        right: 15px;
+      }
+
+      .appDownload {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .appQR {
+          display: flex;
+          flex-direction: column;
+          margin-right: 15px;
+          max-height: 100px;
+
+          img {
+            width: 100px;
+          }
+
+          @include mobile {
+            display: none;
+          }
+        }
+
+        .appScanText {
+          display: none;
+          color: #fff;
+          font-size: 0.7rem;
+        }
+
+        .appLink,
+        .appLinkInstall {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .appLinkInstall {
+          gap: 0.7rem;
+
+          a {
+            display: block;
+            width: 100%;
+            position: relative;
+            max-height: 3rem;
+          }
+        }
+      }
+
+      .appD {
+        @include mobile {
+          display: none;
+        }
+      }
+
+      .appM {
+        display: none;
+        max-width: 120px;
+
+        .appLinkInstall {
+          img {
+            max-height: 2rem;
+          }
+        }
+
+        @include mobile {
+          display: block;
+        }
+      }
+    }
+
+    .imgAbout {
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      & > span:first-child {
+        max-width: 90%;
+
+        @include largeDesktop {
+          margin-top: 1.5rem !important;
+        }
+
+        @include mobile {
+          margin-top: 4rem !important;
+          margin-left: -80px !important;
+          max-width: 80% !important;
+        }
+      }
+    }
+  }
+}
