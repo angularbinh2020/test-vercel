@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Form } from "react-bootstrap";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
@@ -9,7 +9,6 @@ import {
   clearProjectsSuggestion,
   onGetProjectsSuggestion,
   setLoadingSearchBar,
-  setResultKeyword,
   setSearchKey,
 } from "sites/mogivi/redux/project.slice";
 import SvgIcon from "sites/mogivi/components/SvgIcon";
@@ -17,6 +16,7 @@ import API_URL from "const/api-url";
 import { IETSearchService } from "sites/mogivi/models/blocks/ISearchModule";
 import { useGetPageDataContext } from "context/page-data.context";
 import LinkItem from "components/LinkItem";
+import { SearchInputType } from "sites/mogivi/redux/project.slice";
 
 let searchModels = {
   page: 1,
@@ -35,7 +35,11 @@ export const ServiceTab = (props: ServiceTabProps) => {
     useSelector((state: Types.RootState) => state.project);
   const pageData = useGetPageDataContext();
   const siteId = pageData?.siteId || 1119;
-
+  const countLabel = useMemo(() => {
+    return searchInputType === SearchInputType.PROJECT_SEARCH_INPUT
+      ? "dự án"
+      : "tin đăng";
+  }, [searchInputType]);
   const serviceId = serviceType?.node?.system?.id ?? "";
   const suggestionAPI =
     filtersOptions[0].fields.apiSettings[0].fields.apiKeyTag.node.fields
@@ -45,24 +49,7 @@ export const ServiceTab = (props: ServiceTabProps) => {
   const [onInputFocus, setOnInputFocus] = useState<boolean>(false);
   const [showSuggestionList, setShowSuggestionList] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const { isMobile, isMobileApp } = useViewMode();
-  // const [showSort, setShowSort] = useState(false);
-  // const [sort, setSort] = useState("asc");
-  // const [conditionSort, setConditionSort] = useState("Mặc định");
-
-  // const handleClick = (event: any) => {
-  //   setShowSort(!showSort);
-  // };
-
-  // const onClickSortMode = (action: string) => {
-  //   setSort(action);
-  // };
-
-  // const onClickConditionSort = (action: string) => {
-  //   setConditionSort(action);
-  // };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const { isMobile } = useViewMode();
   const debounceInputChange = useCallback(
     debounce((value: string) => {
       dispatch(setSearchKey(value.trim()));
@@ -79,14 +66,6 @@ export const ServiceTab = (props: ServiceTabProps) => {
       debounceInputChange(value);
     },
     [debounceInputChange, dispatch]
-  );
-
-  const handleResultKeyword = useCallback(
-    (keyword: string) => {
-      dispatch(setResultKeyword(keyword));
-      setShowSuggestionList(false);
-    },
-    [dispatch]
   );
 
   const updateData = useCallback(
@@ -143,7 +122,6 @@ export const ServiceTab = (props: ServiceTabProps) => {
     setKeyword("");
     dispatch(setSearchKey(""));
   }, [dispatch, searchInputType]);
-
   return (
     <>
       <div className={classNames(styles.projectSearchContainer, "mb-3")}>
@@ -174,8 +152,8 @@ export const ServiceTab = (props: ServiceTabProps) => {
               onChange={(e) => onTextSearchChange(e)}
             />
 
-            {projectSuggestion &&
-              projectSuggestion?.length !== 0 &&
+            {Boolean(projectSuggestion?.length) &&
+              keyword?.trim() &&
               showSuggestionList && (
                 <div
                   className={classNames(styles.suggestionList, "scrollbar")}
@@ -191,17 +169,12 @@ export const ServiceTab = (props: ServiceTabProps) => {
                             {item.suggestions?.map(
                               (suggestionItem: any, suggestionIdx: number) => (
                                 <li
-                                  onClick={() =>
-                                    handleResultKeyword(
-                                      suggestionItem.fullKeyUrl
-                                    )
-                                  }
                                   key={`suggestion item - ${suggestionIdx}`}
                                   className={styles.suggestionSubitem}
                                 >
                                   <LinkItem url={suggestionItem.fullKeyUrl}>
                                     {suggestionItem.text}{" "}
-                                    <strong>{`(${suggestionItem.totalResult} dự án)`}</strong>
+                                    <strong>{`(${suggestionItem.totalResult} ${countLabel})`}</strong>
                                   </LinkItem>
                                 </li>
                               )

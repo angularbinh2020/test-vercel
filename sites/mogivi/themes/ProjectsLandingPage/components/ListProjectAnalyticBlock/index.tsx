@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import imgAnalytic1 from "sites/mogivi/assets/images/projects/img-project-analytic.png";
 import icUserInfo from "sites/mogivi/assets/icons/ic-user-info.svg";

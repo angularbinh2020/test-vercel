@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Slider from "components/ReactSlickSlider";
 import { IQuickLinksBlock } from "sites/mogivi/models/blocks/IQuickLinksBlock";
 import styles from "./styles.module.scss";
@@ -115,7 +115,7 @@ export const GalleryQuickLink = (props: IQuickLinks) => {
                       )}
                     >
                       <Link href={link.url}>
-                        <a>
+                        <Fragment>
                           <div className={styles.cardImg}>
                             {icon && (
                               <Image
@@ -138,7 +138,7 @@ export const GalleryQuickLink = (props: IQuickLinks) => {
                               ></div>
                             )}
                           </div>
-                        </a>
+                        </Fragment>
                       </Link>
                     </div>
                   ) : (
@@ -178,38 +178,16 @@ export const GalleryQuickLink = (props: IQuickLinks) => {
             </div>
           ) : (
             <Slider {...settings}>
-              {items &&
-                items.map((item, idx) => {
-                  const icon = item.fields?.image;
-                  const link = item.fields.link;
+              {items?.map((item, idx) => {
+                const icon = item.fields?.image;
+                const link = item.fields.link;
 
-                  return link ? (
-                    <div
-                      key={idx}
-                      className={classNames(styles.cardImgContainer)}
-                    >
-                      <Link href={"#"}>
-                        <a>
-                          <div className={styles.cardImg}>
-                            {icon && (
-                              <Image
-                                className="lazyloaded"
-                                alt="icon"
-                                src={icon.fields?.umbracoFile}
-                                width={420}
-                                height={320}
-                                objectFit="cover"
-                              />
-                            )}
-                          </div>
-                        </a>
-                      </Link>
-                    </div>
-                  ) : (
-                    <div
-                      key={idx}
-                      className={classNames(styles.cardImgContainer)}
-                    >
+                return link?.aliasUrl ? (
+                  <div
+                    key={idx}
+                    className={classNames(styles.cardImgContainer)}
+                  >
+                    <Link href={link.aliasUrl} draggable={false}>
                       <div className={styles.cardImg}>
                         {icon && (
                           <Image
@@ -222,9 +200,28 @@ export const GalleryQuickLink = (props: IQuickLinks) => {
                           />
                         )}
                       </div>
+                    </Link>
+                  </div>
+                ) : (
+                  <div
+                    key={idx}
+                    className={classNames(styles.cardImgContainer)}
+                  >
+                    <div className={styles.cardImg}>
+                      {icon && (
+                        <Image
+                          className="lazyloaded"
+                          alt="icon"
+                          src={icon.fields?.umbracoFile}
+                          width={420}
+                          height={320}
+                          objectFit="cover"
+                        />
+                      )}
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
             </Slider>
           )}
           {/* </div> */}

@@ -5,7 +5,15 @@ import { store } from "../store";
 import "sites/mogivi/styles/index.scss";
 import { PageDataContext } from "context/page-data.context";
 import IPageData from "models/IPageData";
+import { Roboto } from "next/font/google";
+import styles from "sites/mogivi/styles/global.module.scss";
+import classNames from "classnames";
+import "sites/mogivi/styles/global.css";
 
+const roboto = Roboto({
+  subsets: ["vietnamese"],
+  weight: ["400", "500", "700", "900"],
+});
 interface Props extends AppProps {
   pageProps: {
     pageData: IPageData;
@@ -17,7 +25,9 @@ function MyApp({ Component, pageProps }: Props) {
     <Provider store={store}>
       <SSRProvider>
         <PageDataContext.Provider value={pageProps?.pageData}>
-          <Component {...pageProps} />
+          <main className={classNames(roboto.className, styles.layout)}>
+            <Component {...pageProps} />
+          </main>
         </PageDataContext.Provider>
       </SSRProvider>
     </Provider>

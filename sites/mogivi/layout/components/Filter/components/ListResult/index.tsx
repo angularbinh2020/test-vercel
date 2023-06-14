@@ -1,7 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Image from "next/image";
-import styles from "./list-project.module.scss";
-import classNames from "classnames";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useDeferredValue,
+} from "react";
 import { PaginationBlock } from "sites/mogivi/layout/components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
@@ -10,17 +13,22 @@ import {
   onGetAllProjects,
   useSetProjectListResultState,
 } from "sites/mogivi/redux/project.slice";
-import { START_PAGE_INDEX } from "const/config";
-import { Card } from "react-bootstrap";
+import { PAGE_PREFIX, START_PAGE_INDEX } from "const/config";
 import { useRouter } from "next/router";
 import useViewMode from "hooks/useViewMode";
 import { ErrorBlock } from "sites/mogivi/layout/components/ErrorBlock";
-import LinkItem from "components/LinkItem";
-import icLocation from "sites/mogivi/assets/icons/ic-location.svg";
 import API_URL from "const/api-url";
-import { TAB_VALUES } from "../FilterOption";
 import { IETSearchService } from "sites/mogivi/models/blocks/ISearchModule";
 import { useGetPageDataContext } from "context/page-data.context";
+import { useGetCurrentPathInfo } from "hooks/useGetCurrentPathInfo";
+import ProjectResult from "./components/ProjectResult";
+import RentBuyResult from "./components/RentBuyResult";
+import { TAB_VALUES } from "sites/mogivi/const/search";
+import classNames from "classnames";
+import styles from "./styles.module.scss";
+import { MOGIVI_CONTENT_TYPE } from "sites/mogivi/const/content-type";
+import SortOptions from "../SortOptions";
+import { getSortOptions } from "sites/mogivi/utils";
 
 let projectModel: ProjectModel = {
   page: 1,
@@ -37,98 +45,59 @@ interface ProjectModelProps {
 }
 
 const ListResult = (props: ProjectModelProps) => {
-  const { allProjects, totalPages, isError, loading } = useSelector(
-    (state: RootState) => state.project
-  );
+  const {
+    allProjects,
+    totalPages,
+    isError,
+    loading,
+    isBuyOrRentSearch,
+    totalResult,
+    currentService,
+  } = useSelector((state: RootState) => state.project);
   const pageData = useGetPageDataContext();
-  const { serviceId, apiSecretKey, resultApi } = props;
+  const { serviceId, apiSecretKey, resultApi, serviceSearch } = props;
   const [currentNumber, setCurrentNumber] = useState(START_PAGE_INDEX);
-  const { isMobileApp } = useViewMode();
+  const { isMobileApp, isDesktop } = useViewMode();
   const dispatch = useDispatch();
   const router = useRouter();
-  const { onError } = useSetProjectListResultState();
-  const { baseApi, pageIndex, limit, defaultKeyword, method, siteId } =
-    useMemo(() => {
-      let baseApi = API_URL.SITE_PROJECT_SEARCH_RESULT;
-      let pageIndex = 1;
-      let limit = 10;
-      let defaultKeyword = "";
-      let method = "get";
-      let siteId: any = 0;
-      if (pageData) {
-        const defaultCMSKey =
-          pageData.currentNode?.fields?.defaultFilterLocation?.node.system
-            ?.urlSegment;
-        if (defaultCMSKey && defaultCMSKey !== "") {
-          defaultKeyword = defaultCMSKey;
-        }
-        siteId = pageData.siteId;
-      }
-      if (resultApi && resultApi !== "") {
-        baseApi = resultApi;
-      }
+  const { slug, pageIndex } = useGetCurrentPathInfo();
+  const { onError, setProjectListResultState } = useSetProjectListResultState();
+  const slugDeferred = useDeferredValue(slug);
+  const apiSecretKeyDeferred = useDeferredValue(apiSecretKey);
 
-      return { baseApi, pageIndex, limit, defaultKeyword, method, siteId };
-    }, [pageData, resultApi]);
+  const { baseApi, limit, defaultKeyword, method, siteId } = useMemo(() => {
+    let baseApi = API_URL.SITE_PROJECT_SEARCH_RESULT_FILTER;
+    let limit = 10;
+    let defaultKeyword = "";
+    let method = "get";
+    let siteId: any = 0;
+    if (pageData) {
+      const defaultCMSKey =
+        pageData.currentNode?.fields?.defaultFilterLocation?.node.system
+          ?.urlSegment;
+      if (defaultCMSKey?.trim()) {
+        defaultKeyword = defaultCMSKey;
+      }
+      siteId = pageData.siteId;
+    }
+    if (resultApi) {
+      baseApi = resultApi;
+    }
+    if (serviceSearch?.length && serviceId) {
+      method = serviceSearch.find(
+        (sv) => sv.fields?.serviceType?.node?.system?.id === serviceId
+      )?.fields.apiSearchSettings[0]?.fields?.method;
+    }
+    return { baseApi, limit, defaultKeyword, method, siteId };
+  }, [pageData, resultApi, serviceSearch, serviceId]);
 
-  const { urlKeyword, urlPageNumber, baseUrl } = useMemo(() => {
-    let urlKeyword = defaultKeyword;
-    let urlPageNumber = String(currentNumber);
+  const { baseUrl } = useMemo(() => {
     const asPath = router.asPath;
     let baseUrl = asPath.split("/page-")[0];
     if (asPath.includes("?ViewMobileApp=1")) {
       baseUrl = baseUrl.replace("?ViewMobileApp=1", "");
     }
-    const slug = router.query.slug;
-    const asPathGroup = asPath.split("/");
-
-    if (slug && slug?.length < 2) {
-      asPathGroup.slice(1).forEach((pathItem) => {
-        if (slug && pathItem !== slug[0]) {
-          if (pathItem.includes("page")) {
-            if (isMobileApp) {
-              const page = pathItem.replace("?ViewMobileApp=1", "");
-              urlPageNumber = page.replace("page-", "");
-            } else {
-              urlPageNumber = pathItem.replace("page-", "");
-            }
-          } else {
-            urlPageNumber = String(START_PAGE_INDEX);
-            if (
-              pathItem !== TAB_VALUES.BuyHouse &&
-              pathItem !== TAB_VALUES.RentHouse &&
-              pathItem !== TAB_VALUES.Project
-            ) {
-              urlKeyword = pathItem;
-            }
-            if (isMobileApp) {
-              urlKeyword = pathItem.replace("?ViewMobileApp=1", "");
-            }
-          }
-        }
-      });
-    } else {
-      asPathGroup.slice(1).forEach((pathItem) => {
-        if (slug && pathItem !== slug[0] && pathItem !== slug[1]) {
-          if (pathItem.includes("page")) {
-            if (isMobileApp) {
-              const page = pathItem.replace("?ViewMobileApp=1", "");
-              urlPageNumber = page.replace("page-", "");
-            } else {
-              urlPageNumber = pathItem.replace("page-", "");
-            }
-          } else {
-            urlPageNumber = String(START_PAGE_INDEX);
-            urlKeyword = pathItem;
-            if (isMobileApp) {
-              urlKeyword = pathItem.replace("?ViewMobileApp=1", "");
-            }
-          }
-        }
-      });
-    }
-
-    return { urlKeyword, urlPageNumber, baseUrl };
+    return { baseUrl };
   }, [currentNumber, isMobileApp, router.asPath, router.query.slug]);
 
   projectModel = {
@@ -147,7 +116,7 @@ const ListResult = (props: ProjectModelProps) => {
   };
 
   const getResult = useCallback(
-    (pageNumber: number, keyword: string) => {
+    (pageNumber: number, keyword: string, filters: string = "") => {
       setCurrentNumber(pageNumber);
       backToTop();
       if (serviceId && apiSecretKey) {
@@ -160,6 +129,8 @@ const ListResult = (props: ProjectModelProps) => {
               keyword: keyword,
               limit: 12,
               apiSecretKey: apiSecretKey,
+              isSearchPage: true,
+              filters,
             },
             baseApi
           ) as any
@@ -172,114 +143,120 @@ const ListResult = (props: ProjectModelProps) => {
   );
 
   useEffect(() => {
-    getResult(+urlPageNumber, urlKeyword);
-  }, [urlPageNumber, getResult, urlKeyword]);
+    const slug = [...slugDeferred];
+    const apiSecretKey = apiSecretKeyDeferred;
+    if (slug.length && apiSecretKey) {
+      const sortOptions = getSortOptions(serviceSearch, currentService);
+      const isMissingSortUrlSegment =
+        sortOptions &&
+        !slug.find((slg) =>
+          sortOptions.find((option: any) => option.value === slg)
+        );
+      if (isMissingSortUrlSegment) {
+        slug.push(sortOptions[0].value);
+      }
+      let keyword = "";
+      let filters = "";
+      const initBuyOrRentSearch = Boolean(
+        slug.find(
+          (slg) => slg === TAB_VALUES.BuyHouse || slg === TAB_VALUES.RentHouse
+        )
+      );
+      let filtersCount = 0;
+      const addFilter = (nodeId: string, isFilter: boolean = false) => {
+        filters += filters ? `;${nodeId}` : nodeId;
+        if (isFilter) filtersCount++;
+      };
+      const serviceSearchTabConfig = serviceSearch.find(
+        (service) => service.fields?.apiSecretKey === apiSecretKey
+      );
+      if (!serviceSearchTabConfig) return;
+      const tabValues = Object.values(TAB_VALUES);
+      const hasKeyword = slug.length > 2 && tabValues.includes(slug[2] as any);
+      if (hasKeyword) {
+        keyword = slug[1];
+      }
+      const filterTypeIndex = slug.findIndex((slg) =>
+        tabValues.includes(slg as any)
+      );
+      const tabConfig = serviceSearch.find(
+        (search) => search.fields.apiSecretKey === apiSecretKey
+      );
+      const shouldMappingFilterNode =
+        filterTypeIndex && filterTypeIndex < slug.length - 1 && tabConfig;
+      if (shouldMappingFilterNode) {
+        const filtersSlug: string[] = [];
+        let slugIndex = filterTypeIndex + 1;
+        while (slug[slugIndex]) {
+          const slugValue = slug[slugIndex];
+          if (!slugValue.includes(PAGE_PREFIX)) filtersSlug.push(slugValue);
+          slugIndex++;
+        }
+        if (filtersSlug.length) {
+          filtersSlug.forEach((slug) => {
+            tabConfig.fields.filtersOptions?.forEach((filterOption: any) => {
+              const options = [
+                ...(filterOption?.fields?.options || []),
+                ...(filterOption?.fields?.filterOptions || []),
+              ];
+              const isFilter =
+                filterOption.system?.contentType !==
+                MOGIVI_CONTENT_TYPE.eTSortTagsItem;
+              options.forEach((option: any) => {
+                if (slug === option.node?.system?.urlSegment) {
+                  addFilter(option.node?.system?.id, isFilter);
+                }
+              });
+            });
+          });
+        }
+      }
+      setProjectListResultState({
+        isBuyOrRentSearch: initBuyOrRentSearch,
+        filtersCount,
+        allProjects: [],
+      });
+      getResult(pageIndex, keyword, filters);
+    }
+  }, [slugDeferred]);
 
   return (
-    <div>
-      <div className="row gy-4">
-        {allProjects?.map((item: any, idx: number) => {
-          return (
-            <div key={idx} className="col-12 col-md-6 col-lg-4 col-xl-4">
-              <Card className={styles.cardContainer}>
-                <Card.Body>
-                  {item.logo && (
-                    <LinkItem url={item.pageURL}>
-                      <div className="w-100 position-relative">
-                        <Image
-                          src={item.logo.logoUrl}
-                          alt={item.logo.description}
-                          title={item.logo.description}
-                          width={520}
-                          height={300}
-                        />
-                      </div>
-                    </LinkItem>
-                  )}
-
-                  {item.name && (
-                    <LinkItem url={item.pageURL}>
-                      <Card.Title className={styles.cardTitle}>
-                        {item.name}
-                      </Card.Title>
-                    </LinkItem>
-                  )}
-
-                  {item?.addressText && (
-                    <div className="d-flex align-items-center gap-2">
-                      <div className={styles.addressIcon}>
-                        <Image
-                          src={icLocation}
-                          width={15}
-                          height={15}
-                          alt={"icon"}
-                        />
-                      </div>
-                      <p className={styles.cardAddress}>{item?.addressText}</p>
-                    </div>
-                  )}
-                </Card.Body>
-                {Boolean(item.listOfInfo?.length) && (
-                  <Card.Footer className={styles.cardFooter}>
-                    <div
-                      className={classNames(
-                        "w-100 d-flex align-items-end gap-3",
-                        styles.cardSubDescription
-                      )}
-                    >
-                      {item.listOfInfo
-                        .slice(0, -1)
-                        .map((infoItem: any, idx: number) => (
-                          <div
-                            key={idx}
-                            className={classNames(
-                              "d-flex align-items-center gap-1",
-                              styles.briefInfoBox
-                            )}
-                          >
-                            {infoItem?.icon && (
-                              <>
-                                <div>
-                                  <Image
-                                    src={infoItem.icon.logoUrl}
-                                    width={15}
-                                    height={15}
-                                    objectFit={"contain"}
-                                    alt={"icon"}
-                                  />
-                                </div>
-                                <div
-                                  className={styles.briefInfoText}
-                                  dangerouslySetInnerHTML={{
-                                    __html: infoItem?.text,
-                                  }}
-                                ></div>
-                              </>
-                            )}
-                          </div>
-                        ))}
-                    </div>
-                    {item.listOfInfo[item.listOfInfo?.length - 1] && (
-                      <div
-                        className={styles.price}
-                        dangerouslySetInnerHTML={{
-                          __html:
-                            item.listOfInfo[item.listOfInfo?.length - 1].text,
-                        }}
-                      ></div>
-                    )}
-                  </Card.Footer>
-                )}
-              </Card>
-            </div>
-          );
-        })}
-        {loading && allProjects?.length === 0 && (
-          <div className="w-100">
-            <span className="info-loader2"></span>
-            <span className="info-loader2"></span>
-            <span className="info-loader2"></span>
+    <div
+      className={classNames(styles.container, isBuyOrRentSearch && "container")}
+    >
+      <div className="row">
+        <div className="d-flex justify-content-between align-items-center mb-3 col-12">
+          <div
+            className={classNames(
+              styles.resultCount,
+              !totalResult && "opacity-0"
+            )}
+          >
+            {totalResult.toLocaleString("vi")} kết quả được tìm thấy
           </div>
+          <div>
+            <SortOptions
+              currentService={currentService}
+              servicesSearch={serviceSearch}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="row gy-4">
+        {!isBuyOrRentSearch && (
+          <ProjectResult
+            allProjects={allProjects}
+            isLoading={loading}
+            pageSize={projectModel.limit}
+          />
+        )}
+        {isBuyOrRentSearch && (
+          <RentBuyResult
+            allProjects={allProjects}
+            isLoading={loading}
+            pageSize={projectModel.limit}
+            isDesktop={isDesktop}
+          />
         )}
         {isError && allProjects?.length === 0 && <ErrorBlock />}
       </div>
@@ -287,7 +264,7 @@ const ListResult = (props: ProjectModelProps) => {
       {Boolean(allProjects?.length) && totalPages && (
         <PaginationBlock
           baseUrl={baseUrl}
-          currentNumber={+urlPageNumber}
+          currentNumber={pageIndex}
           totalPages={totalPages}
           pageSize={projectModel.limit}
         />

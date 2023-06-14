@@ -12,7 +12,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Carousel from "react-bootstrap/Carousel";
 import CloseIcon from "sites/mogivi/assets/icons/ic-close.svg";
 import UserIcon from "sites/mogivi/assets/icons/ic-user-info.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import MogiviLogo from "images/mogivi-logo.png";
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -88,7 +88,7 @@ const ChatPopup = (props: any) => {
           </span>
         </>
       );
-    return <Image src={MogiviLogo} alt="" className={styles.logo} />;
+    return <Image src={MogiviLogo} alt="mogivi logo" className={styles.logo} />;
   };
 
   if (isMobile)

@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
-import Link from "next/link";
 import arrow from "sites/mogivi/assets/icons/arrow.svg";
 import LinkItem from "components/LinkItem";
 import { IYoutubeVideo } from "sites/mogivi/models/blocks/IYoutubeVideo";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface IYoutubeVideoModel {
   block: IYoutubeVideo;

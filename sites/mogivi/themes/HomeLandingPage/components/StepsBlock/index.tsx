@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import { IPromotionSteps } from "sites/mogivi/models/blocks/IPromotionSteps";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export interface IStepsBlock {
   block: IPromotionSteps;

@@ -3,15 +3,18 @@ import dynamic from "next/dynamic";
 import DefaultMissingBlock from "components/DefaultMissingBlock";
 import { IDeviceDetected } from "models/IDeviceDetected";
 import { LibraryStandardBlock } from "./components/LibraryStandardBlock";
-import { BannerSubscribeEmailBlock } from "./components/BannerSubscribeEmail";
 
 const BannerSubpageBlock = dynamic(
   () => import("./components/BannerSubpageBlock")
 );
 
+const BannerSubscribeEmail = dynamic(
+  () => import("../../layout/components/Banner/BannerSubscribeEmail")
+);
 const Blocks = {
   bannerSubpageBlock: BannerSubpageBlock,
   documentsFiltersBlock: LibraryStandardBlock,
+  bannerSubscribeStatsDocs: BannerSubscribeEmail,
 };
 
 interface DefaultLandingPage extends IDeviceDetected {

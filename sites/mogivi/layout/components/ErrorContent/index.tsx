@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import SvgBanner from "sites/mogivi/components/SvgBanner";
 import Link from "next/link";
@@ -76,9 +76,7 @@ export const ErrorContentBlock = (props: ErrorContentBlockProps) => {
             {listPages.map((item, idx) => {
               return (
                 <li key={idx} className={styles.item}>
-                  <Link href={item.url}>
-                    <a>{item.name}</a>
-                  </Link>
+                  <Link href={item.url}>{item.name}</Link>
                 </li>
               );
             })}

@@ -1,3 +1,5 @@
+import { mapBaseApiUrl } from "utils/mapBaseApiUrl";
+
 const API_URL = {
   GET_ALL_ROOT_SITE: "api/content/GetRootNodes",
   GET_CHILD_NODES_BY_NODE_ID: `api/content/GetChildNodesById?alias="page"&nodeid=`,
@@ -5,6 +7,7 @@ const API_URL = {
   GET_NODE_CONTENT_BY_URL: "api/content/url?url=",
   GET_ALL_PAGES_BY_SITE_ID: "api/content/Descendant?rootId=",
   SITE_PROJECT_SEARCH_RESULT: "api/Search/GlobalResult",
+  SITE_PROJECT_SEARCH_RESULT_FILTER: "api/Search/FilterResult",
   SITE_PROJECT_SEARCH_SUGGESTION: "api/Search",
   GET_FILTER_OPTIONS:
     "api/content/GetChildNodesByGuidId?nodeId=:filterOptionId&isFilterOptions=true",
@@ -24,15 +27,5 @@ const API_URL = {
   GET_THETA_TOUR_DETAIL_TO_EDIT: "api/Content/RenderThetaTourAsEdit?id=",
   GET_THETA_TOUR_DETAIL_TO_VIEW: "api/Content/RenderThetaTourAsView?id=",
 };
-let apiHost = process.env.NEXT_PUBLIC_API_HOST;
-
-if (apiHost && apiHost[apiHost.length - 1] !== "/") {
-  apiHost += "/";
-}
-
-for (let property in API_URL) {
-  API_URL[property as keyof typeof API_URL] =
-    apiHost + API_URL[property as keyof typeof API_URL];
-}
-
+mapBaseApiUrl(API_URL, process.env.NEXT_PUBLIC_API_HOST);
 export default API_URL;

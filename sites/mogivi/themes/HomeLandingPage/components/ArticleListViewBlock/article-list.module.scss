@@ -68,7 +68,7 @@
       border-radius: 1rem 1rem 0 0;
       overflow: hidden;
 
-      img {
+      & > img {
         width: 100%;
       }
     }
@@ -115,12 +115,10 @@
       }
 
       span {
-        font-weight: 700;
-        font-size: 20px;
-        color: $text-orange;
-
+        font-size: 16px;
+        color: $black;
         @include mobile {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
     }
@@ -137,6 +135,59 @@
     @include mobile {
       font-size: 16px;
       margin-top: 20px;
+    }
+  }
+}
+
+.agency {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  max-width: 50%;
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+.agencyAvatar {
+  border-radius: 50%;
+  border: 1px solid $zircon;
+  object-fit: cover;
+}
+
+.tagContainer,
+.detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.detail {
+  justify-content: space-between;
+  margin-top: 1rem;
+  [class~="text-internal-orange"] {
+    color: $internal-orange !important;
+  }
+}
+
+.tagContainer > div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  @include largeDesktop {
+    width: 33%;
+  }
+}
+
+.line1Contain2Tag {
+  @include largeDesktop {
+    justify-content: space-between;
+
+    div:nth-child(1),
+    div:nth-child(2) {
+      width: 50%;
+    }
+    div:nth-child(2) {
+      text-align: end;
     }
   }
 }

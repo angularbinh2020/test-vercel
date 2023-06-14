@@ -34,3 +34,22 @@
     top: 80px;
   }
 }
+
+.switchViewAiTour {
+  position: fixed !important;
+  left: 20px;
+  bottom: 100px;
+  z-index: 5;
+  svg,
+  path {
+    fill: $white;
+  }
+}
+
+.iframe {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}

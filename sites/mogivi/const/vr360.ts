@@ -79,3 +79,8 @@ export const DATA_ID = {
   SHARE_BTN_CONTAINER_TAG_MODAL: "shareButtonContainerTagModal",
   CONTENT_CONTAINER_TAG_MODAL: "contentContainerTagModal",
 };
+
+export const TOUR_SHOW_AGENCY_DETAIL = {
+  ALLOW: 1,
+  NOT_ALLOW: 2,
+};

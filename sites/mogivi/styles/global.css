@@ -1,0 +1,9 @@
+body {
+  font-family: "Roboto", sans-serif;
+  --bs-font-sans-serif: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.objectFitCover {
+  object-fit: cover;
+}

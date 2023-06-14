@@ -37,12 +37,14 @@ export const DocumentItem = (props: IDocumentItem) => {
                     {date.toLocaleDateString()}
                   </span>
                   <div className={styles.actionBox}>
-                    <Link href={downloadFile.logoUrl}>
-                      <a target={"_blank"} aria-label="view">
-                        <span className={styles.iconVision}>
-                          <Vision />
-                        </span>
-                      </a>
+                    <Link
+                      href={downloadFile.logoUrl}
+                      target={"_blank"}
+                      aria-label="view"
+                    >
+                      <span className={styles.iconVision}>
+                        <Vision />
+                      </span>
                     </Link>
                     <div
                       className={styles.downloadBtn}

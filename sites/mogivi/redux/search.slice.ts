@@ -4,14 +4,28 @@ import {
   PayloadAction,
   AnyAction,
 } from "@reduxjs/toolkit";
-import { RESULT_PER_PAGE } from "const/config";
 import { ProjectSuggestionResult } from "../models/apis";
 import { projectService } from "../services/project.service";
+import { useDispatch } from "react-redux";
 
 export enum SearchInputType {
   BUY_SEARCH_INPUT = "BUY_SEARCH_INPUT",
   RENT_SEARCH_INPUT = "RENT_SEARCH_INPUT",
   PROJECT_SEARCH_INPUT = "PROJECT_SEARCH_INPUT",
+}
+
+export interface ISearchStatePayload {
+  loading?: boolean;
+  loadingSearchBar?: boolean;
+  isError?: boolean;
+  searchKey?: string;
+  projectData?: any;
+  projectSuggestion?: ProjectSuggestionResult[];
+  allProjects?: any;
+  totalPages?: number;
+  pageData?: any;
+  resultKeyword?: string;
+  searchInputType?: SearchInputType | null;
 }
 
 export interface ISearchState {
@@ -82,35 +96,33 @@ export const searchSlice = createSlice({
     ) {
       state.searchInputType = action.payload;
     },
+    setState(state: ISearchState, action: PayloadAction<ISearchStatePayload>) {
+      const payload = action?.payload;
+      if (payload) {
+        for (let propertyName in payload) {
+          if (Object.hasOwn(state, propertyName)) {
+            //@ts-ignore
+            state[propertyName] = payload[propertyName as keyof typeof payload];
+          }
+        }
+      }
+    },
   },
 });
 
-export const onGetAllProjects =
-  (model: Models.ProjectModel, baseApi: string) =>
-  (dispatch: Dispatch<AnyAction>) => {
-    dispatch(setLoading(true));
-    return projectService
-      .getAllProjects(model, baseApi)
-      .finally(() => dispatch(setLoading(false)))
-      .then((response) => {
-        if (response.data.items) {
-          dispatch(setAllProjects(response.data.items));
-          dispatch(setIsError(false));
-        }
-        let totalPageNumber = 0;
-        const totalItem: number = response.data.totalItems;
-        if (totalItem) {
-          const limit = model.limit || RESULT_PER_PAGE;
-          totalPageNumber = Math.ceil(+totalItem / limit);
-        }
-        dispatch(setTotalPage(totalPageNumber));
-      })
-      .catch((ex) => {
-        dispatch(setAllProjects([]));
-        dispatch(setIsError(true));
-        console.log(ex);
-      });
-  };
+export const {
+  setLoading,
+  setLoadingSearchBar,
+  setIsError,
+  setSearchKey,
+  setAllProjects,
+  setProjectsSuggestion,
+  setTotalPage,
+  clearProjectsSuggestion,
+  setResultKeyword,
+  setSearchInputType,
+  setState,
+} = searchSlice.actions;
 
 export const onGetProjectsSuggestion =
   (model: Models.ProjectModel, baseApi: string) =>
@@ -129,18 +141,11 @@ export const onGetProjectsSuggestion =
       });
   };
 
-// Action creators are generated for each case reducer function
-export const {
-  setLoading,
-  setLoadingSearchBar,
-  setIsError,
-  setSearchKey,
-  setAllProjects,
-  setProjectsSuggestion,
-  setTotalPage,
-  clearProjectsSuggestion,
-  setResultKeyword,
-  setSearchInputType,
-} = searchSlice.actions;
+export const useSetSearchState = () => {
+  const dispatch = useDispatch();
+  const setSearchState = (payload: ISearchStatePayload) =>
+    dispatch(setState(payload));
+  return { setSearchState };
+};
 
 export default searchSlice.reducer;

@@ -1,0 +1,184 @@
+@import "sites/mogivi/styles/index.scss";
+
+.rootContainer {
+  margin-bottom: 30px;
+
+  .sectionHeader {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    color: #1e1e1e;
+    margin-bottom: 30px;
+
+    @include tablet {
+      font-size: 20px;
+      line-height: 25px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .container {
+    background: $white;
+    border: 0.5px solid #c4c4c4;
+    border-radius: 5px;
+    padding: 20px;
+
+    .tabsContainer {
+      .row {
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+
+        .rowLabel {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 22px;
+          color: #484848;
+          margin-bottom: 10px;
+        }
+
+        .rowControl {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .iconDiff {
+            cursor: pointer;
+          }
+
+          .iconPlus {
+            cursor: pointer;
+          }
+
+          .control {
+            width: 100%;
+          }
+
+          .select {
+            @include mobile {
+              font-size: 14px;
+            }
+          }
+
+          .icon {
+            margin: 0 10px;
+          }
+        }
+      }
+
+      .tabs {
+        border-bottom: 0;
+        justify-content: space-between;
+
+        li {
+          button {
+            padding: 8.5px 17.5px;
+            color: $text-orange;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            background: $white;
+            border-color: $text-orange;
+            font-size: 0.85rem;
+
+            @include mobile {
+              padding: 5.5px 17.5px;
+            }
+
+            @include tablet {
+              padding: 2.5px 6.5px;
+            }
+          }
+
+          button:global(.active) {
+            background-color: $text-orange;
+            color: $white;
+          }
+        }
+      }
+
+      .tab {
+        .searchInput {
+          padding-left: 2.5rem;
+          border-radius: 0.2rem;
+
+          &:focus {
+            outline: unset;
+            box-shadow: unset;
+            border-color: $manatee;
+          }
+        }
+
+        .searchIcon {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin-top: auto;
+          margin-bottom: auto;
+          left: 1rem;
+          fill: $manatee;
+        }
+      }
+    }
+
+    .tabControl {
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      .tabControlItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.85rem;
+
+        svg {
+          fill: $manatee;
+        }
+
+        span {
+          color: $manatee;
+        }
+      }
+
+      [class~="active"] {
+        background-color: $bisque;
+
+        svg {
+          fill: $text-orange;
+        }
+
+        span {
+          color: $text-orange;
+        }
+      }
+    }
+
+    .radioBtnGroup {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 20px;
+    }
+
+    .label {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      color: #484848;
+      margin-bottom: 10px;
+    }
+
+    .advanceFilterContainer {
+      padding: 20px;
+      background: #ffffff;
+      border: 0.5px solid #484848;
+      border-radius: 5px;
+    }
+  }
+}
+
+.tabTile {
+  font-size: 0.65rem;
+  @include largeDesktop {
+    font-size: 0.85rem;
+  }
+}

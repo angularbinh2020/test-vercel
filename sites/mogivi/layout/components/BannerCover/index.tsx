@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import arrow from "sites/mogivi/assets/icons/arrow.svg";
 import { IBannerCoverModel } from "sites/mogivi/themes/DefaultContentPage/components/BannerCover";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const BannerCover = (props: IBannerCoverModel) => {
   const { itemTitle, image, links, text, contentBgColour } = props.block.fields;
@@ -30,26 +30,26 @@ const BannerCover = (props: IBannerCoverModel) => {
                 )}
                 {links &&
                   links.map((item, idx) => (
-                    <Link key={idx} href={item?.url}>
-                      <a
-                        className={styles.btnLink}
-                        target={item?.target ? item?.target : "_self"}
-                      >
-                        {item.name && (
-                          <>
-                            <span>{item?.name}</span>
-                            <div className={styles.arrowIcon}>
-                              <Image
-                                src={arrow}
-                                width={30}
-                                height={30}
-                                objectFit="contain"
-                                alt="icon"
-                              />
-                            </div>
-                          </>
-                        )}
-                      </a>
+                    <Link
+                      key={idx}
+                      href={item?.url}
+                      className={styles.btnLink}
+                      target={item?.target ? item?.target : "_self"}
+                    >
+                      {item.name && (
+                        <>
+                          <span>{item?.name}</span>
+                          <div className={styles.arrowIcon}>
+                            <Image
+                              src={arrow}
+                              width={30}
+                              height={30}
+                              objectFit="contain"
+                              alt="icon"
+                            />
+                          </div>
+                        </>
+                      )}
                     </Link>
                   ))}
               </div>

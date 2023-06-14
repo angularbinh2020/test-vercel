@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import arrow from "sites/mogivi/assets/icons/arrow.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import phoneFrame from "sites/mogivi/assets/images/phone-frame.png";
 import { IVRTourServices } from "sites/mogivi/models/blocks/IVRTourServices";
 import LinkItem from "components/LinkItem";

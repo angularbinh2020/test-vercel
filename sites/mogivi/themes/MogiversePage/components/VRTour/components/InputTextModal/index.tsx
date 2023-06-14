@@ -6,7 +6,7 @@ import IconInfo from "sites/mogivi/assets/icons/ic-info-1.svg";
 import { makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import FormErrorMessage from "../FormErrorMessage";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import RichTextEditor from "../RichTextEditor";
 import styles from "./styles.module.scss";
 import classNames from "classnames";

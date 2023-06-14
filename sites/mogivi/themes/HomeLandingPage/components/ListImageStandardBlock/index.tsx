@@ -12,7 +12,7 @@ import ButtonCustom, {
   IColorTypes,
   ISizeTypes,
 } from "sites/mogivi/components/ButtonCustom";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { IBannerImageLink } from "sites/mogivi/models/blocks/IBannerImageLink";
 import LinkItem from "components/LinkItem";
 

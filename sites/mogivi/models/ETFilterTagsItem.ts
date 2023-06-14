@@ -1,5 +1,17 @@
 import { IETSettingsAPIItem } from "./IETSettingsAPIItem";
 
+interface Node {
+  system: {
+    id: string;
+    contentType: string;
+    urlSegment: string;
+  };
+  fields: {
+    itemTitle: string;
+    activities: any;
+  };
+}
+
 export interface ETFilterTagsItem {
   system: {
     contentType: string;
@@ -29,16 +41,7 @@ export interface IProductTagItem {
   contentSegmentUrl: string;
   contentName: string;
   id: string;
-  node: {
-    system: {
-      id: string;
-      contentType: string;
-    };
-    fields: {
-      itemTitle: string;
-      activities: any;
-    };
-  };
+  node: Node;
   type: string;
 }
 

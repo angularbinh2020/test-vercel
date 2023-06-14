@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import useViewMode from "hooks/useViewMode";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 import { IPromotionAnimatedServices } from "sites/mogivi/models/blocks/IPromotionAnimatedServices";
 import styles from "./styles.module.scss";
@@ -29,7 +29,7 @@ export const PromotionAnimatedServices = (
                 {items.map((item, idx) => {
                   const { icon, title, bodyText } = item.fields;
                   return (
-                    <div key={idx} className={classNames(styles.textCard)}>
+                    <div key={idx} className={styles.textCard}>
                       {icon && (
                         <div className={styles.cardImg}>
                           <Image
@@ -76,7 +76,7 @@ export const PromotionAnimatedServices = (
                       styles.textCardBox
                     )}
                   >
-                    <div className={classNames(styles.textCard)}>
+                    <div className={styles.textCard}>
                       {icon && (
                         <div className={styles.cardImg}>
                           <Image

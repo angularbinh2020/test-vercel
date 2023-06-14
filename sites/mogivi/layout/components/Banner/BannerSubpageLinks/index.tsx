@@ -1,5 +1,5 @@
 import LinkItem from "components/LinkItem";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { IBannerSubpageBlock } from "sites/mogivi/models/blocks/IBannerSubpageBlock";

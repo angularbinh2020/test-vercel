@@ -17,7 +17,7 @@ import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { IHotSpotIcon } from "models/IHotSpotIcon";
 import { IHotSpot } from "sites/mogivi/models/ICommonHotSpotOption";
-import Image from "next/image";
+import Image from "next/legacy/image";
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
 

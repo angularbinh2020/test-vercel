@@ -17,6 +17,8 @@ interface IPage {
   supportSearchByURL?: boolean;
   subPageQuery?: SubPageQuery;
   mogiversePageQuery?: SubPageQuery;
+  defaultSearchPagesCount?: number;
+  isBuildFullStaticPages?: boolean;
 }
 
 export default IPage;

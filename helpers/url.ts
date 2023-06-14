@@ -22,10 +22,3 @@ export const removeVNSuffix = (oldUrl: string) => {
   }
   return oldUrl;
 };
-
-export const appendViewMobileApp = (isMobileApp: boolean, url: string) => {
-  if (isMobileApp) {
-    return url + "?ViewMobileApp=1";
-  }
-  return url;
-};

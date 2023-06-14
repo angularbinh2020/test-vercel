@@ -7,7 +7,7 @@ import ButtonCustom, {
   IColorTypes,
   ISizeTypes,
 } from "sites/mogivi/components/ButtonCustom";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   rooms: I3DModel[];

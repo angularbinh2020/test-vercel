@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import useViewMode from "hooks/useViewMode";
 import { IDeviceDetected } from "models/IDeviceDetected";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState, useCallback, useMemo } from "react";
 import Slider from "components/ReactSlickSlider";
 import { IImageCardsBlock } from "sites/mogivi/models/blocks/IImageCardsBlock";
@@ -25,11 +25,10 @@ const ImageCardsBlock = (props: BlockProps) => {
 
   const pageData = useGetPageDataContext();
   const { mobileAppBlocks } = pageData?.currentNode?.fields || {};
-  const mobileBlocks: any = mobileAppBlocks
-    ? mobileAppBlocks.filter(
-        (block: IBlock) => block.system.contentType === CONTENT_TYPE.eTTextItem
-      )
-    : [];
+  const mobileBlocks: any =
+    mobileAppBlocks?.filter(
+      (block: IBlock) => block.system.contentType === CONTENT_TYPE.eTTextItem
+    ) || [];
 
   const getFieldConfig = useCallback(
     (fieldName: any) =>
@@ -42,28 +41,18 @@ const ImageCardsBlock = (props: BlockProps) => {
   const productsTags: ITag[] = getFieldConfig("productsTags");
 
   const blocks: IBlock[] = getFieldConfig("blocks");
-  const projectModule: any =
-    blocks?.length !== 0
-      ? blocks.find((block) => {
-          if (
-            block.system.contentType === MOGIVI_CONTENT_TYPE.projectModuleBlock
-          ) {
-            return block;
-          }
-        })
-      : [];
-
-  const projectModuleBlock: IProjectModule = projectModule ? projectModule : {};
-
+  const projectModule = (blocks?.find((block) => {
+    if (block.system.contentType === MOGIVI_CONTENT_TYPE.projectModuleBlock) {
+      return block;
+    }
+  }) ?? {}) as IProjectModule;
+  const tabs = projectModule?.fields?.tabs ?? [];
   const blocksInTabGroupBlocks =
-    projectModuleBlock?.fields?.tabs[0]?.fields?.blocksInTab[0]?.fields
-      ?.groupBlocks;
+    tabs[0]?.fields?.blocksInTab[0]?.fields?.groupBlocks;
   const price = Array.isArray(blocksInTabGroupBlocks)
     ? blocksInTabGroupBlocks[blocksInTabGroupBlocks.length - 1]?.fields?.text
     : undefined;
-  const address =
-    projectModuleBlock?.fields?.tabs[1]?.fields?.blocksInTab[0]?.fields
-      ?.addressText;
+  const address = tabs[1]?.fields?.blocksInTab[0]?.fields?.addressText;
 
   const [settings] = useState({
     swipeToSlide: false,
@@ -85,7 +74,7 @@ const ImageCardsBlock = (props: BlockProps) => {
 
   return isMobileApp ? (
     <>
-      {mobileBlocks && mobileBlocks?.length !== 0 ? (
+      {Boolean(mobileBlocks?.length) ? (
         <div className={styles.singleBanner}>
           {socialMediaImage && (
             <Image
@@ -100,7 +89,7 @@ const ImageCardsBlock = (props: BlockProps) => {
             <div className={styles.imageTag}>
               <div className={styles.imageTagItem}>
                 {menuTitle && menuTitle !== "" && menuTitle}
-                {productsTags?.length !== 0 && (
+                {Boolean(productsTags?.length) && (
                   <>
                     <br />
                     <small>{productsTags[0].contentName}</small>
@@ -141,21 +130,23 @@ const ImageCardsBlock = (props: BlockProps) => {
                 key={image.system.id}
                 className={classNames("position-relative")}
               >
-                <div
-                  data-src={image.fields.image.fields.umbracoFile}
-                  data-fancybox="images"
-                  className={classNames(styles.img, "d-block")}
-                >
-                  <Image
-                    title={image.fields.description}
-                    alt={image.fields.description}
-                    src={image.fields.image.fields.umbracoFile}
-                    layout="fill"
-                    objectFit="cover"
-                    quality={100}
-                    priority={!imageIndex}
-                  />
-                </div>
+                {image.fields.image && (
+                  <div
+                    data-src={image.fields.image.fields.umbracoFile}
+                    data-fancybox="images"
+                    className={classNames(styles.img, "d-block")}
+                  >
+                    <Image
+                      title={image.fields.description}
+                      alt={image.fields.description}
+                      src={image.fields.image.fields.umbracoFile}
+                      layout="fill"
+                      objectFit="cover"
+                      quality={100}
+                      priority={!imageIndex}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </Slider>
@@ -177,21 +168,23 @@ const ImageCardsBlock = (props: BlockProps) => {
             imageIndex > maxImageIndexDisplay && "d-none"
           )}
         >
-          <div
-            data-src={image.fields.image.fields.umbracoFile}
-            data-fancybox="images"
-            className="position-relative"
-          >
-            <Image
-              className={classNames("img-fluid", styles.img)}
-              title={image.fields.description}
-              alt={image.fields.description}
-              src={image.fields.image.fields.umbracoFile}
-              width={747}
-              height={500}
-              priority={!imageIndex}
-            />
-          </div>
+          {image.fields.image && (
+            <div
+              data-src={image.fields.image.fields.umbracoFile}
+              data-fancybox="images"
+              className="position-relative"
+            >
+              <Image
+                className={classNames("img-fluid", styles.img)}
+                title={image.fields.description}
+                alt={image.fields.description}
+                src={image.fields.image.fields.umbracoFile}
+                width={747}
+                height={500}
+                priority={!imageIndex}
+              />
+            </div>
+          )}
         </div>
       ))}
     </div>

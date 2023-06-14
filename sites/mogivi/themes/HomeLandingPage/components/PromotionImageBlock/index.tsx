@@ -1,9 +1,6 @@
 import React from "react";
 import styles from "./promotion-image.module.scss";
-import imgPromotion from "sites/mogivi/assets/images/homepage/img-promotion.png";
-import icDownloadAppStore from "sites/mogivi/assets/icons/ic-app-store.png";
-import icDownloadGooglePlay from "sites/mogivi/assets/icons/ic-google-play.png";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { IBannerImageLink } from "sites/mogivi/models/blocks/IBannerImageLink";
 
@@ -41,34 +38,23 @@ const PromotionImage = (props: PromotionImageProps) => {
               <div className={styles.appContainer}>
                 {imageLink.map((imageItem, idx) => (
                   <div key={idx} className={styles.icDownload}>
-                    <Link href={imageItem.fields.link?.url ?? "#"}>
-                      <a
-                        target={
-                          imageItem.fields.link?.target
-                            ? imageItem.fields.link?.target
-                            : "_self"
-                        }
-                      >
-                        {imageItem.fields?.image && (
-                          <Image
-                            src={imageItem.fields?.image.fields.umbracoFile}
-                            alt={imageItem.fields?.image.system.name}
-                            title={imageItem.fields?.image.system.name}
-                            width={150}
-                            height={50}
-                            objectFit="contain"
-                          />
-                        )}
-                      </a>
+                    <Link
+                      href={imageItem.fields.link?.url ?? "#"}
+                      target={imageItem.fields.link?.target || "_self"}
+                    >
+                      {imageItem.fields?.image && (
+                        <Image
+                          src={imageItem.fields?.image.fields.umbracoFile}
+                          alt={imageItem.fields?.image.system.name}
+                          title={imageItem.fields?.image.system.name}
+                          width={150}
+                          height={50}
+                          objectFit="contain"
+                        />
+                      )}
                     </Link>
                   </div>
                 ))}
-
-                {/* <div className={`${styles.icDownload} ms-2`}>
-                  <Link href="#">
-                    <Image src={icDownloadGooglePlay} alt="download google play" />
-                  </Link>
-                </div> */}
               </div>
             )}
           </div>

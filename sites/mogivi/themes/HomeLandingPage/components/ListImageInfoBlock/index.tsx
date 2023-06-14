@@ -3,7 +3,7 @@ import styles from "./list-image-info.module.scss";
 import classNames from "classnames";
 import { IBannerImageLink } from "sites/mogivi/models/blocks/IBannerImageLink";
 import LinkItem from "components/LinkItem";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface ListImageInfoProps {
   block: IBannerImageLink;

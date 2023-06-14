@@ -3,7 +3,7 @@ import React, { Fragment, useMemo } from "react";
 import styles from "./styles.module.scss";
 import { Image360, IRoom } from "sites/mogivi/models/IVR360";
 import Grid from "@material-ui/core/Grid";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   rooms: IRoom[];

@@ -10,4 +10,10 @@ export const MOGIVI_CONTENT_TYPE = {
   investorTags: "investorTags",
   instaTourPlaceholder: "instaTourPlaceholder",
   thetaTourPlaceholder: "thetaTourPlaceholder",
+  eTSortTagsItem: "eTSortTagsItem",
+  eTLocationSuggestionAPIItem: "eTLocationSuggestionAPIItem",
+  projectsAPI: "projectsAPI",
+  bannerSurveyPriceText: "bannerSurveyPriceText",
+  mgvNewsContent: "MgvNewsContent",
+  projectModule: "projectModule",
 };

@@ -1,6 +1,5 @@
-import axios from "axios";
 import { PROJECT_API_THEME } from "const/project-api-theme";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { IProjectsAPI } from "sites/mogivi/models/blocks/IProjectsAPI";
 import ArticleListView from "../ArticleListViewBlock";
 import ArticleVariant from "../ArticleVariantBlock";
@@ -12,23 +11,10 @@ interface ProjectsAPIProps {
 }
 
 const ProjectsAPI = (props: ProjectsAPIProps) => {
-  const { themes, settingAPI } = props.block.fields;
-  const api = settingAPI[0].fields.aPIKeyTag.node.fields.itemTitle || "";
-  const [listData, setListData] = useState([]);
-
-  const fetchData = useCallback(async () => {
-    const response = await axios.get(api);
-
-    if (response?.data?.length) {
-      setListData(response?.data);
-    }
-  }, [api]);
-
-  useEffect(() => {
-    if (api && api !== "") {
-      fetchData();
-    }
-  }, [api, fetchData]);
+  const { themes, dataResult } = props.block.fields;
+  const listData = useMemo(() => {
+    return dataResult || [];
+  }, [dataResult]);
 
   switch (themes) {
     case PROJECT_API_THEME.carousel:

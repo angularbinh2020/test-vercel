@@ -10,6 +10,8 @@ export type ProjectModel = {
   method?: string;
   serviceType?: string;
   apiSecretKey?: string;
+  isSearchPage?: boolean;
+  filters?: string;
 };
 
 export type ProjectSuggestionResult = {

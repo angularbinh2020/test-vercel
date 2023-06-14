@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import Slider from "components/ReactSlickSlider";
@@ -65,14 +65,15 @@ export const GalleryImageSlider = (props: GalleryImageSliderProps) => {
             {items &&
               items.map((item, idx) => {
                 const icon = item.fields?.image;
+                const link = item.fields?.link;
 
                 return (
                   <div
                     key={idx}
                     className={classNames(styles.cardImgContainer)}
                   >
-                    <Link href={"#"}>
-                      <a>
+                    {link?.aliasUrl ? (
+                      <Link href={link?.aliasUrl || ""} draggable={false}>
                         <div className={styles.cardImg}>
                           {icon && (
                             <Image
@@ -85,8 +86,21 @@ export const GalleryImageSlider = (props: GalleryImageSliderProps) => {
                             />
                           )}
                         </div>
-                      </a>
-                    </Link>
+                      </Link>
+                    ) : (
+                      <div className={styles.cardImg}>
+                        {icon && (
+                          <Image
+                            className="lazyloaded"
+                            alt="icon"
+                            src={icon.fields?.umbracoFile}
+                            width={420}
+                            height={320}
+                            objectFit="cover"
+                          />
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               })}

@@ -36,28 +36,10 @@
   .promotionBoxWithoutImage {
     .textCardBox {
       margin-bottom: 1rem;
-
-      &:nth-child(3) {
-        .textCard {
-          height: 30rem;
-
-          @include mobile {
-            height: auto;
-          }
-        }
-      }
-      &:nth-child(4) {
-        .textCard {
-          height: 30rem;
-
-          @include mobile {
-            height: auto;
-          }
-        }
-      }
     }
 
     .textCard {
+      min-height: 100%;
       p {
         font-size: 1.0625rem;
         text-align: justify;

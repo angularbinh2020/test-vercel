@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { IInfoGridBlock } from "sites/mogivi/models/blocks/IInfoGridBlock";
@@ -37,6 +37,7 @@ const BuildingSection = (props: BuildingSectionProps) => {
             <div className="row">
               {buildingItems?.map((item, idx) => {
                 const { image, procedure, block, moreInfo } = item.fields;
+                const imgFields = image?.fields;
                 return (
                   <div key={idx} className="col-12 col-md-4 col-lg-4 mb-3">
                     <div className={styles.buildingContentItem}>
@@ -47,10 +48,11 @@ const BuildingSection = (props: BuildingSectionProps) => {
                         )}
                       >
                         <Image
-                          src={image?.fields?.umbracoFile}
+                          src={imgFields?.umbracoFile}
                           alt={image?.system?.name}
-                          width={250}
-                          height={"100%"}
+                          width={imgFields?.umbracoWidth || 250}
+                          height={imgFields?.umbracoHeight || 150}
+                          layout="responsive"
                         />
                         <h4>{block}</h4>
                         <p className={styles.textOrange}>

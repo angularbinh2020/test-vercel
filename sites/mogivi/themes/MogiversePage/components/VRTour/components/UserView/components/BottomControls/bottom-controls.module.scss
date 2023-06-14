@@ -24,100 +24,6 @@
     justify-content: center;
   }
 
-  .zoomContainer {
-    display: inline-block;
-    background: rgba(43, 43, 43, 0.67);
-    backdrop-filter: blur(4px);
-    border-radius: 8px;
-    padding: 8px 15px;
-    position: relative;
-
-    button {
-      background-color: transparent;
-      box-shadow: none;
-      border: 0;
-
-      svg {
-        fill: $white;
-        stroke: $white;
-      }
-
-      &:hover {
-        span {
-          color: $internal-orange;
-        }
-
-        svg {
-          fill: $internal-orange;
-          stroke: $internal-orange;
-        }
-      }
-
-      &:disabled {
-        opacity: 0.6;
-      }
-    }
-  }
-
-  .actionContainer {
-    display: inline-block;
-    background: rgba(43, 43, 43, 0.67);
-    backdrop-filter: blur(4px);
-    border-radius: 8px;
-    padding: 8px 15px;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    @include tablet {
-      margin-right: 15px;
-    }
-
-    @include mobile {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    @include mobile-landscape {
-      margin-left: 20px;
-    }
-
-    button {
-      background-color: transparent;
-      box-shadow: none;
-      border: 0;
-
-      svg {
-        fill: $white;
-        stroke: $white;
-      }
-
-      &:hover {
-        span {
-          color: $internal-orange;
-        }
-
-        svg {
-          fill: $internal-orange;
-          stroke: $internal-orange;
-        }
-      }
-
-      &:disabled {
-        opacity: 0.6;
-      }
-    }
-
-    span {
-      color: $white;
-      font-weight: bold;
-      font-size: 14px;
-    }
-  }
-
   .btnBack {
     margin-left: 20px;
     height: 45px;
@@ -143,5 +49,125 @@
     &:hover {
       opacity: 0.8;
     }
+  }
+}
+
+.actionContainer {
+  display: inline-block;
+  background: rgba(43, 43, 43, 0.67);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  padding: 8px 15px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include tablet {
+    margin-right: 15px;
+  }
+
+  @include mobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @include mobile-landscape {
+    margin-left: 20px;
+  }
+
+  button {
+    background-color: transparent;
+    box-shadow: none;
+    border: 0;
+
+    svg {
+      fill: $white;
+      stroke: $white;
+    }
+
+    &:hover {
+      span {
+        color: $internal-orange;
+      }
+
+      svg {
+        fill: $internal-orange;
+        stroke: $internal-orange;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+
+  span {
+    color: $white;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+.zoomContainer {
+  display: inline-block;
+  background: rgba(43, 43, 43, 0.67);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  padding: 8px 15px;
+  position: relative;
+
+  button {
+    background-color: transparent;
+    box-shadow: none;
+    border: 0;
+
+    svg {
+      fill: $white;
+      stroke: $white;
+    }
+
+    &:hover {
+      span {
+        color: $internal-orange;
+      }
+
+      svg {
+        fill: $internal-orange;
+        stroke: $internal-orange;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+}
+
+.showOnMobileLandscape {
+  display: none;
+}
+
+@include mobile-landscape {
+  .hideOnMobileLandscape {
+    display: none !important;
+  }
+
+  .showOnMobileLandscape {
+    display: initial;
+  }
+
+  .zoomContainer {
+    position: fixed;
+    right: 20px;
+    bottom: 25px;
+  }
+
+  .actionContainer {
+    position: fixed;
+    bottom: 20px;
+    display: flex !important;
   }
 }

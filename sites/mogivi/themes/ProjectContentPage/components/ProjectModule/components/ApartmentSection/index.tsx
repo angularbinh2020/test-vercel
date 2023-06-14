@@ -4,24 +4,23 @@ import styles from "./styles.module.scss";
 import Slider from "components/ReactSlickSlider";
 import classNames from "classnames";
 import { IETTab } from "sites/mogivi/models/IETTab";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import LinkItem from "components/LinkItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
-import {
-  faBed,
-  faBath,
-  faRulerCombined,
-  faLocationArrow,
-} from "@fortawesome/free-solid-svg-icons";
-interface ApartmentSectionProps {
+import useDetectDeviceByScreen from "sites/mogivi/hooks/useDetectDeviceByScreen";
+import Link from "next/link";
+import BootstrapTooltip from "components/BootstrapTooltip";
+interface Props {
   tab: IETTab;
 }
 
-const ApartmentSection = (props: ApartmentSectionProps) => {
+const ApartmentSection = (props: Props) => {
   const tab = props.tab.fields;
-  const { itemTitle, TabViews } = tab.blocksInTab[0]?.fields;
-
+  const { itemTitle } = tab.blocksInTab[0]?.fields;
+  const TabViews: any[] = tab.blocksInTab[0]?.fields.TabViews;
+  const { isMobile } = useDetectDeviceByScreen();
+  const [tabSelected, setTabSelected] = useState(TabViews ? TabViews[0] : null);
   const [settings] = useState({
     speed: 300,
     centerMode: false,
@@ -61,7 +60,10 @@ const ApartmentSection = (props: ApartmentSectionProps) => {
       },
     ],
   });
-
+  const blockEmptyData = TabViews.every(
+    (data: any) => !data.listOfMgvNews.length
+  );
+  if (blockEmptyData) return null;
   return (
     <>
       <div className={styles.apartmentContent} id={tab.anchorID}>
@@ -79,121 +81,129 @@ const ApartmentSection = (props: ApartmentSectionProps) => {
             className="mb-3"
           >
             {TabViews?.map((data, idx: number) => (
-              <Tab eventKey={idx} title={data.Name} key={idx}>
+              <Tab
+                eventKey={idx}
+                onSelect={() => setTabSelected(data)}
+                title={`${data.title} (${data.listOfMgvNews?.length})`}
+                key={idx}
+              >
                 <Slider {...settings}>
-                  {data.News.map((item: any, index: number) => (
-                    <div
-                      key={index}
-                      className={classNames("mt-3", styles.sliderItem)}
-                    >
-                      <div className="row" key={idx}>
-                        <div className="col-12">
-                          <div className={styles.sellApartmentHeader}>
-                            <div className={styles.sellApartmentImage}>
-                              <Image
-                                src={item.Properties[0].Text}
-                                alt={item.Properties[3].Text}
-                                width={524}
-                                height={350}
-                                objectFit="cover"
-                              />
+                  {data.listOfMgvNews.map((item: any, index: number) => {
+                    const imgUrl = isMobile
+                      ? item.mobileTeasersImageUrl
+                      : item.desktopTeasersImageUrl;
+                    const imgAlt = isMobile
+                      ? item.mobileTeasersImageCaption
+                      : item.desktopTeasersImageCaption;
+                    return (
+                      <div
+                        key={index}
+                        className={classNames("mt-3", styles.sliderItem)}
+                      >
+                        <div className="row" key={idx}>
+                          <div className="col-12">
+                            <div className={styles.sellApartmentHeader}>
+                              <div className={styles.sellApartmentImage}>
+                                <Image
+                                  src={imgUrl}
+                                  alt={imgAlt}
+                                  width={524}
+                                  height={350}
+                                  objectFit="cover"
+                                />
+                              </div>
+                              <span className={styles.badge}>
+                                {item.statusText}
+                              </span>
                             </div>
-                            <span className={styles.badge}>
-                              {item.Properties[5].Text}
-                            </span>
-                            <span className={styles.badgeStatus}>
-                              {item.Properties[0].Text === "Thuê"
-                                ? "For Rent"
-                                : "For Sell"}
-                            </span>
                           </div>
-                        </div>
-                        <div className={classNames("col-12")}>
-                          <div
-                            className={classNames(
-                              "bg-white p-2 shadow-sm",
-                              styles.sellApartmentBody
-                            )}
-                          >
+                          <div className={classNames("col-12")}>
                             <div
                               className={classNames(
-                                "mb-2 font-weight-bold",
-                                styles.projectName
+                                "bg-white p-2 shadow-sm",
+                                styles.sellApartmentBody
                               )}
                             >
-                              {item.Properties[1].Text && (
-                                <LinkItem url={item.Properties[1].Text}>
-                                  {item.Properties[3].Text}
+                              <div
+                                className={classNames(
+                                  "mb-2 font-weight-bold",
+                                  styles.projectName
+                                )}
+                              >
+                                <LinkItem url={item.pageURL}>
+                                  {item.title}
                                 </LinkItem>
-                              )}
-                            </div>
+                              </div>
 
-                            <h3 className={styles.projectPrice}>
-                              {item.Properties[4].Text}
-                            </h3>
+                              <div
+                                className={classNames("mb-2", styles.projectId)}
+                              >
+                                ID tin:{" "}
+                                <span className="fw-bold">
+                                  {item.newsIdText}
+                                </span>
+                              </div>
 
-                            <div
-                              className={classNames("mb-2", styles.projectId)}
-                            >
-                              ID tin:{" "}
-                              <span className="fw-bold">{item.MgvNewsId}</span>
-                            </div>
+                              <div
+                                className={classNames(
+                                  "d-flex align-items-center mb-2",
+                                  styles.publishDate
+                                )}
+                              >
+                                <FontAwesomeIcon icon={faCalendarAlt} />
+                                <span className="ml-2">
+                                  {item.publishDateText}
+                                </span>
+                              </div>
 
-                            <div
-                              className={classNames(
-                                "d-flex align-items-center mb-2",
-                                styles.publishDate
-                              )}
-                            >
-                              <FontAwesomeIcon icon={faCalendarAlt} />
-                              <span className="ml-2">
-                                {item.Properties[2].Text}
-                              </span>
-                            </div>
-
-                            <div
-                              className={classNames(
-                                "d-flex align-items-center justify-content-between",
-                                styles.extraInfo
-                              )}
-                            >
-                              <span>
-                                <FontAwesomeIcon icon={faBed} />{" "}
-                                <span className={styles.extraInfoDetail}>
-                                  {item.Properties[6].Text}
-                                </span>
-                              </span>
-                              <span>
-                                <FontAwesomeIcon icon={faBath} />{" "}
-                                <span className={styles.extraInfoDetail}>
-                                  {item.Properties[7].Text}
-                                </span>
-                              </span>
-                              <span>
-                                <FontAwesomeIcon icon={faRulerCombined} />{" "}
-                                <span className={styles.extraInfoDetail}>
-                                  {item.Properties[8].Text}
-                                </span>
-                              </span>
-                              <span>
-                                <FontAwesomeIcon icon={faLocationArrow} />{" "}
-                                <span className={styles.extraInfoDetail}>
-                                  {item.Properties[9].Text}
-                                </span>
-                              </span>
+                              <div
+                                className={classNames(
+                                  "d-flex align-items-center justify-content-between",
+                                  styles.extraInfo
+                                )}
+                              >
+                                {item.tags?.map(
+                                  (tag: any, tagIndex: number) => (
+                                    <div
+                                      id={`tag-${tagIndex}`}
+                                      className="d-flex align-items-center"
+                                    >
+                                      <Image
+                                        src={tag.iconUrl}
+                                        width={13}
+                                        height={13}
+                                        alt={tag.text}
+                                      />{" "}
+                                      <BootstrapTooltip title={tag.text}>
+                                        <span
+                                          className={classNames(
+                                            styles.extraInfoDetail,
+                                            "text-truncate"
+                                          )}
+                                        >
+                                          {tag.text}
+                                        </span>
+                                      </BootstrapTooltip>
+                                    </div>
+                                  )
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </Slider>
               </Tab>
             ))}
           </Tabs>
-          <button className={classNames("btn", styles.btnSeeAll)}>
-            Xem tất cả
-          </button>
+          <Link
+            href={tabSelected?.viewAllUrl ?? ""}
+            className={classNames("btn", styles.btnSeeAll)}
+          >
+            {tabSelected?.viewAllLabel}
+          </Link>
         </div>
       </div>
     </>

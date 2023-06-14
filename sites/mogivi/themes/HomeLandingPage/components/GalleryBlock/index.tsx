@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -10,7 +10,6 @@ import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
 import classNames from "classnames";
 import useViewMode from "hooks/useViewMode";
-import Link from "next/link";
 import { Pagination } from "swiper";
 import LinkItem from "components/LinkItem";
 import { IImageSlider } from "sites/mogivi/models/blocks/IImageSlider";

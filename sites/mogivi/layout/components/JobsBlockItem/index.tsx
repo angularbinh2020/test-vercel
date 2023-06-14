@@ -9,9 +9,9 @@ export interface JobsBlockItemProps {
 }
 
 const JobsBlockItem = (props: JobsBlockItemProps) => {
-  const { itemTitle, tabItems } = props.block?.fields;
+  const { itemTitle, tabItems, anchorId } = props.block?.fields;
   return (
-    <div className={styles.jobsContainer}>
+    <div className={styles.jobsContainer} id={anchorId}>
       <h2>{itemTitle}</h2>
       <Tabs
         defaultActiveKey="0"

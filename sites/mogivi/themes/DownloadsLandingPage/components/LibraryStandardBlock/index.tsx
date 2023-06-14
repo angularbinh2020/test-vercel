@@ -1,9 +1,7 @@
-import API_URL from "const/api-url";
 import { START_PAGE_INDEX } from "const/config";
 import { useGetPageDataContext } from "context/page-data.context";
 import { get } from "lodash";
-import Router, { useRouter } from "next/router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DocumentItem } from "sites/mogivi/layout/components/DownloadItem";
 import { PaginationBlock } from "sites/mogivi/layout/components/Pagination";
@@ -12,7 +10,6 @@ import { IDocumentItem } from "sites/mogivi/models/IDocumentItem";
 import { IETValuesFilterTagsItem } from "sites/mogivi/models/IETFilterTags";
 import { onGetFilterResult } from "sites/mogivi/redux/documents.slice";
 import { RootState } from "store";
-import { BannerSubscribeEmailBlock } from "../BannerSubscribeEmail";
 import FilterOption from "../../../../layout/components/FitlerOption";
 import styles from "./styles.module.scss";
 
@@ -128,12 +125,6 @@ export const LibraryStandardBlock = (props: LibraryStandardBlockProps) => {
             getResult={getResult}
           />
         </div>
-        {/* <div className={styles.sectionGap}>
-          <ListProjectBlock />
-        </div> */}
-      </div>
-      <div className="banner-subscribe-email">
-        <BannerSubscribeEmailBlock />
       </div>
     </div>
   );

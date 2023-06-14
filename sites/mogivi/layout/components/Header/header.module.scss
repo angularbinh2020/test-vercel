@@ -265,3 +265,10 @@
     padding-bottom: 0;
   }
 }
+
+.modal {
+  @include mobile {
+    --bs-offcanvas-width: 100%;
+    --bs-offcanvas-border-width: 0;
+  }
+}

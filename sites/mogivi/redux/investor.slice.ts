@@ -4,7 +4,7 @@ import {
   PayloadAction,
   AnyAction,
 } from "@reduxjs/toolkit";
-import { RESULT_PER_PAGE } from "const/config";
+import { DEFAULT_PAGE_SIZE } from "const/config";
 import { ProjectSuggestionResult } from "../models/apis";
 import { projectService } from "../services/project.service";
 import { investorsService } from "../services/investors.service";
@@ -96,7 +96,7 @@ export const onGetAllInvestor =
         let totalPageNumber = 0;
         const totalItem: number = response.data.totalItems;
         if (totalItem)
-          totalPageNumber = Math.ceil(+totalItem / RESULT_PER_PAGE);
+          totalPageNumber = Math.ceil(+totalItem / DEFAULT_PAGE_SIZE);
         dispatch(setTotalPage(totalPageNumber));
         dispatch(setIsError(false));
       })

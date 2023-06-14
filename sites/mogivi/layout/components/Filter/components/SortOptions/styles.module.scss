@@ -1,0 +1,7 @@
+.select {
+  width: min(45vw, 200px);
+  [class~="react-select__control"] {
+    height: 45px;
+    border-radius: 9px;
+  }
+}

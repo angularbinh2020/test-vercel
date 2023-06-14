@@ -12,6 +12,8 @@ interface IPageData {
   subPageData?: any;
   isMogiversePage?: boolean;
   mogiversePageType?: string;
+  rawUrlBuild?: string;
+  isNewsDetailPage?: boolean;
 }
 
 export default IPageData;

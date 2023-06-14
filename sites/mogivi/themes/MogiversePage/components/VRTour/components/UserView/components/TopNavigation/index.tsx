@@ -5,7 +5,7 @@ import classNames from "classnames";
 import styles from "./top-navigation.module.scss";
 import LeftArrowIcon from "sites/mogivi/assets/icons/ic-chevron-left-white.svg";
 import RightArrowIcon from "sites/mogivi/assets/icons/ic-chevron-right-white.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 interface Props {
   currentIndex: number;
   handleGoToImageSetting: any;
@@ -22,36 +22,60 @@ const TopNavigation = ({
   roomTitle,
 }: Props) => {
   return (
-    <div className={styles.topActionsBar}>
-      <div
-        className={classNames(styles.previewMainAction, styles.actionContainer)}
-      >
-        <div className="d-flex align-items-center justify-content-between">
-          <button
-            onClick={() => handleGoToImageSetting(currentIndex - 1)}
-            disabled={isDisabledPreviousButton}
-            className="d-flex align-items-center"
-          >
-            <Image
-              src={LeftArrowIcon}
-              alt="Previous"
-              width="7px"
-              height="11px"
-            />
-            <span className="ms-2 mobile-hidden">Trước</span>
-          </button>
-          <h3 className="mt-0 mb-0 text-white text-truncate">{roomTitle}</h3>
-          <button
-            onClick={() => handleGoToImageSetting(currentIndex + 1)}
-            disabled={isDisabledNextButton}
-            className="d-flex align-items-center"
-          >
-            <span className="mobile-hidden me-2">Tiếp theo</span>
-            <Image src={RightArrowIcon} alt="Next" width="7px" height="11px" />
-          </button>
+    <>
+      <div className={styles.topActionsBar}>
+        <div
+          className={classNames(
+            styles.previewMainAction,
+            styles.actionContainer
+          )}
+        >
+          <div className="d-flex align-items-center justify-content-between">
+            <button
+              onClick={() => handleGoToImageSetting(currentIndex - 1)}
+              disabled={isDisabledPreviousButton}
+              className="d-flex align-items-center"
+            >
+              <Image src={LeftArrowIcon} alt="Previous" width="7" height="11" />
+              <span className="ms-2 mobile-hidden">Trước</span>
+            </button>
+            <h3 className="mt-0 mb-0 text-white text-truncate">{roomTitle}</h3>
+            <button
+              onClick={() => handleGoToImageSetting(currentIndex + 1)}
+              disabled={isDisabledNextButton}
+              className="d-flex align-items-center"
+            >
+              <span className="mobile-hidden me-2">Tiếp theo</span>
+              <Image src={RightArrowIcon} alt="Next" width="7" height="11" />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      <button
+        onClick={() => handleGoToImageSetting(currentIndex - 1)}
+        disabled={isDisabledPreviousButton}
+        className={classNames(
+          "align-items-center",
+          styles.showOnMobileLandscape,
+          styles.previous
+        )}
+      >
+        <Image src={LeftArrowIcon} alt="Previous" width="7" height="11" />
+        <span className="ms-2 mobile-hidden">Trước</span>
+      </button>
+      <button
+        onClick={() => handleGoToImageSetting(currentIndex + 1)}
+        disabled={isDisabledNextButton}
+        className={classNames(
+          "align-items-center",
+          styles.showOnMobileLandscape,
+          styles.next
+        )}
+      >
+        <span className="mobile-hidden me-2">Tiếp theo</span>
+        <Image src={RightArrowIcon} alt="Next" width="7" height="11" />
+      </button>
+    </>
   );
 };
 

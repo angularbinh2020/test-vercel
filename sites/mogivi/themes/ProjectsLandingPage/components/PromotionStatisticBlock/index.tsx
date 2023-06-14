@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 // Icons
 import icFourUsers from "sites/mogivi/assets/icons/ic-users-four.svg";

@@ -25,9 +25,10 @@ const HeaderMeta = (props: HeaderMetaProps) => {
       (social) => social?.fields?.icon === SOCIAL_TYPE.TWITTER
     );
   }, []);
+  const { metaDescription, metaTitle, pageTitle } = currentNode.fields;
   return (
     <Head>
-      <title>{currentNode.fields.pageTitle || "Mogivi"}</title>
+      <title>{pageTitle || "Mogivi"}</title>
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=5"
@@ -37,18 +38,11 @@ const HeaderMeta = (props: HeaderMetaProps) => {
 
       <meta
         name="description"
-        content={
-          currentNode.fields.metaDescription ||
-          currentNode.fields.pageTitle ||
-          "Mogivi"
-        }
+        content={metaDescription || pageTitle || "Mogivi"}
       />
-      <meta name="keywords" content={currentNode.fields.metaDescription} />
-      <meta property="og:title" content={currentNode.fields.metaTitle} />
-      <meta
-        property="og:description"
-        content={currentNode.fields.metaDescription}
-      />
+      <meta name="keywords" content={metaDescription} />
+      <meta property="og:title" content={metaTitle} />
+      <meta property="og:description" content={metaDescription} />
       <meta property="og:site_name" content="Mogivi.vn" />
       <meta property="og:locale" content="vi_VN" />
       <meta property="og:type" content="article" />
@@ -83,11 +77,8 @@ const HeaderMeta = (props: HeaderMetaProps) => {
         </>
       )}
 
-      <meta name="twitter:title" content={currentNode.fields.metaTitle} />
-      <meta
-        name="twitter:description"
-        content={currentNode.fields.metaDescription}
-      />
+      <meta name="twitter:title" content={metaTitle} />
+      <meta name="twitter:description" content={metaDescription} />
       <meta
         name="twitter:image"
         content={currentNode.fields.socialMediaImage?.fields?.umbracoFile}
@@ -106,11 +97,8 @@ const HeaderMeta = (props: HeaderMetaProps) => {
         itemProp="image"
         content={currentNode.fields.socialMediaImage?.fields?.umbracoFile}
       />
-      <meta itemProp="name" content={currentNode.fields.metaTitle} />
-      <meta
-        itemProp="description"
-        content={currentNode.fields.metaDescription}
-      />
+      <meta itemProp="name" content={metaTitle} />
+      <meta itemProp="description" content={metaDescription} />
     </Head>
   );
 };

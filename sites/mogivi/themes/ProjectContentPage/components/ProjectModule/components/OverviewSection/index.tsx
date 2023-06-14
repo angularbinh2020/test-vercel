@@ -25,7 +25,7 @@ import { IInfoGridBlock } from "sites/mogivi/models/blocks/IInfoGridBlock";
 import { getFullApiUrl } from "sites/mogivi/utils";
 import axiosInstance from "apis/axios";
 import { useSetToastState } from "sites/mogivi/redux/toast.slice";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 interface OverviewSectionProps {
   tab: IETTab;
@@ -96,7 +96,7 @@ const OverviewSection = (props: OverviewSectionProps) => {
     }
     if (imageCardsBlock?.fields.groupBlocks?.length) {
       projectImage =
-        imageCardsBlock.fields.groupBlocks[0].fields.image.fields.umbracoFile;
+        imageCardsBlock.fields.groupBlocks[0].fields.image?.fields.umbracoFile;
     }
     return {
       projectTitle,
@@ -299,9 +299,7 @@ const OverviewSection = (props: OverviewSectionProps) => {
                 </button>
                 <div className={styles.hotLine}>
                   <Link href={`tel:${mogiviHotLine}`}>
-                    <a>
-                      <SvgIcon icon="phone" /> {mogiviHotLine}
-                    </a>
+                    <SvgIcon icon="phone" /> {mogiviHotLine}
                   </Link>
                 </div>
               </div>
@@ -315,9 +313,7 @@ const OverviewSection = (props: OverviewSectionProps) => {
                   <div className={styles.contactViaPhoneNumber}>
                     <button className="btn-outline">
                       <SvgIcon icon="phone" />
-                      <Link href={`tel:${mogiviHotLine}`}>
-                        <a>{mogiviHotLine}</a>
-                      </Link>
+                      <Link href={`tel:${mogiviHotLine}`}>{mogiviHotLine}</Link>
                     </button>
                   </div>
                 </div>
@@ -343,12 +339,14 @@ const OverviewSection = (props: OverviewSectionProps) => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Modal.Body className={styles.modalBody}>
               <div className={styles.contactFormImg}>
-                <Image
-                  src={projectImage}
-                  alt=""
-                  layout="fill"
-                  objectFit="cover"
-                />
+                {projectImage && (
+                  <Image
+                    src={projectImage}
+                    alt=""
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                )}
               </div>
               <div className={styles.contactFormContainer}>
                 <h2 className="text-center">Liên hệ tư vấn</h2>

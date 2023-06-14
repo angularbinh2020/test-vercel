@@ -3,7 +3,7 @@ import IconInfo from "sites/mogivi/assets/icons/ic-info-1.svg";
 //--- Material UI
 import { makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { TagHotspotTypes } from "sites/mogivi/const/tag-hotspot-types";

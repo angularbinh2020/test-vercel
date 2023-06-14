@@ -7,7 +7,8 @@ import IPath from "models/IPath";
 import {
   getAllPaths,
   getHotSpotIcon,
-  getPageNodeDetail,
+  getPageNodeDetailOptimal,
+  getSubPageData,
   getSubPageNodeDetail,
   getTagHotSpotIcon,
   getVRTourAds,
@@ -20,9 +21,16 @@ import BlockRender from "components/BlockRender";
 import DefaultMissingBlock from "components/DefaultMissingBlock";
 import { IMogiverseStatus } from "sites/mogivi/models/IMogiverseStatus";
 import { getUrlPathName } from "sites/mogivi/utils";
-import { isPanoramaTour, getTourSettingUpdateApi } from "utils";
-const ProjectDetailPage = dynamic(
-  () => import("sites/mogivi/layout/components/ProjectDetailPage")
+import {
+  isPanoramaTour,
+  getTourSettingUpdateApi,
+  getVrTourCheckStatusApi,
+} from "utils";
+import { NEXT_PUBLIC_API_CACHE_TIME_IN_SECOND } from "const/config";
+import { setupNewsDetailPage } from "sites/mogivi/utils/setupNewsDetailPage";
+
+const NewsDetailPage = dynamic(
+  () => import("sites/mogivi/layout/components/NewsDetailPage")
 );
 const MogiverserPage = dynamic(
   () => import("sites/mogivi/themes/MogiversePage")
@@ -38,8 +46,8 @@ const DefaultPage: NextPage<DefaultPageProps> = (props: DefaultPageProps) => {
   if (pageData?.isMogiversePage) {
     return <MogiverserPage pageData={pageData as any} />;
   }
-  if (pageData?.isSubPage) {
-    return <ProjectDetailPage pageData={pageData} />;
+  if (pageData?.isNewsDetailPage) {
+    return <NewsDetailPage pageData={pageData} />;
   }
   if (pageData) {
     return (
@@ -74,20 +82,25 @@ export async function getStaticProps(context: IContext) {
       mogiverserId,
       isPageNotExist,
     } = await getNodeDetailByContext(context);
+
     if (isPageNotExist) {
       return {
         notFound: true,
+        revalidate: NEXT_PUBLIC_API_CACHE_TIME_IN_SECOND,
       };
     }
     const isMogiversePageNotFound = isMogiverseUrl && !mogiverseGetDetailApi;
     if (nodeId) {
-      pageData = await getPageNodeDetail(nodeId);
-      pageData.siteId = nodeId;
+      pageData = await getPageNodeDetailOptimal(nodeId);
+      pageData.rawUrlBuild = routerPath;
     }
     if (subPageGetDetailApi) {
       pageData = await getSubPageNodeDetail(subPageGetDetailApi);
-      pageData.subPageData = await getPageNodeDetail(2087);
+      const projectNodeId = pageData.newsOnProject?.node_id;
+      if (projectNodeId)
+        pageData.subPageData = await getSubPageData(projectNodeId);
       pageData.isSubPage = true;
+      setupNewsDetailPage(pageData);
     }
 
     if (mogiverseGetDetailApi) {
@@ -106,6 +119,7 @@ export async function getStaticProps(context: IContext) {
         pageData.mogiverseGetDetailApi = mogiverseGetDetailApi;
         pageData.updateTourSettingApi =
           getTourSettingUpdateApi(mogiversePageType) + mogiverserId;
+        pageData.vrTourCheckStatusApi = getVrTourCheckStatusApi(pageData);
         if (!pageData.isEditView) delete pageData.data?.vr_tour_url;
       }
     }
@@ -142,8 +156,7 @@ export async function getStaticPaths() {
   } catch (e) {
     logger.error(e);
   }
-
-  logger.info("Get paths completed");
+  logger.info(`Get paths completed: ${paths.length} pages`);
 
   return {
     paths: paths,

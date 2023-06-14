@@ -58,3 +58,25 @@
     flex-direction: row-reverse;
   }
 }
+
+.linkContainer {
+  @include mobile {
+    display: flex;
+    justify-content: center;
+  }
+  .btnLink {
+    @include mobile {
+      width: unset !important;
+    }
+    @include tablet {
+      width: unset !important;
+    }
+  }
+}
+
+.prodImg {
+  @include mobile {
+    display: flex;
+    justify-content: center;
+  }
+}

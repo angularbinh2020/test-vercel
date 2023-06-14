@@ -61,42 +61,39 @@ const NeighborhoodProjectSection = (props: NeighborhoodProjectSectionProps) => {
       },
     ],
   });
-
+  if (!blocksInTab) return null;
+  const items = blocksInTab[0]?.fields?.projectViews?.items;
   return (
     <>
       <div className={styles.neighborProjectContent} id={anchorID}>
-        {blocksInTab && blocksInTab[0]?.fields?.projectViews?.items?.length && (
+        {Boolean(items?.length) && (
           <div className="mt-4 pt-4 pb-1">
             <h2 className="section-title mb-3">{pageTitle}</h2>
-            {blocksInTab[0]?.fields?.projectViews?.items?.length < 2 ? (
+            {items?.length < 2 ? (
               <div className={styles.noSlide}>
-                {blocksInTab[0]?.fields?.projectViews.items?.map(
-                  (item: any, idx: number) => {
-                    return (
-                      <div key={idx} className={styles.neighborProjectItem}>
-                        <GalleryImageItem project={item} />
-                      </div>
-                    );
-                  }
-                )}
+                {items?.map((item: any, idx: number) => {
+                  return (
+                    <div key={idx} className={styles.neighborProjectItem}>
+                      <GalleryImageItem project={item} />
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <Slider {...settings}>
-                {blocksInTab[0]?.fields?.projectViews.items?.map(
-                  (item: any, idx: number) => {
-                    return (
-                      <div key={idx} className={styles.neighborProjectItem}>
-                        <GalleryImageItem project={item} />
-                      </div>
-                    );
-                  }
-                )}
+                {items?.map((item: any, idx: number) => {
+                  return (
+                    <div key={idx} className={styles.neighborProjectItem}>
+                      <GalleryImageItem project={item} />
+                    </div>
+                  );
+                })}
               </Slider>
             )}
           </div>
         )}
       </div>
-      {formAskMoreInfoApiUrl && formAskMoreInfoApiUrl !== "" && (
+      {Boolean(formAskMoreInfoApiUrl) && (
         <div className={isMobileApp ? "mb-5" : ""}>
           <FormRequestMoreInfo apiUrl={formAskMoreInfoApiUrl} />
         </div>

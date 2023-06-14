@@ -1,55 +1,81 @@
+interface Breadcrumb {
+  url: string;
+  name: string;
+}
+
+interface Contact {
+  avatar: string;
+  email: string;
+  full_name: string;
+  is_new_contact: number;
+  phone: string;
+  user_id: string;
+}
+
+interface Tag {
+  text: string;
+  iconUrl: string;
+}
+
+export interface ApartmentSameLocation {
+  mobileTeasersImageUrl: string;
+  mobileTeasersImageCaption: string;
+  desktopTeasersImageUrl: string;
+  desktopTeasersImageCaption: string;
+  title: string;
+  statusText: string;
+  pageURL: string;
+  newsIdText: string;
+  publishDateText: string;
+  tags: Tag[];
+  vrTourURL: string;
+  contact: Contact;
+}
+
+export interface ProjectSameLocation {
+  pageURL: string;
+  name: string;
+  shortDescription: string;
+  logo: {
+    logoUrl: string;
+    description: string;
+  };
+  statusProcedure: {
+    name: string;
+  };
+  nodeId: any;
+  finishedYear: {
+    name: any;
+  };
+  isProjectHasCommissionFromMgv: boolean;
+  listOfInfo: {
+    icon: string;
+    text: string;
+  }[];
+}
+
+export interface ApartmentSameLocationModel {
+  viewAllUrl: string;
+  viewAllLabel: string;
+  title: string;
+  listOfMgvNews: ApartmentSameLocation[];
+}
 export interface ISubPageData {
   address: string;
-  vrTourUrl: string;
-  totalView: number;
-  totalChat: number;
-  chatContact: {
-    ownerId: string;
-    nickName: string;
-    phoneNumer: string;
-    email: string;
-    avatar: string;
-  };
-  images: string;
-  files: [
-    {
-      src: string;
-      name: string;
-    }
-  ];
-  breadscrumb: {
-    links: [
-      {
-        title: string;
-        url: string;
-      }
-    ];
-    searchAllApartmentsRentUrl: string;
-    searchAllApartmentsSellUrl: string;
-  };
-  id: number;
-  idText: string;
-  projectId: number;
-  projectName: string;
+  vrTourURL: string;
+  breadcrumbLinks: Breadcrumb[];
+  contact: Contact;
+  imageSliders: string[];
+  statusText: string;
   title: string;
-  body: string;
-  bedRoomNo: number;
-  bedRoomNoText: string;
-  bathRoonNo: number;
-  bathRoonNoText: string | null;
-  area: string;
-  priceText: string;
-  heroImageUrl: string;
-  directionText: string;
-  type: number;
-  typeText: string;
-  publishedDate: string;
-  currentStatus: number;
-  publishedDateText: string;
-  dotStatusColor: string;
-  backgroudColor: string;
-  textStatus: string;
-  publishUrl: string;
-  isShowVRIcon: boolean;
-  tourContent: string;
+  newsIdText: string;
+  pageFullURL: string;
+  tags: Tag[];
+  publishDateText: string;
+  areaDescription: string;
+  listOfRentalMgvNewsSameLocation: ApartmentSameLocationModel;
+  listOfSellMgvNewsSameLocation: ApartmentSameLocationModel;
+  listOfProjectsSameLocation: ProjectSameLocation[];
+  rootNode: any;
+  siteLanguageNode: any;
 }

@@ -1,0 +1,57 @@
+@import "sites/mogivi/styles/index.scss";
+
+.closeButton {
+  position: absolute;
+  display: inline-block;
+  right: -1rem;
+  top: -1rem;
+  cursor: pointer;
+  background-color: $white;
+  border-radius: 2rem;
+  padding: 0.1rem 0.35rem 0.3rem 0.35rem;
+  box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+  svg {
+    fill: $mid-grey;
+  }
+
+  &:hover {
+    svg {
+      fill: $text-orange;
+    }
+  }
+
+  @include mobile {
+    right: -0.5rem;
+    top: -0.5rem;
+  }
+}
+
+.mobileCloseBtn {
+  @include mobile {
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
+.addBtn {
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+  svg,
+  path {
+    fill: $internal-orange;
+  }
+}
+
+.error {
+  color: $danger;
+  font-size: 0.75rem;
+}
+
+.modalTitle {
+  @include mobile {
+    justify-content: start !important;
+  }
+}

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { IImageCardsBlock } from "sites/mogivi/models/blocks/IImageCardsBlock";
 import styles from "./styles.module.scss";
 
@@ -41,12 +41,12 @@ export const ImageCards = (props: ImageCardsProps) => {
                         <div className={styles.cardImg}>
                           {image && (
                             <Image
-                              className="lazyloaded"
                               alt="icon"
                               src={image}
                               width={640}
                               height={429}
-                              objectFit="cover"
+                              quality={100}
+                              className="objectFitCover"
                             />
                           )}
                         </div>

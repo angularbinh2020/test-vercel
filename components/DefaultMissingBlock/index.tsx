@@ -1,13 +1,13 @@
 import { IBlock } from "models/blocks/IBlock";
 import React from "react";
 
-interface DefaultMissingBlock {
+interface Props {
   blockName?: string;
   props?: any;
   block?: IBlock;
 }
 
-const DefaultMissingBlock = (props: DefaultMissingBlock) => {
+const DefaultMissingBlock = (props: Props) => {
   if (props.block)
     return (
       <div data-block-type={props.block.system.contentType}>

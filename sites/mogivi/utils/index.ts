@@ -1,5 +1,8 @@
 import IPageNode from "models/IPageNode";
 import { IRootNode } from "models/IRootNode";
+import { IETSearchService } from "sites/mogivi/models/blocks/ISearchModule";
+import { MOGIVI_CONTENT_TYPE } from "sites/mogivi/const/content-type";
+import { COLOR_TYPE } from "const/color-type";
 
 export const getCurrentPageUrl = (
   rootNode: IRootNode,
@@ -82,4 +85,42 @@ export const getImgWidthHeightDisplay = (
     width,
     height,
   };
+};
+
+export const getSortOptions = (
+  servicesSearch: IETSearchService[],
+  currentService: string
+) => {
+  const filterOptions = servicesSearch?.find(
+    (service) =>
+      currentService === service.fields.serviceType?.node?.system?.urlSegment
+  );
+  const sortOptions =
+    filterOptions?.fields.filtersOptions?.filter(
+      (option: any) =>
+        option.system.contentType === MOGIVI_CONTENT_TYPE.eTSortTagsItem
+    ) || [];
+  const data = sortOptions[0];
+  if (!data) return;
+  const isFilterOptions = Boolean(data.fields?.filterOptions);
+  const options = isFilterOptions
+    ? data.fields?.filterOptions
+    : data.fields?.options;
+  return options.map((option: any) => ({
+    value: option.node?.system?.urlSegment ?? "",
+    label: isFilterOptions
+      ? option.node?.fields?.itemTitle
+      : option.fields.value,
+  }));
+};
+
+export const getProjectTagColorName = (nodeId: any) => {
+  const options = {
+    [COLOR_TYPE.upcomingProject]: "tag-danger",
+    [COLOR_TYPE.sellingProject]: "tag-success",
+    [COLOR_TYPE.undefineProject]: "tag-orange",
+    [COLOR_TYPE.handoverProject]: "tag-secondary",
+    [COLOR_TYPE.updatingProject]: "tag-warning",
+  };
+  return options[nodeId] ?? "";
 };

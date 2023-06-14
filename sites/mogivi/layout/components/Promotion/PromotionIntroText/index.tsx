@@ -31,12 +31,8 @@ export const PromotionIntroText = (props: PromotionIntroTextProps) => {
                 <h2>{itemTitle}</h2>
                 {buttons && (
                   <div className={styles.btnAction}>
-                    <Link href={buttons[0].url}>
-                      <a>
-                        <button className="btn-orange">
-                          {buttons[0].name}
-                        </button>
-                      </a>
+                    <Link href={buttons[0].aliasUrl}>
+                      <button className="btn-orange">{buttons[0].name}</button>
                     </Link>
                   </div>
                 )}

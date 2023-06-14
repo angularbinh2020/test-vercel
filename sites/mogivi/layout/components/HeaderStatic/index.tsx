@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { removeVNSuffix } from "helpers/url";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button, Offcanvas } from "react-bootstrap";
@@ -60,14 +60,12 @@ const HeaderStatic = () => {
         <div className="d-flex justify-content-between align-items-center px-3 px-md-3 px-lg-3 px-xl-3">
           <div className={styles.mogiviLogo}>
             <Link href="/">
-              <a>
-                <Image
-                  src={LogoMogivi}
-                  alt="Mogivi Logo"
-                  width={150}
-                  height={40}
-                />
-              </a>
+              <Image
+                src={LogoMogivi}
+                alt="Mogivi Logo"
+                width={150}
+                height={40}
+              />
             </Link>
           </div>
           <div className="navigation d-none d-lg-block d-xl-block">
@@ -77,28 +75,10 @@ const HeaderStatic = () => {
                 styles.headerNav
               )}
             >
-              {/* This code is used for submenu */}
-              {/* <li className={styles.subMenu}>
-                <Link href="/ban">
-                  <a>
-                    Mua Bán
-                    <i className="fas fa-chevron-down"></i>
-                  </a>
-                </Link>
-                <ul className={styles.subMenuList}>
-                  <li>
-                    <Link href="#">
-                      <a>Tất cả nhà đất bán</a>
-                    </Link>
-                  </li>
-                </ul>
-              </li> */}
               {highlightedNavigation?.map((item, idx) => {
                 return (
                   <li key={idx} className={styles.subMenu}>
-                    <Link href={removeVNSuffix(item.url)}>
-                      <a>{item.name}</a>
-                    </Link>
+                    <Link href={removeVNSuffix(item.url)}>{item.name}</Link>
                   </li>
                 );
               })}
@@ -123,14 +103,12 @@ const HeaderStatic = () => {
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>
               <Link href="/">
-                <a>
-                  <Image
-                    src={LogoMogivi}
-                    alt="Mogivi Logo"
-                    width={150}
-                    height={40}
-                  />
-                </a>
+                <Image
+                  src={LogoMogivi}
+                  alt="Mogivi Logo"
+                  width={150}
+                  height={40}
+                />
               </Link>
             </Offcanvas.Title>
           </Offcanvas.Header>
@@ -142,47 +120,24 @@ const HeaderStatic = () => {
               )}
             >
               <ul className={classNames("m-0 list-unstyled", styles.headerNav)}>
-                {/* This code is used for submenu */}
-                {/* <li className={classNames(styles.subMenu, "mb-3")}>
-                  <Link href="#nav1">
-                    <a className={styles.subMenuLink}>
-                      <span>Mua Bán</span>
-                      <i
-                        className={classNames(
-                          "fas fa-chevron-down",
-                          styles.dropdownList
-                        )}
-                        onClick={() => setShowSubMenu(!showSubMenu)}
-                      ></i>
-                    </a>
-                  </Link>
-
-                  <ul className={classNames(styles.subMenuList)} style={{display: showSubMenu ? "block" : "none"}} id="nav1">
-                    <li>
-                      <Link href="#">
-                        <a>Tất cả nhà đất bán</a>
-                      </Link>
-                    </li>
-                  </ul>
-                </li> */}
                 {highlightedNavigation?.map((item, idx) => {
                   return (
                     <li
                       key={idx}
                       className={classNames(styles.subMenu, "mb-3")}
                     >
-                      <Link href={removeVNSuffix(item.url)}>
-                        <a className={styles.subMenuLink}>
+                      <Link
+                        href={removeVNSuffix(item.url)}
+                        className={styles.subMenuLink}
+                      >
+                        <>
                           <span>{item.name}</span>
                           <FontAwesomeIcon
                             icon={faChevronDown}
                             className={styles.dropdownList}
                           />
-                        </a>
+                        </>
                       </Link>
-                      {/* <LinkItem url={item.fields.node.url} className={styles.subMenuLink}>
-                        <span>{item.fields.cmsTitle}</span>
-                      </LinkItem> */}
                     </li>
                   );
                 })}

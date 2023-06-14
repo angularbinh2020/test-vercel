@@ -1,5 +1,4 @@
 import { getAllPages, getAllSite } from "apis/server";
-import IContext from "models/IContext";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
@@ -15,7 +14,7 @@ const NotFound = (props: NotFoundProps) => {
   return <div></div>;
 };
 
-export async function getStaticProps(context: IContext) {
+export async function getStaticProps() {
   const sites = await getAllSite();
   const currentSite = sites.find(
     (site) => process.env.NEXT_PUBLIC_BUILD_SITE === site.urlSegment

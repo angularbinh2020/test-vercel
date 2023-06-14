@@ -1,0 +1,35 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.message {
+  border-radius: 4px 0 4px 4px;
+  margin-top: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: $internal-orange;
+  color: $white;
+  position: relative;
+}
+
+.time {
+  position: absolute;
+  bottom: -18px;
+  right: 0px;
+  color: black;
+  font-size: 12px;
+}
+
+.messageLeft {
+  border-radius: 0px 4px 4px 4px;
+  margin-left: 10px;
+  margin-right: unset;
+  background-color: $gray-1;
+  color: unset;
+  .time {
+    right: unset;
+    left: 0px;
+  }
+}
+
+.userMsg {
+  justify-content: right;
+}

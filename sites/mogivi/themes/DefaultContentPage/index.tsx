@@ -32,6 +32,9 @@ const YoutubeVideoBlock = dynamic(
   () => import("./components/YoutubeVideoBlock")
 );
 const BannerCover = dynamic(() => import("./components/BannerCover"));
+const BannerSurveyPriceText = dynamic(
+  () => import("./components/BannerSurveyPriceText")
+);
 
 const Blocks = {
   bannerSubpageBlock: BannerSubpageBlock,
@@ -47,6 +50,7 @@ const Blocks = {
   youtubeVideo: YoutubeVideoBlock,
   promotionBlock: PromotionBlock,
   bannerCover: BannerCover,
+  bannerSurveyPriceText: BannerSurveyPriceText,
 };
 
 interface DefaultContentPage extends IDeviceDetected {

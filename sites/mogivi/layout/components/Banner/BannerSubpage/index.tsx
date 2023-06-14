@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import arrow from "sites/mogivi/assets/icons/arrow.svg";
 import classNames from "classnames";
 import { IBannerSubpageBlock } from "sites/mogivi/models/blocks/IBannerSubpageBlock";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import LinkItem from "components/LinkItem";
 import { useRouter } from "next/router";
 
@@ -38,7 +38,7 @@ const BannerSubpage = (props: IBannerSubpageProps) => {
   const router = useRouter();
 
   const handleContentPosition = useCallback((position: string) => {
-    if (position && position !== "") {
+    if (position) {
       if (position === "center") {
         return styles.positionCenter;
       }
@@ -48,8 +48,6 @@ const BannerSubpage = (props: IBannerSubpageProps) => {
     }
     return "";
   }, []);
-
-  console.log(router.asPath);
 
   return (
     <>
@@ -94,42 +92,53 @@ const BannerSubpage = (props: IBannerSubpageProps) => {
                   ></div>
                 )}
                 <div className={styles.linkContainer}>
-                  {links &&
-                    links.map((item, idx: any) =>
-                      buttonArrow ? (
-                        <LinkItem
-                          key={idx}
-                          url={item.url || "#"}
-                          className={classNames(styles.btnLink)}
-                          target={item?.target}
-                        >
-                          <span>{item?.name}</span>{" "}
-                          <div className={styles.arrowIcon}>
-                            <Image
-                              src={arrow}
-                              width={30}
-                              height={30}
-                              objectFit="contain"
-                              alt="icon"
-                            />
-                          </div>
-                        </LinkItem>
-                      ) : (
-                        <LinkItem
-                          key={idx}
-                          url={item.url || "#"}
-                          className={classNames(
-                            "btn-white--outline",
-                            item?.url?.includes(router?.asPath)
-                              ? styles.linkActive
-                              : ""
-                          )}
-                          target={item?.target}
-                        >
-                          <span>{item.name}</span>
-                        </LinkItem>
-                      )
-                    )}
+                  {links?.map((item, idx: any) => {
+                    const linkUrl = item.url || "#";
+                    const onClickHandle = linkUrl.startsWith("#")
+                      ? (
+                          e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                        ) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          document.querySelector(linkUrl)?.scrollIntoView();
+                        }
+                      : () => {};
+                    return buttonArrow ? (
+                      <LinkItem
+                        key={idx}
+                        url={linkUrl}
+                        className={classNames(styles.btnLink)}
+                        target={item?.target}
+                        onClick={onClickHandle}
+                      >
+                        <span>{item?.name}</span>{" "}
+                        <div className={styles.arrowIcon}>
+                          <Image
+                            src={arrow}
+                            width={30}
+                            height={30}
+                            objectFit="contain"
+                            alt="icon"
+                          />
+                        </div>
+                      </LinkItem>
+                    ) : (
+                      <LinkItem
+                        key={idx}
+                        url={linkUrl}
+                        onClick={onClickHandle}
+                        className={classNames(
+                          "btn-white--outline",
+                          item?.url?.includes(router?.asPath)
+                            ? styles.linkActive
+                            : ""
+                        )}
+                        target={item?.target}
+                      >
+                        <span>{item.name}</span>
+                      </LinkItem>
+                    );
+                  })}
                 </div>
               </div>
             </div>

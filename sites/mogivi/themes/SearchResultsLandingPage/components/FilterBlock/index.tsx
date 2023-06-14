@@ -1,7 +1,6 @@
 import React from "react";
 import { FilterOption } from "sites/mogivi/layout/components/Filter/components/FilterOption";
 import { FilterResults } from "sites/mogivi/layout/components/Filter/components/FilterResults";
-import { RecentlyViewBlock } from "sites/mogivi/layout/components/RecentlyView";
 import { ISearchModule } from "sites/mogivi/models/blocks/ISearchModule";
 import styles from "./filter.module.scss";
 
@@ -18,7 +17,6 @@ const FilterBlock = (props: FilterProps) => {
         <div className="row">
           <div className="col-12 col-md-12 col-lg-4 col-xl-3">
             <FilterOption servicesSearch={servicesSearch} />
-            {/* <RecentlyViewBlock /> */}
           </div>
           <div className="col-12 col-md-12 col-lg-8 col-xl-9">
             <FilterResults servicesSearch={servicesSearch} />

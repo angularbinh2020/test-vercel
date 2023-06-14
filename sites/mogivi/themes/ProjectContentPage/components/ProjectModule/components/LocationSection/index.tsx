@@ -3,7 +3,7 @@ import { Accordion } from "react-bootstrap";
 import { IETTab } from "../../../../../../models/IETTab";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 interface LocationSectionProps {

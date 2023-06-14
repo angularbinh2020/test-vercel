@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 import Badge from "@material-ui/core/Badge";
 import ImageListPreview from "./components/ImageListPreview";
 import IconPreview from "sites/mogivi/assets/icons/ic-preview.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";

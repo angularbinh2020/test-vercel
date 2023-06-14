@@ -15,7 +15,7 @@ import { HTML_ELEMENT_ID } from "sites/mogivi/const/vr360";
 // import ServerApiServices from "apis/server-api-services";
 // import utils, { urlify } from "utils";
 import ChatIcon from "sites/mogivi/assets/icons/ic-chat.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import ChatPopupContainer from "./components/ChatPopupContainer";
 
 const convertMessageToLink = (messages: any) => {

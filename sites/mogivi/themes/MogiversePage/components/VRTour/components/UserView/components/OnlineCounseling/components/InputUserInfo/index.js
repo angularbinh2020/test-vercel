@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { Button, makeStyles } from "@material-ui/core";
 import styles from "./input-user-info.module.scss";
 import TextInputStyled from "components/TextInputStyled";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { ChatInfoStorage } from "apis/chat-storage";
 import useSetNotification from "hooks/useSetNotification";
 import { firebaseCloudMessaging } from "utils/push-notification";

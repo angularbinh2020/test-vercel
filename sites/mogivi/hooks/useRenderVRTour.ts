@@ -24,6 +24,7 @@ import { FOOTER_IMAGE_DEFAULT_SETTING } from "sites/mogivi/const/vr360";
 import { IHotSpotIcon } from "models/IHotSpotIcon";
 import { IHotSpot } from "../models/ICommonHotSpotOption";
 import { isIOS } from "react-device-detect";
+import { HTML_DATA_ATTRIBUTE_NAME } from "../const/html-data-config";
 
 interface Option {
   vr360: IVR360;
@@ -55,8 +56,6 @@ const useRenderTour = ({ vr360, adsAvailable, tagIcons }: Option) => {
   const isDisabledPreviousButton = currentIndex === 0;
   const isDisabledNextButton = !imagesSetting.current[currentIndex + 1];
   const containerRef = useRef();
-  const zoomOutRef = useRef();
-  const zoomInRef = useRef();
 
   const initViewer = useCallback(() => {
     // done
@@ -65,28 +64,39 @@ const useRenderTour = ({ vr360, adsAvailable, tagIcons }: Option) => {
     const velocity = 0.7;
     const friction = 3;
     const controls = newViewer.controls();
-    if (zoomInRef.current)
-      controls.registerMethod(
-        "inElement",
-        new ElementPressControlMethod(
-          zoomInRef.current,
-          "zoom",
-          -velocity,
-          friction
-        ),
-        true
-      );
-    if (zoomOutRef.current)
-      controls.registerMethod(
-        "outElement",
-        new ElementPressControlMethod(
-          zoomOutRef.current,
-          "zoom",
-          velocity,
-          friction
-        ),
-        true
-      );
+    document
+      .querySelectorAll(`[${HTML_DATA_ATTRIBUTE_NAME.ZOOM_IN}]`)
+      .forEach((element: any, index) => {
+        controls.registerMethod(
+          `inElement${index}`,
+          new ElementPressControlMethod(element, "zoom", -velocity, friction),
+          true
+        );
+      });
+    document
+      .querySelectorAll(`[${HTML_DATA_ATTRIBUTE_NAME.ZOOM_OUT}]`)
+      .forEach((element: any, index) => {
+        controls.registerMethod(
+          `outElement${index}`,
+          new ElementPressControlMethod(element, "zoom", velocity, friction),
+          true
+        );
+      });
+
+    const handleScreenRotate = () => {
+      setTimeout(() => {
+        newViewer.updateSize();
+      }, 500);
+    };
+    const storedHandleRotate =
+      window["handleScreenRotate" as keyof typeof window];
+    if (storedHandleRotate) {
+      screen.orientation.removeEventListener("change", storedHandleRotate);
+    }
+    //@ts-ignore
+    window["handleScreenRotate"] = handleScreenRotate;
+    screen.orientation.addEventListener("change", handleScreenRotate);
+
     setViewer(newViewer);
     const containerElement: any = containerRef.current;
     const handleTouchMove = (e: any) => {
@@ -293,7 +303,6 @@ const useRenderTour = ({ vr360, adsAvailable, tagIcons }: Option) => {
     const currentScene = viewer.scene();
     hideAllHotSpot(currentScene);
     const nextScene = getNewScene(currentImageSetting);
-
     viewer.switchScene(
       nextScene,
       {
@@ -317,8 +326,6 @@ const useRenderTour = ({ vr360, adsAvailable, tagIcons }: Option) => {
     currentHotSpotIcon,
     setCurrentHotSpotIcon,
     containerRef,
-    zoomOutRef,
-    zoomInRef,
     currentImageSetting,
     setCurrentImageSetting,
     currentIndex,

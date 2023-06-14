@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import Image, { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/legacy/image";
 import styles from "./styles.module.scss";
 import projectImage1 from "sites/mogivi/assets/images/projects/img-project-1.png";
 import projectImage2 from "sites/mogivi/assets/images/projects/img-project-2.png";

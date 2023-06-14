@@ -4,7 +4,7 @@ import { useRenderTour3D } from "sites/mogivi/hooks/useRenderTour3D";
 import classNames from "classnames";
 import LoadingView from "./components/LoadingView";
 import MobileMenu from "./components/MobileMenu";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import PhoneRotateImage from "sites/mogivi/assets/images/mogiverse/rotate.png";
 import MoveBtnImage from "sites/mogivi/assets/icons/WASD.webp";
 import EscBtnImage from "sites/mogivi/assets/icons/esc.webp";
@@ -73,12 +73,12 @@ const View3D = ({ models, setModels }: Props) => {
       {isTouchDevice && (
         <>
           <div className={styles.mogiviLogo}>
-            <Image src={MogiviLogo} />
+            <Image src={MogiviLogo} alt="mogivi logo" />
           </div>
           <div className={styles.joystick} id="left_joystick"></div>
           <div className={styles.portraitBlock}>
             <div className="phone">
-              <Image src={PhoneRotateImage} width="75%" height="75%" />
+              <Image src={PhoneRotateImage} alt="phone rotate image" />
             </div>
           </div>
           <MobileMenu rooms={models} startViewTour={handleStartViewTour} />

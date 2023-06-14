@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 import { IContactCardBlock } from "sites/mogivi/models/blocks/IContactCardBlock";
 import styles from "./styles.module.scss";
@@ -17,14 +17,22 @@ const ContactCardBlock = (props: ContactCardBlockProps) => {
           {image && (
             <div className="col-md-3">
               <div className={classNames(styles.contactCardImg)}>
-                <Image src={image.fields?.umbracoFile} width={254} height={373} alt={image.system.name} objectFit={"cover"} />
+                <Image
+                  src={image.fields?.umbracoFile}
+                  width={254}
+                  height={373}
+                  alt={image.system.name}
+                  objectFit={"cover"}
+                />
               </div>
             </div>
           )}
           <div className="col-md-6">
             <div className={styles.bottomText}>
               <h2>{topText}</h2>
-              {bottomText && <div dangerouslySetInnerHTML={{ __html: bottomText }}></div>}
+              {bottomText && (
+                <div dangerouslySetInnerHTML={{ __html: bottomText }}></div>
+              )}
             </div>
           </div>
         </div>

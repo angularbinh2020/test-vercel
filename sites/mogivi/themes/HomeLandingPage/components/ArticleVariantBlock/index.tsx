@@ -7,7 +7,7 @@ import imgArticleVariant2 from "sites/mogivi/assets/images/homepage/img-article-
 // import articleVariantImage5 from "sites/mogivi/assets/images/article-variant-image-5.png";
 // import articleVariantImage6 from "sites/mogivi/assets/images/article-variant-image-6.png";
 // import articleVariantImage7 from "sites/mogivi/assets/images/article-variant-image-7.png";
-import Image, { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/legacy/image";
 import classNames from "classnames";
 import { Nav, Tab, Tabs } from "react-bootstrap";
 import SvgIcon from "sites/mogivi/components/SvgIcon";
@@ -131,7 +131,7 @@ const ArticleVariant = (props: ArticleVariantProps) => {
               {list.map((item, idx) => (
                 <Tab.Pane key={idx} eventKey={TABS[idx].key}>
                   <div className="row">
-                    <div className="col-xs-12 col-md-12 col-lg-8 col-xl-8">
+                    <div className="col-xs-12 col-md-12 col-lg-8 col-xl-8 bg-white pt-4">
                       {item.items[0].pageUrl && (
                         <LinkItem url={item.items[0].pageUrl}>
                           <div className={styles.content}>

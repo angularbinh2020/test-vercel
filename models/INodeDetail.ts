@@ -7,6 +7,7 @@ interface INodeDetail {
   mogiverserId?: any;
   notFoundUrlAlias?: string;
   isPageNotExist?: boolean;
+  redirectUrl?: string;
 }
 
 export default INodeDetail;

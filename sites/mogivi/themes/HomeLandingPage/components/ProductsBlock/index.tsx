@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { IProducts } from "sites/mogivi/models/blocks/IProducts";
 import LinkItem from "components/LinkItem";
 import { ILinkInfo } from "sites/mogivi/models/ILinkInfo";
@@ -58,11 +57,6 @@ const ProductBlock = (props: IProductBlock) => {
                           {item?.name}
                         </LinkItem>
                       ))}
-                      {/* <Link href={"https://calendly.com/d/2g4-kmn-92y/30-minute-meeting"}>
-                        <a className={styles.contactUs} target="_blank">
-                          Contact us
-                        </a>
-                      </Link> */}
                     </div>
                   )}
                 </div>

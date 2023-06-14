@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React from "react";
 import { IServicesAnimatedBlock } from "sites/mogivi/models/blocks/IServicesAnimatedBlock";
@@ -72,20 +72,19 @@ export const ServicesAnimatedItem = (props: ServicesAnimatedItemProps) => {
                           if (isIOS) {
                             return (
                               <div key={i} className={"btn-more"}>
-                                <Link href={item.url}>
-                                  <a
-                                    target={item.target ? item.target : "_self"}
-                                  >
-                                    <div>
-                                      <Image
-                                        src={appStore}
-                                        width={120}
-                                        height={40}
-                                        objectFit={"contain"}
-                                        alt={item.url}
-                                      />
-                                    </div>
-                                  </a>
+                                <Link
+                                  href={item.url}
+                                  target={item.target ? item.target : "_self"}
+                                >
+                                  <div>
+                                    <Image
+                                      src={appStore}
+                                      width={120}
+                                      height={40}
+                                      objectFit={"contain"}
+                                      alt={item.url}
+                                    />
+                                  </div>
                                 </Link>
                               </div>
                             );
@@ -93,32 +92,32 @@ export const ServicesAnimatedItem = (props: ServicesAnimatedItemProps) => {
                           if (isAndroid) {
                             return (
                               <div key={i} className={"btn-more"}>
-                                <Link href={item.url}>
-                                  <a
-                                    target={item.target ? item.target : "_self"}
-                                  >
-                                    <div>
-                                      <Image
-                                        src={googlePlay}
-                                        width={120}
-                                        height={40}
-                                        objectFit={"contain"}
-                                        alt={item.url}
-                                      />
-                                    </div>
-                                  </a>
+                                <Link
+                                  href={item.url}
+                                  target={item.target ? item.target : "_self"}
+                                >
+                                  <div>
+                                    <Image
+                                      src={googlePlay}
+                                      width={120}
+                                      height={40}
+                                      objectFit={"contain"}
+                                      alt={item.url}
+                                    />
+                                  </div>
                                 </Link>
                               </div>
                             );
                           }
                           return (
                             <div key={i} className={"btn-more"}>
-                              <Link href={item.url}>
-                                <a target={item.target ? item.target : "_self"}>
-                                  <button className="btn-orange">
-                                    {item.name}
-                                  </button>
-                                </a>
+                              <Link
+                                href={item.url}
+                                target={item.target ? item.target : "_self"}
+                              >
+                                <button className="btn-orange">
+                                  {item.name}
+                                </button>
                               </Link>
                             </div>
                           );

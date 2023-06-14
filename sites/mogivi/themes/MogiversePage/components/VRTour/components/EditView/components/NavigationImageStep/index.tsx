@@ -4,7 +4,7 @@ import classNames from "classnames";
 import styles from "./styles.module.scss";
 import IconChevronLeft from "sites/mogivi/assets/icons/ic-chevron-left.svg";
 import IconChevronRight from "sites/mogivi/assets/icons/ic-chevron-right.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   handleGoBack: any;

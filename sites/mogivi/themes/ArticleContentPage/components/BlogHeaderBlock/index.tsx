@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 import { IBlogHeader } from "sites/mogivi/models/blocks/IBlogHeader";
 import styles from "./styles.module.scss";

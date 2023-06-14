@@ -2,9 +2,7 @@ import ILayoutProps from "models/ILayoutProps";
 import React, { useEffect, useState } from "react";
 import HeaderMeta from "./components/HeaderMeta";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "../styles/global.module.scss";
 import dynamic from "next/dynamic";
-import classNames from "classnames";
 import useViewMode from "hooks/useViewMode";
 import LoadingFullScreen from "../components/LoadingFullScreen";
 
@@ -26,7 +24,7 @@ const MogiviLayout = (props: ILayoutProps) => {
   }, []);
   return (
     <>
-      <div className={classNames(styles.layout)}>
+      <div>
         <HeaderMeta pageData={pageData} />
         {isShowHeader && !isMobileApp && (
           <Header

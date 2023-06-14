@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Popper from "@material-ui/core/Popper";
 import Fade from "@material-ui/core/Fade";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   isTabletOrMobile: boolean;

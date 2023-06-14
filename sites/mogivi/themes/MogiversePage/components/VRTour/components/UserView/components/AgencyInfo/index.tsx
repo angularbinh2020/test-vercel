@@ -13,7 +13,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import CloseIcon from "@material-ui/icons/Close";
 import CallIcon from "@material-ui/icons/Call";
 import MogiviAvatar from "sites/mogivi/assets/images/mogivi-avatar.png";
-import Image from "next/image";
+import Image from "next/legacy/image";
+import Skeleton from "components/Skeleton";
 
 interface Props {
   userName: string;
@@ -22,6 +23,7 @@ interface Props {
   isMobile: boolean;
   isTabletOrMobile: boolean;
   closeAllOpenPopup: any;
+  isLoading?: boolean;
 }
 
 const AgencyInfo = (props: Props) => {
@@ -32,6 +34,7 @@ const AgencyInfo = (props: Props) => {
     isTabletOrMobile,
     email,
     phoneNumber,
+    isLoading,
   } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
@@ -50,25 +53,41 @@ const AgencyInfo = (props: Props) => {
 
   return (
     <div
-      className={classNames(styles.userInfo, {
-        "popup-agency-info-open": open,
-      })}
+      className={classNames(
+        styles.userInfo,
+        {
+          "popup-agency-info-open": open,
+        },
+        isLoading && "pe-none"
+      )}
       onClick={handleClick}
     >
       <div className={classNames(styles.avatar, "d-inline-block")}>
-        <Image
-          src={MogiviAvatar.src}
-          className={classNames(styles.avatar)}
-          alt={userName}
-          quality={100}
-          layout="fill"
-          objectFit="cover"
-        />
+        {isLoading ? (
+          <Skeleton className={classNames(styles.avatar)} />
+        ) : (
+          <Image
+            src={MogiviAvatar.src}
+            className={classNames(styles.avatar)}
+            alt={userName}
+            quality={100}
+            layout="fill"
+            objectFit="cover"
+          />
+        )}
       </div>
 
-      <h1 className={classNames({ "mobile-hidden": isMobile })}>{userName}</h1>
+      <h1 className={classNames({ "mobile-hidden": isMobile })}>
+        {isLoading ? <Skeleton width={150} height={18} /> : userName}
+      </h1>
 
-      <Popper open={open} anchorEl={anchorEl} placement="top-start" transition>
+      <Popper
+        open={open}
+        anchorEl={anchorEl}
+        className={styles.z10}
+        placement="top-start"
+        transition
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper className={styles.userDetail}>

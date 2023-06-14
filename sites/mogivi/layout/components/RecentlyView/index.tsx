@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./recently-view.module.scss";
 import imgDepartment from "sites/mogivi/assets/images/homepage/img-department.png";
-import Image, { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/legacy/image";
 
 const Item: IItemProps = {
   image: imgDepartment,

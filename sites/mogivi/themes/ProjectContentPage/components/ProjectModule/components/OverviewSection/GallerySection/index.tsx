@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Fancybox from "sites/mogivi/components/Fancybox";

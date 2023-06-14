@@ -2,9 +2,14 @@ import classNames from "classnames";
 import { IFileContent } from "models/IFileContent";
 import { IRootNode } from "models/IRootNode";
 import { ISiteLanguageNode } from "models/ISiteLanguageNode";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useDeferredValue,
+} from "react";
 import { Offcanvas } from "react-bootstrap";
 import { IHighlightedNavigationItem } from "sites/mogivi/models/IHighlightedNavigationItem";
 import styles from "./header.module.scss";
@@ -14,6 +19,7 @@ import Accordion from "../Accordion";
 import logoWhite from "sites/mogivi/assets/images/logo/mogivi-logo-text-white.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faBars } from "@fortawesome/free-solid-svg-icons";
+import { useGetLayoutNodeConfig } from "hooks/useGetLayoutNodeConfig";
 
 interface HeaderProps {
   rootNode: IRootNode;
@@ -23,12 +29,7 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const { rootNode, siteLanguageNode, className } = props;
-  const getFieldConfig = useCallback(
-    (fieldName: any) =>
-      //@ts-ignore
-      siteLanguageNode?.fields[fieldName] || rootNode?.fields[fieldName],
-    [rootNode, siteLanguageNode]
-  );
+  const { getFieldConfig } = useGetLayoutNodeConfig(rootNode, siteLanguageNode);
   const router = useRouter();
   const isHomePage = router.asPath.length <= 1;
   const highlightedNavigation: IHighlightedNavigationItem[] = getFieldConfig(
@@ -38,8 +39,10 @@ const Header = (props: HeaderProps) => {
 
   const [show, setShow] = useState(false);
   const [isHomepage, setIsHomepage] = useState(false);
-
-  const handleClose = () => setShow(false);
+  const showDeferred = useDeferredValue(show);
+  const handleClose = useCallback(() => {
+    setShow(false);
+  }, []);
   const handleShow = () => setShow(true);
   const hideMenuOnClick = useCallback(
     (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
@@ -70,23 +73,21 @@ const Header = (props: HeaderProps) => {
           <div className={styles.mogiviLogo}>
             {logo && (
               <Link href="/">
-                <a>
-                  {isHomePage ? (
-                    <Image
-                      src={logoWhite}
-                      alt="Mogivi Logo"
-                      width={150}
-                      height={40}
-                    />
-                  ) : (
-                    <Image
-                      src={logo.fields?.umbracoFile}
-                      alt="Mogivi Logo"
-                      width={150}
-                      height={40}
-                    />
-                  )}
-                </a>
+                {isHomePage ? (
+                  <Image
+                    src={logoWhite}
+                    alt="Mogivi Logo"
+                    width={150}
+                    height={40}
+                  />
+                ) : (
+                  <Image
+                    src={logo.fields?.umbracoFile}
+                    alt="Mogivi Logo"
+                    width={150}
+                    height={40}
+                  />
+                )}
               </Link>
             )}
           </div>
@@ -155,20 +156,26 @@ const Header = (props: HeaderProps) => {
         </div>
       </div>
 
-      <Offcanvas placement={"end"} show={show} onHide={handleClose}>
+      <Offcanvas
+        placement={"end"}
+        show={showDeferred}
+        onHide={handleClose}
+        className={styles.modal}
+      >
         <div className={styles.burgerMenuContainer}>
-          <Offcanvas.Header closeButton>
+          <Offcanvas.Header
+            closeButton
+            className="position-sticky top-0 left-0 bg-white"
+          >
             <Offcanvas.Title>
               {logo && (
                 <Link href="/">
-                  <a>
-                    <Image
-                      src={logo.fields?.umbracoFile}
-                      alt="Mogivi Logo"
-                      width={150}
-                      height={40}
-                    />
-                  </a>
+                  <Image
+                    src={logo.fields?.umbracoFile}
+                    alt="Mogivi Logo"
+                    width={150}
+                    height={40}
+                  />
                 </Link>
               )}
             </Offcanvas.Title>

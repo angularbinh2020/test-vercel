@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import IContext from "models/IContext";
 import Layout from "components/Layout";
 import useViewMode from "hooks/useViewMode";
 import { getDefaultHomePageNodeId, getPageNodeDetail } from "apis/server";
@@ -30,9 +29,9 @@ const DefaultPage: NextPage<DefaultPageProps> = (props: DefaultPageProps) => {
   );
 };
 
-export async function getStaticProps(context: IContext) {
+export async function getStaticProps() {
   const { nodeId, homeId } = await getDefaultHomePageNodeId();
-  const pageData = await getPageNodeDetail(nodeId);
+  const pageData = await getPageNodeDetail(nodeId, true);
   pageData.siteId = homeId;
   return {
     props: {

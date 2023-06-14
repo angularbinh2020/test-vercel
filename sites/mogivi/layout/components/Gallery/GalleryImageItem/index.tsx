@@ -2,7 +2,7 @@ import classNames from "classnames";
 import LinkItem from "components/LinkItem";
 import { COLOR_TYPE } from "const/color-type";
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "./styles.module.scss";
 
 interface GalleryImageItem {

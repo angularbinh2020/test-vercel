@@ -3,19 +3,16 @@ import classNames from "classnames";
 import { FormRow } from "components/Forms/form-row";
 import { PATTERN } from "const/validation-pattern";
 import { useGetPageDataContext } from "context/page-data.context";
-import Image from "next/image";
-import Link from "next/link";
+import Image from "next/legacy/image";
 import React, { useCallback, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Controller, useForm } from "react-hook-form";
-import ButtonCustom, {
-  IColorTypes,
-} from "sites/mogivi/components/ButtonCustom";
 import { IContactBlock } from "sites/mogivi/models/blocks/IContactBlock";
-import { RootState } from "store";
 import { DialogPopupMessage } from "../Modal/ModalSuccessMessage";
 import styles from "./styles.module.scss";
-
+import get from "lodash/get";
+import { useSetLoadingFullScreenState } from "sites/mogivi/redux/loadingFullScreen.slice";
+import { useSetToastState } from "sites/mogivi/redux/toast.slice";
 type FormType = Models.ContactModel & {};
 
 let contactModel: Models.ContactModel = {
@@ -48,8 +45,9 @@ export const ContactSupportBlock = (props: ContactSupportProps) => {
   const [contactForm, setContactForm] = useState<Models.ContactModel>({
     ...contactModel,
   });
+  const { showLoading, closeLoading } = useSetLoadingFullScreenState();
   const [showDialog, setShowDialog] = useState(false);
-
+  const { showErrorToast } = useSetToastState();
   const handleShowDialog = () => setShowDialog(true);
 
   const handleCloseDialog = () => setShowDialog(false);
@@ -77,13 +75,24 @@ export const ContactSupportBlock = (props: ContactSupportProps) => {
     let apiUrl = "";
 
     if (aPISetting) {
-      apiUrl = aPISetting[0].node.fields.itemTitle;
+      apiUrl = get(
+        aPISetting,
+        "[0].fields.aPIKeyTag.node.fields.itemTitle",
+        ""
+      );
     }
     try {
-      subscribeMoreInfo(data, apiUrl);
-      handleShowDialog();
-      setContactForm(contactModel);
-      reset({ ...contactModel, firstName: "", lastName: "" });
+      showLoading();
+      subscribeMoreInfo(data, apiUrl)
+        .then(() => {
+          handleShowDialog();
+          setContactForm(contactModel);
+          reset({ ...contactModel, firstName: "", lastName: "" });
+        })
+        .catch((e) => {
+          showErrorToast("Đã có lỗi xảy ra, vui lòng thử lại sau");
+        })
+        .finally(closeLoading);
     } catch (error) {
       console.log(error);
     }

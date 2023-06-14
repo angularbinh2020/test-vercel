@@ -1,0 +1,39 @@
+@import "sites/mogivi/styles/_variables.scss";
+
+.container {
+  border-radius: 17px;
+}
+
+.canvas {
+  width: 100%;
+  padding: 12px;
+}
+
+.loadingContainer {
+  height: 55vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.importantNote {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(150, 150, 150, 1);
+  margin: 15px 15px;
+
+  & > span {
+    color: $internal-orange;
+    cursor: pointer;
+  }
+
+  & > span:hover {
+    font-weight: 700;
+  }
+}
+
+.emptyImg {
+  max-width: 45%;
+  object-fit: contain;
+  height: unset !important;
+}

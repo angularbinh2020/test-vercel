@@ -6,7 +6,7 @@ import { IBannerCarouselModel } from "sites/mogivi/themes/HomeLandingPage/compon
 import LinkItem from "components/LinkItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade, Navigation } from "swiper";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

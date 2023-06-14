@@ -76,32 +76,22 @@ const Accordion = (props: IAccordion) => {
                           <h6>{burger.fields.label}</h6>
                         </div>
                       )}
-                      {burger.fields.menus &&
-                        burger.fields.menus?.length !== 0 &&
-                        burger.fields.menus.map(
-                          (burgerItem, burgerIdx: number) => (
-                            <div
-                              key={burgerIdx}
-                              onClick={() => handleClose && handleClose()}
+                      {burger.fields.menus?.map(
+                        (burgerItem, burgerIdx: number) => (
+                          <div
+                            key={burgerIdx}
+                            onClick={() => handleClose && handleClose()}
+                          >
+                            <LinkItem
+                              className={styles.subMenuItem}
+                              target={burgerItem?.target || "_self"}
+                              url={burgerItem?.aliasUrl || burgerItem?.url}
                             >
-                              <LinkItem
-                                className={styles.subMenuItem}
-                                target={
-                                  burgerItem?.target
-                                    ? burgerItem?.target
-                                    : "_self"
-                                }
-                                url={
-                                  burgerItem?.aliasUrl
-                                    ? burgerItem?.aliasUrl
-                                    : burgerItem?.url
-                                }
-                              >
-                                {burgerItem.name}
-                              </LinkItem>
-                            </div>
-                          )
-                        )}
+                              {burgerItem.name}
+                            </LinkItem>
+                          </div>
+                        )
+                      )}
                     </li>
                   );
                 })}

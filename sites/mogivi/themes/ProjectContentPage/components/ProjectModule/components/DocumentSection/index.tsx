@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState } from "react";
 import { Accordion } from "react-bootstrap";
 import { IETDownloadGoogleDriveItem } from "sites/mogivi/models/IETDownloadGoogleDriveItem";

@@ -6,7 +6,7 @@ import carouselImage2 from "sites/mogivi/assets/images/homepage/img-carousel-2.p
 import carouselImage3 from "sites/mogivi/assets/images/homepage/img-carousel-3.png";
 import Slider from "components/ReactSlickSlider";
 import SvgIcon from "sites/mogivi/components/SvgIcon";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { ISectionAnalyticNews } from "sites/mogivi/models/blocks/ISectionAnalyticNews";
 import LinkItem from "components/LinkItem";
 import { convertDate } from "helpers/date";

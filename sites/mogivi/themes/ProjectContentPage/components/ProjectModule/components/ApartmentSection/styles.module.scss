@@ -144,8 +144,9 @@
     }
 
     .extraInfo {
-      svg {
-        height: 13px;
+      flex-wrap: wrap;
+      & > div {
+        width: 50%;
       }
       span {
         font-size: 13px;
@@ -156,7 +157,7 @@
       .extraInfoDetail {
         font-size: 13px;
         display: inline-block;
-        margin-right: 3px;
+        margin: 0 1rem 0 5px;
       }
     }
   }

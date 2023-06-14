@@ -1,27 +1,35 @@
 export interface IApartmentBestSellerInVR360 {
   price: {
     price: number;
-    defaultPriceText: string;
     foreignCurrencyTranslation: null;
     foreignCurrencyTranslationText: null;
   };
-  imagesSlider: {
-    imageCaption: string;
-    sourceURL: string;
-  }[];
-  publicationDate: null;
+
+  publishDateText: string;
   tagging: null;
   statusTag: null;
-  houseOrApartmentNumber: string;
-  vrTourLink: null;
+  houseOrApartmentCode: string;
+  vrTourURL: null;
   wsLink: null;
   roomLinks: null;
-  fullPageURL: string;
   pageAliasURL: string;
-  itemTitle: string;
-  richText: string;
   createdAt: string;
   updatedAt: string;
   gid: string;
   id: number;
+  title: string;
+  desktopTeasersImageUrl: string;
+  mobileTeasersImageUrl: string;
+  desktopTeasersImageCaption: string;
+  mobileTeasersImageCaption: string;
+  pageURL: string;
+  address: string;
+  tags: {
+    iconUrl: string;
+    text: string;
+  }[];
+  contact: {
+    avatar: string;
+    full_name: string;
+  };
 }

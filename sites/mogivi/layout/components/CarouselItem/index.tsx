@@ -2,7 +2,7 @@ import classNames from "classnames";
 import LinkItem from "components/LinkItem";
 import { useGetPageDataContext } from "context/page-data.context";
 import useViewMode from "hooks/useViewMode";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Slider from "components/ReactSlickSlider";

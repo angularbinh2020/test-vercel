@@ -4,15 +4,35 @@ import {
   PayloadAction,
   AnyAction,
 } from "@reduxjs/toolkit";
-import { RESULT_PER_PAGE } from "const/config";
+import { DEFAULT_PAGE_SIZE, START_PAGE_INDEX } from "const/config";
 import { ProjectSuggestionResult } from "../models/apis";
 import { projectService } from "../services/project.service";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "store";
+import axios from "apis/axios";
 
 export enum SearchInputType {
   BUY_SEARCH_INPUT = "BUY_SEARCH_INPUT",
   RENT_SEARCH_INPUT = "RENT_SEARCH_INPUT",
   PROJECT_SEARCH_INPUT = "PROJECT_SEARCH_INPUT",
+}
+
+export interface IProjectPayload {
+  loading?: boolean;
+  loadingSearchBar?: boolean;
+  isError?: boolean;
+  searchKey?: string;
+  projectData?: any;
+  projectSuggestion?: ProjectSuggestionResult[];
+  allProjects?: any;
+  totalPages?: number;
+  pageData?: any;
+  resultKeyword?: string;
+  searchInputType?: SearchInputType | null;
+  isBuyOrRentSearch?: boolean;
+  filtersCount?: number;
+  totalResult?: number;
+  currentService?: string;
 }
 
 export interface IProjectState {
@@ -27,6 +47,10 @@ export interface IProjectState {
   pageData: any;
   resultKeyword: string;
   searchInputType: SearchInputType | null;
+  isBuyOrRentSearch: boolean;
+  filtersCount: number;
+  totalResult: number;
+  currentService: string;
 }
 
 const initialState = {
@@ -41,6 +65,10 @@ const initialState = {
   pageData: {},
   resultKeyword: "",
   searchInputType: null,
+  isBuyOrRentSearch: false,
+  filtersCount: 0,
+  totalResult: 0,
+  currentService: "",
 } as IProjectState;
 
 export const projectSlice = createSlice({
@@ -77,40 +105,91 @@ export const projectSlice = createSlice({
     setResultKeyword(state: IProjectState, action: PayloadAction<string>) {
       state.resultKeyword = action.payload;
     },
-    setSearchInputType(
-      state: IProjectState,
-      action: PayloadAction<SearchInputType>
-    ) {
+    setSearchInputType(state: IProjectState, action: PayloadAction<any>) {
       state.searchInputType = action.payload;
+    },
+    setState(state: IProjectState, action: PayloadAction<IProjectPayload>) {
+      const payload = action?.payload;
+      if (payload) {
+        for (let propertyName in payload) {
+          if (Object.hasOwn(state, propertyName)) {
+            //@ts-ignore
+            state[propertyName] = payload[propertyName as keyof typeof payload];
+          }
+        }
+      }
     },
   },
 });
 
 export const onGetAllProjects =
   (model: Models.ProjectModel, baseApi: string) =>
-  (dispatch: Dispatch<AnyAction>) => {
-    dispatch(setLoading(true));
-    return projectService
-      .getAllProjects(model, baseApi)
-      .finally(() => dispatch(setLoading(false)))
-      .then((response) => {
-        if (response.data.items) {
-          dispatch(setAllProjects(response.data.items));
-          dispatch(setIsError(!response.data.items.length));
-        }
-        let totalPageNumber = 0;
-        const totalItem: number = response.data.totalItems;
-        if (totalItem) {
-          const limit = model.limit || RESULT_PER_PAGE;
-          totalPageNumber = Math.ceil(+totalItem / limit);
-        }
-        dispatch(setTotalPage(totalPageNumber));
+  async (dispatch: Dispatch<AnyAction>) => {
+    dispatch(
+      setState({
+        loading: true,
+        totalResult: 0,
       })
-      .catch((ex) => {
-        dispatch(setAllProjects([]));
-        dispatch(setIsError(true));
-        console.log(ex);
-      });
+    );
+    try {
+      const {
+        limit,
+        keyword,
+        page,
+        siteId,
+        method,
+        serviceType,
+        apiSecretKey,
+        isSearchPage,
+        filters,
+      } = model;
+      let requestApi = `${baseApi}?id=${siteId}&keyword=${keyword}&pageIndex=${page}&pageSize=${limit}`;
+      if (isSearchPage) requestApi += "&isSearchPage=true";
+      if (filters) requestApi += `&filters=${filters}`;
+      var request;
+      if (method?.toUpperCase() === "post".toUpperCase()) {
+        request = axios.post(baseApi, {
+          id: siteId,
+          keyword: keyword ?? "",
+          pageIndex: page ?? START_PAGE_INDEX,
+          pageSize: limit ?? 20,
+          serviceType: serviceType,
+          apiSecretKey: apiSecretKey,
+          filters: filters?.trim().length ? filters?.split(";") : [],
+        });
+      }
+      if (!request && serviceType && apiSecretKey) {
+        request = axios.get(
+          `${requestApi}&serviceType=${serviceType}&apiSecretKey=${apiSecretKey}`
+        );
+      }
+      if (!request && serviceType) {
+        request = axios.get(`${requestApi}&serviceType=${serviceType}`);
+      }
+      if (!request) request = axios.get(requestApi);
+      const data = (await request).data;
+      if (data.items) {
+        dispatch(
+          setState({
+            totalResult: data.totalItems,
+            allProjects: data.items,
+            isError: !data.items.length,
+          })
+        );
+      }
+      let totalPageNumber = 0;
+      const totalItem: number = data.totalItems;
+      if (totalItem) {
+        const limit = model.limit || DEFAULT_PAGE_SIZE;
+        totalPageNumber = Math.ceil(+totalItem / limit);
+      }
+      dispatch(setTotalPage(totalPageNumber));
+    } catch (e) {
+      dispatch(setAllProjects([]));
+      dispatch(setIsError(true));
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
 export const onGetProjectsSuggestion =
@@ -142,18 +221,28 @@ export const {
   clearProjectsSuggestion,
   setResultKeyword,
   setSearchInputType,
+  setState,
 } = projectSlice.actions;
+
+export const useGetSetProjectListResultState = () => {
+  return useSelector((state: RootState) => state.project);
+};
 
 export const useSetProjectListResultState = () => {
   const dispatch = useDispatch();
+  const setProjectListResultState = (nextState: IProjectPayload) =>
+    dispatch(setState(nextState));
   const onError = () => {
-    dispatch(setLoading(false));
-    dispatch(setIsError(true));
-    dispatch(setAllProjects([]));
+    setProjectListResultState({
+      loading: false,
+      isError: true,
+      allProjects: [],
+    });
   };
 
   return {
     onError,
+    setProjectListResultState,
   };
 };
 

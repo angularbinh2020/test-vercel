@@ -5,7 +5,7 @@ import {
   AnyAction,
   AnyListenerPredicate,
 } from "@reduxjs/toolkit";
-import { RESULT_PER_PAGE } from "const/config";
+import { DEFAULT_PAGE_SIZE } from "const/config";
 import { documentsService } from "../services/documents.service";
 
 export interface IDocumentsState {

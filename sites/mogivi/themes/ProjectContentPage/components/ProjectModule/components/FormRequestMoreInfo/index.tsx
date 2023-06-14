@@ -15,7 +15,7 @@ import defaultProjectImage from "sites/mogivi/assets/images/city-night.jpg";
 import { MOGIVI_CONTENT_TYPE } from "sites/mogivi/const/content-type";
 import { IImageCardsBlock } from "sites/mogivi/models/blocks/IImageCardsBlock";
 import InfoModal from "sites/mogivi/components/InfoModal";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   apiUrl: string;
@@ -47,7 +47,7 @@ const FormRequestMoreInfo = ({ apiUrl }: Props) => {
     }
     if (imageCardsBlock?.fields.groupBlocks?.length) {
       projectImage =
-        imageCardsBlock.fields.groupBlocks[0].fields.image.fields.umbracoFile;
+        imageCardsBlock.fields.groupBlocks[0].fields.image?.fields.umbracoFile;
     }
     return { projectTitle, projectImage, mogiviHotLine };
   }, [pageData]);
@@ -242,12 +242,14 @@ const FormRequestMoreInfo = ({ apiUrl }: Props) => {
             </div>
             <div className="col-12 col-md-5">
               <div className={styles.projectImage}>
-                <Image
-                  src={projectImage}
-                  alt={projectTitle}
-                  layout="fill"
-                  objectFit="cover"
-                />
+                {projectImage && (
+                  <Image
+                    src={projectImage}
+                    alt={projectTitle}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                )}
               </div>
             </div>
           </div>

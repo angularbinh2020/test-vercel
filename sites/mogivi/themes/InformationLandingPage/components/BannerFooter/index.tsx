@@ -1,10 +1,9 @@
 import classNames from "classnames";
-import { url } from "inspector";
 import Link from "next/link";
 import React from "react";
 import { IBannerFooterApp } from "sites/mogivi/models/blocks/IBannerFooterApp";
 import styles from "./styles.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 interface BannerFooterProps {
   block: IBannerFooterApp;
 }
@@ -60,22 +59,18 @@ const BannerFooter = (props: BannerFooterProps) => {
             <h5>Cài đặt ngay</h5>
             <div className={styles.appLinkInstall}>
               {links.map((item, i) => (
-                <Link key={i} href={item.fields.links[0].url}>
-                  <a
-                    target={
-                      item.fields.links[0].target
-                        ? item.fields.links[0].target
-                        : "_self"
-                    }
-                  >
-                    <Image
-                      quality={100}
-                      src={item.fields.imageDesktop.fields.umbracoFile}
-                      width={item.fields.imageDesktop.fields.umbracoWidth}
-                      height={item.fields.imageDesktop.fields.umbracoHeight}
-                      alt={item.fields.imageDesktop.system.name}
-                    />
-                  </a>
+                <Link
+                  key={i}
+                  href={item.fields.links[0].url}
+                  target={item.fields.links[0].target || "_self"}
+                >
+                  <Image
+                    quality={100}
+                    src={item.fields.imageDesktop.fields.umbracoFile}
+                    width={item.fields.imageDesktop.fields.umbracoWidth}
+                    height={item.fields.imageDesktop.fields.umbracoHeight}
+                    alt={item.fields.imageDesktop.system.name}
+                  />
                 </Link>
               ))}
             </div>
@@ -129,22 +124,18 @@ const BannerFooter = (props: BannerFooterProps) => {
               </h1>
               <div className={styles.appLinkInstall}>
                 {links.map((item, i) => (
-                  <Link key={i} href={item.fields.links[0].url}>
-                    <a
-                      target={
-                        item.fields.links[0].target
-                          ? item.fields.links[0].target
-                          : "_self"
-                      }
-                    >
-                      <Image
-                        src={item.fields.imageDesktop.fields.umbracoFile}
-                        width={item.fields.imageDesktop.fields.umbracoWidth}
-                        height={item.fields.imageDesktop.fields.umbracoHeight}
-                        alt={item.fields.imageDesktop.system.name}
-                        quality={100}
-                      />
-                    </a>
+                  <Link
+                    key={i}
+                    href={item.fields.links[0].url}
+                    target={item.fields.links[0].target || "_self"}
+                  >
+                    <Image
+                      src={item.fields.imageDesktop.fields.umbracoFile}
+                      width={item.fields.imageDesktop.fields.umbracoWidth}
+                      height={item.fields.imageDesktop.fields.umbracoHeight}
+                      alt={item.fields.imageDesktop.system.name}
+                      quality={100}
+                    />
                   </Link>
                 ))}
               </div>

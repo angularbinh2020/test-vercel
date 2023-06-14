@@ -8,7 +8,7 @@ import ErrorIcon from "@material-ui/icons/ErrorOutline";
 import styles from "./styles.module.scss";
 import { IHotSpot } from "sites/mogivi/models/ICommonHotSpotOption";
 import Tooltip from "@material-ui/core/Tooltip";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   title: string;

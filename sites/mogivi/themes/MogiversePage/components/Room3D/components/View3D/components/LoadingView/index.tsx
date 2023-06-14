@@ -1,6 +1,6 @@
 import React from "react";
 import MogiviLogo from "sites/mogivi/assets/icons/mogivi-logo.png";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import styles from "./styles.module.scss";
 

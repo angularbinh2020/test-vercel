@@ -27,10 +27,12 @@ const BreadcrumbsProjectPageBlock = (props: BlockProps) => {
                 className="d-inline-block"
                 key={`breadcrumb-index-${breadcrumb.position}`}
               >
-                <Link href={breadcrumb.url}>
-                  <a rel="noopener" className="text-dark-cerulean fs-0-875rem">
-                    {breadcrumb.linkText}
-                  </a>
+                <Link
+                  href={breadcrumb.url}
+                  rel="noopener"
+                  className="text-dark-cerulean fs-0-875rem"
+                >
+                  {breadcrumb.linkText}
                 </Link>
                 {breadcrumb.isShowAngle && (
                   <SvgIcon

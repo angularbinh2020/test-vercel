@@ -1,0 +1,21 @@
+@import "sites/mogivi/styles/index.scss";
+.container {
+  padding-top: 1rem;
+  @include desktop {
+    padding-top: 0;
+  }
+}
+
+.resultCount {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: $empress;
+  @include mobile {
+    font-size: 12px;
+    text-align: left;
+  }
+}

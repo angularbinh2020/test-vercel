@@ -1,9 +1,10 @@
 import { START_PAGE_INDEX } from "const/config";
 import { usePagination } from "hooks/usePagination";
 import useViewMode from "hooks/useViewMode";
-import React from "react";
+import React, { useCallback } from "react";
 import Pagination from "react-bootstrap/Pagination";
 import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
 
 interface IPaginationBlock {
   currentNumber: number;
@@ -26,7 +27,7 @@ export const PaginationBlock = (props: IPaginationBlock) => {
   const siblingCount = 1;
   const lastPage = totalPages;
   const { isMobileApp } = useViewMode();
-
+  const router = useRouter();
   const paginationRange = usePagination({
     currentPage: currentNumber,
     pageSize,
@@ -34,6 +35,24 @@ export const PaginationBlock = (props: IPaginationBlock) => {
     totalPages: totalPages,
   });
 
+  const getPageFullUrl = useCallback(
+    (pageIndex: any) => {
+      return isMobileApp
+        ? `${baseUrl}/page-${pageIndex}?ViewMobileApp=1`
+        : `${baseUrl}/page-${pageIndex}`;
+    },
+    [isMobileApp]
+  );
+
+  const goToPage = useCallback(
+    (pageIndex: any, e: any) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const navigateUrl = getPageFullUrl(pageIndex);
+      router.push(navigateUrl);
+    },
+    [getPageFullUrl]
+  );
   if (+currentNumber === 0 || (paginationRange && paginationRange.length < 2)) {
     return null;
   }
@@ -44,11 +63,8 @@ export const PaginationBlock = (props: IPaginationBlock) => {
         <Pagination>
           <Pagination.Prev
             disabled={+currentNumber === START_PAGE_INDEX}
-            href={
-              isMobileApp
-                ? `${baseUrl}/page-${+currentNumber - 1}?ViewMobileApp=1`
-                : `${baseUrl}/page-${+currentNumber - 1}`
-            }
+            href={getPageFullUrl(+currentNumber - 1)}
+            onClick={(e) => goToPage(+currentNumber - 1, e)}
           />
           {paginationRange?.map((pageNumber, idx) => {
             if (pageNumber === "...") {
@@ -58,11 +74,8 @@ export const PaginationBlock = (props: IPaginationBlock) => {
               <Pagination.Item
                 key={idx}
                 active={+pageNumber === +currentNumber}
-                href={
-                  isMobileApp
-                    ? `${baseUrl}/page-${pageNumber}?ViewMobileApp=1`
-                    : `${baseUrl}/page-${pageNumber}`
-                }
+                href={getPageFullUrl(pageNumber)}
+                onClick={(e) => goToPage(pageNumber, e)}
               >
                 {pageNumber}
               </Pagination.Item>
@@ -70,11 +83,8 @@ export const PaginationBlock = (props: IPaginationBlock) => {
           })}
           <Pagination.Next
             disabled={+currentNumber === lastPage}
-            href={
-              isMobileApp
-                ? `${baseUrl}/page-${+currentNumber + 1}?ViewMobileApp=1`
-                : `${baseUrl}/page-${+currentNumber + 1}`
-            }
+            href={getPageFullUrl(+currentNumber + 1)}
+            onClick={(e) => goToPage(+currentNumber + 1, e)}
           />
         </Pagination>
       ) : (

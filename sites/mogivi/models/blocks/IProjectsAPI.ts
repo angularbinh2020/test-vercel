@@ -17,5 +17,6 @@ export interface IProjectsAPI {
     settingAPI: ETProjectAPISetting[];
     themes: string;
     link: ILinkInfo;
+    dataResult?: any[];
   };
 }

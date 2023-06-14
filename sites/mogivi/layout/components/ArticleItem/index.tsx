@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import LinkItem from "components/LinkItem";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 import { IArticleItem } from "sites/mogivi/models/blocks/IArticleItem";
 import styles from "./styles.module.scss";

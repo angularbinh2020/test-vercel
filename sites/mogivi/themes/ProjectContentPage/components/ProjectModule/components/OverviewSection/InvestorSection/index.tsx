@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { IInfoGridBlock } from "sites/mogivi/models/blocks/IInfoGridBlock";
@@ -48,8 +48,9 @@ const InvestorSection = (props: InvestorSectionProps) => {
                       <Image
                         src={fields?.umbracoFile}
                         alt={system?.name}
-                        width={150}
-                        height={"100%"}
+                        width={fields?.umbracoWidth || 150}
+                        height={fields?.umbracoHeight || 90}
+                        layout="responsive"
                       />
                     </div>
                     <div className="col-12 col-md-8 col-lg-8">

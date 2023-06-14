@@ -1,34 +1,18 @@
 import classNames from "classnames";
-import React, {
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { Accordion, Button, Modal, Spinner } from "react-bootstrap";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import { Accordion } from "react-bootstrap";
 import styles from "./styles.module.scss";
 
 import "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 import { I18nLoan } from "sites/mogivi/models/I18nLoan";
-import { IETFormFieldItem } from "models/IETFormFieldItem";
 import { IETTab } from "sites/mogivi/models/IETTab";
-import { submitLoan } from "apis/client";
-import { useForm } from "react-hook-form";
 import { MOGIVI_CONTENT_TYPE } from "sites/mogivi/const/content-type";
 import { useGetPageDataContext } from "context/page-data.context";
-
+import RegisterLoanForm, {
+  RegisterLoanFormRef,
+} from "sites/mogivi/components/RegisterLoanForm";
 type FormType = Models.LoanModel & {};
-
-let loanModel: Models.LoanModel = {
-  currentPageId: 0,
-  email: "",
-  fullname: "",
-  tel: "",
-  request: "",
-};
 
 interface LoanSectionProps {
   tab: IETTab;
@@ -42,20 +26,10 @@ const LoanSection = (props: LoanSectionProps) => {
     loanToolOption.realEstateValue;
   const { maximum: maxYearInterestRate, minimum: minYearInterestRate } =
     loanToolOption.yearInterestRate;
-
+  const registerLoanFormRef = useRef<RegisterLoanFormRef>(null);
   const { loanTermYears, lowestLoan: minLoan } = loanToolOption;
   const [isRendered, setRendered] = useState(false);
   const selectGroupField = loanToolOption.submitRequestForm[0].fields.fields;
-  const fullNameField = selectGroupField[4];
-  const phoneNumberField = selectGroupField[5];
-  const emailField = selectGroupField[6];
-  const { selectFieldList } = useMemo(() => {
-    const selectFieldList: Array<IETFormFieldItem> = [];
-    for (let i = 0; i < 4; i++) {
-      selectFieldList.push(selectGroupField[i]);
-    }
-    return { selectFieldList };
-  }, []);
   const [maxLoan, setMaxLoan] = useState(
     Math.ceil((0.7 * (realEstatePriceMin + realEstatePriceMax)) / 2)
   );
@@ -63,18 +37,11 @@ const LoanSection = (props: LoanSectionProps) => {
     (realEstatePriceMin + realEstatePriceMax) / 2
   );
   const [loanValue, setLoanValue] = useState<number>((minLoan + maxLoan) / 2);
-  const [loanValueThumb, setLoanValueThumb] = useState<number>(loanValue);
   const [realYearRate, setRealYearRate] = useState<number>(
     (minYearInterestRate + maxYearInterestRate) / 2
   );
   const [loanTime, setLoanTime] = useState<number>(Number(loanTermYears[0]));
-  const [show, setShow] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   const totalPayRef = useRef(0);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const handleCloseSuccess = () => setShowSuccess(false);
-  const handleShowSuccess = () => setShowSuccess(true);
 
   const pageData = useGetPageDataContext();
   let receiveLoanSpreadsheets;
@@ -85,74 +52,6 @@ const LoanSection = (props: LoanSectionProps) => {
         block.fields.subcribeAPI.receiveLoanSpreadsheets;
     }
   });
-  const siteId = pageData?.siteId ?? 0;
-  const [age, setAge] = useState(
-    selectFieldList.find((item) => item.fields.elementName === "yourAgeSelect")
-      ?.fields.values[0].fields.value || ""
-  );
-  const [job, setJob] = useState(
-    selectFieldList.find((item) => item.fields.elementName === "yourJobSelect")
-      ?.fields.values[0].fields.value || ""
-  );
-  const [income, setIncome] = useState(
-    selectFieldList.find(
-      (item) => item.fields.elementName === "totalEarnSelect"
-    )?.fields.values[0].fields.value || ""
-  );
-  const [earnType, setEarnType] = useState(
-    selectFieldList.find((item) => item.fields.elementName === "getSalaryBy")
-      ?.fields.values[0].fields.value || ""
-  );
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [backdrop, setBackdrop] = useState(true);
-
-  const onSelectChange = (type: string, value: string) => {
-    if (type === "yourAgeSelect") setAge(value);
-    if (type === "yourJobSelect") setJob(value);
-    if (type === "totalEarnSelect") setIncome(value);
-    if (type === "getSalaryBy") setEarnType(value);
-  };
-
-  const onTextChange = (type: string, value: string) => {
-    if (type === "name") setName(value);
-    if (type === "phone") setPhone(value);
-    if (type === "email") setEmail(value);
-  };
-
-  const reset = () => {
-    setName("");
-    setPhone("");
-    setEmail("");
-  };
-
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormType>();
-  const onSubmit = async (data: FormType) => {
-    setIsLoading(true);
-    setBackdrop(false);
-    data.currentPageId = siteId;
-    data.fullname = name;
-    data.email = email;
-    data.tel = phone;
-    data.request = `Tuổi: ${age};Công việc hiện tại: ${job};Tổng thu nhập: ${income};Nhận lương qua: ${earnType}`;
-    try {
-      const submission = await submitLoan(data);
-      if (submission) {
-        handleClose();
-        handleShowSuccess();
-        reset();
-      }
-    } catch (error) {
-      //
-    }
-    setIsLoading(false);
-    setBackdrop(true);
-  };
 
   const readNumber = (numberValue: number) => {
     let numberVal = numberValue || "",
@@ -499,7 +398,9 @@ const LoanSection = (props: LoanSectionProps) => {
                             styles.btnSubscribe
                           )}
                           type="button"
-                          onClick={handleShow}
+                          onClick={() => {
+                            registerLoanFormRef.current?.showLoanModal();
+                          }}
                         >
                           Đăng ký vay
                         </button>
@@ -565,129 +466,10 @@ const LoanSection = (props: LoanSectionProps) => {
       </div>
 
       <div className="col-0 col-lg-4"></div>
-
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop={backdrop ? true : "static"}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Khả năng vay vốn</Modal.Title>
-        </Modal.Header>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body>
-            <div className="row">
-              {selectFieldList.map((formItem, formItemIdx) => {
-                return (
-                  <div key={formItemIdx} className="col-6 mb-2">
-                    <div className="form-group">
-                      <label
-                        className="mb-2"
-                        htmlFor={formItem.fields.elementName}
-                      >
-                        {formItem.fields.label}
-                      </label>
-                      <select
-                        style={{ maxWidth: 220 }}
-                        className="form-control"
-                        id={formItem.fields.elementName}
-                        onChange={(e: any) =>
-                          onSelectChange(
-                            formItem.fields.elementName,
-                            e.target.value
-                          )
-                        }
-                      >
-                        {formItem.fields.values.map((item, idx) => {
-                          return (
-                            <option key={idx} value={item.fields.key}>
-                              {item.fields.value}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                  </div>
-                );
-              })}
-
-              <div className="col-12 mt-3">
-                <input type="hidden" name="ClientId" id="clientUserId" />
-                <div className="form-group mb-3">
-                  <label className="mb-2 mt-2">Thông tin cá nhân</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={fullNameField.fields.placeholder}
-                    onChange={(e) => onTextChange("name", e.target.value)}
-                    value={name}
-                    required
-                    id="userNameInput"
-                  />
-                </div>
-
-                <div className="form-group mb-3">
-                  <input
-                    type="tel"
-                    pattern="(84|0[1|2|3|5|7|8|9])+([0-9]{8})\b"
-                    className="form-control"
-                    placeholder={phoneNumberField.fields.placeholder}
-                    onChange={(e) => onTextChange("phone", e.target.value)}
-                    value={phone}
-                    required
-                    id="userPhoneInput"
-                  />
-                </div>
-
-                <div className="form-group mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder={emailField.fields.placeholder}
-                    onChange={(e) => onTextChange("email", e.target.value)}
-                    value={email}
-                    required
-                    id="userEmailInput"
-                  />
-                </div>
-              </div>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            {!isLoading && (
-              <Button type="submit" className={styles.btnSubscribe}>
-                Đăng ký vay
-              </Button>
-            )}
-            {isLoading && (
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-            )}
-          </Modal.Footer>
-        </form>
-      </Modal>
-
-      <Modal show={showSuccess} onHide={handleCloseSuccess}>
-        <Modal.Header closeButton>
-          <Modal.Title>Đã gửi thành công!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            {" "}
-            Cảm ơn bạn đã Mogivi, chúng tôi sẽ liên lạc ngay trong thời gian sớm
-            nhất. Mọi thắc mắc xin vui lòng liên hệ{" "}
-            <a href="tel:1800 646 427">1800 646 427</a>
-          </p>
-        </Modal.Body>
-        <Button
-          type="submit"
-          className={styles.btnClose}
-          onClick={handleCloseSuccess}
-        >
-          Đóng
-        </Button>
-      </Modal>
+      <RegisterLoanForm
+        selectGroupField={selectGroupField}
+        ref={registerLoanFormRef}
+      />
     </>
   );
 };

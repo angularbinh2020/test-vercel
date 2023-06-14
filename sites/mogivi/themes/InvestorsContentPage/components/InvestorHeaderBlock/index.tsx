@@ -4,7 +4,7 @@ import { FormRow } from "components/Forms/form-row";
 import LinkItem from "components/LinkItem";
 import { PATTERN } from "const/validation-pattern";
 import { useGetPageDataContext } from "context/page-data.context";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React, { useCallback, useState } from "react";
 import { Form, Modal } from "react-bootstrap";
@@ -142,9 +142,7 @@ export const InvestorHeaderBlock = (props: InvestorHeaderBlockProps) => {
                         <tr>
                           <td className={styles.textLight}>Website:</td>
                           <td className={styles.textBold}>
-                            <Link href={website.url}>
-                              <a>{website.name}</a>
-                            </Link>
+                            <Link href={website.url}>{website.name}</Link>
                           </td>
                         </tr>
                       )}

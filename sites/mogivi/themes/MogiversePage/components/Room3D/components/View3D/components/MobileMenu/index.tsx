@@ -12,7 +12,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   rooms: I3DModel[];

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import classNames from "classnames";
 import { IImagePosition } from "sites/mogivi/models/IImagePosition";
 import { IPromotionBlock } from "sites/mogivi/models/blocks/IPromotionBlock";

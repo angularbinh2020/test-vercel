@@ -5,7 +5,7 @@ import LinkItem from "components/LinkItem";
 import { useGetPageDataContext } from "context/page-data.context";
 import useViewMode from "hooks/useViewMode";
 import { IDeviceDetected } from "models/IDeviceDetected";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import SvgIcon from "sites/mogivi/components/SvgIcon";
 import { SuggestionList } from "sites/mogivi/layout/components/Banner/SuggestionList";
@@ -130,18 +130,20 @@ const CustomHeaderContentProjectPageBlock = (props: BlockProps) => {
           <div className="col-6 col-md-3 col-lg-3">
             <div className="text-center mb-3">
               <picture>
-                <Image
-                  className="logo logo-color"
-                  alt={middleImage.system.name}
-                  title={site}
-                  {...getImgWidthHeightDisplay(
-                    150,
-                    80,
-                    middleImage.fields.umbracoWidth,
-                    middleImage.fields.umbracoHeight
-                  )}
-                  src={middleImage.fields.umbracoFile}
-                />
+                {middleImage && (
+                  <Image
+                    className="logo logo-color"
+                    alt={middleImage.system.name}
+                    title={site}
+                    {...getImgWidthHeightDisplay(
+                      150,
+                      80,
+                      middleImage.fields.umbracoWidth,
+                      middleImage.fields.umbracoHeight
+                    )}
+                    src={middleImage.fields.umbracoFile}
+                  />
+                )}
               </picture>
             </div>
           </div>

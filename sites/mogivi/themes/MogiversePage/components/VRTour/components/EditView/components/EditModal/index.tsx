@@ -4,7 +4,7 @@ import HotSpotTemplate from "../../../UserView/components/HotSpotTemplate";
 import NavigationImageStep from "../NavigationImageStep";
 import styles from "./styles.module.scss";
 import IconPreview from "sites/mogivi/assets/icons/ic-preview.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import SettingImageCustom from "./components/SettingImageCustom";
 import { IHotSpotIcon } from "models/IHotSpotIcon";
 import { IAdsData } from "models/IAdsData";

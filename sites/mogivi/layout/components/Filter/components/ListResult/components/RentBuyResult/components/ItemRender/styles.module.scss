@@ -1,0 +1,107 @@
+@import "sites/mogivi/styles/index.scss";
+
+.badge {
+  background-color: rgb(255, 78, 0);
+  position: absolute;
+  bottom: 8px;
+  left: 5px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  padding: 6px ​5px;
+  font-size: 10px;
+}
+
+.hoverHighlightOrange {
+  cursor: pointer;
+  color: $black;
+  --bs-link-color: $black;
+  &:hover {
+    color: $internal-orange;
+    --bs-link-color: $internal-orange !important;
+    --bs-link-hover-color: $internal-orange !important;
+  }
+}
+
+.contactNow {
+  color: $internal-orange;
+  cursor: pointer;
+  font-size: 14px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.tagContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem !important;
+  li {
+    min-width: 50%;
+    @include largeDesktop {
+      min-width: 30%;
+    }
+  }
+}
+
+.imgPreview {
+  height: 200px;
+  position: relative;
+}
+
+.img360 {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+
+.agencyAvatar {
+  border-radius: 50%;
+  border: 1px solid $zircon;
+  object-fit: cover;
+}
+
+.agency,
+.tagContainer {
+  font-size: 14px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.projectDescription {
+  font-size: 14px;
+  color: $dim-gray;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectId {
+  font-size: 14px;
+  span {
+    color: $internal-orange;
+  }
+}
+
+.tags5 {
+  @include largeDesktop {
+    li:nth-child(2),
+    li:nth-child(1) {
+      min-width: 50%;
+    }
+    li:nth-child(2),
+    li:nth-child(5) {
+      text-align: end;
+    }
+  }
+}

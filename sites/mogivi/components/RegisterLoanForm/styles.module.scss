@@ -1,0 +1,26 @@
+@import "sites/mogivi/styles/index.scss";
+
+.btnSubscribe {
+  background-color: $internal-orange !important;
+  border: 0 !important;
+  color: $white !important;
+
+  &:hover {
+    background-color: $internal-orange;
+    color: $white;
+    opacity: 0.9;
+  }
+
+  &:focus {
+    background-color: $internal-orange;
+    color: $white;
+    opacity: 0.9;
+  }
+}
+
+.btnClose {
+  background-color: $internal-orange;
+  border: 0;
+  color: $white;
+  margin: 30px 30px;
+}

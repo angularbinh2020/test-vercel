@@ -1,0 +1,192 @@
+@import "sites/mogivi/styles/index.scss";
+
+$searchWidth: calc(100vw - 90px);
+$searchTabletWidth: calc(100vw - 190px);
+
+.container {
+  background-color: $gainsboro;
+  padding: 13px 17px 15px 17px;
+  position: relative;
+  width: 100vw;
+  left: -62px;
+  @include mobile {
+    left: -12px;
+  }
+
+  @include tablet {
+    padding: 13px 57px 15px 57px;
+  }
+}
+
+.tabContainer {
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: -5px;
+  width: $searchWidth;
+  @include tablet {
+    width: $searchTabletWidth;
+    font-size: 14px;
+  }
+  & > a {
+    width: 100%;
+    padding: 9px 12px 12px 12px;
+    border-radius: 9px 9px 0px 0px;
+    display: flex;
+    align-items: center;
+    color: $aluminium;
+    svg {
+      fill: $aluminium;
+    }
+  }
+}
+
+.active {
+  background-color: $white;
+  color: $internal-orange !important;
+  font-weight: 700;
+  svg {
+    fill: $internal-orange !important;
+  }
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.filterIcon {
+  position: relative;
+  .filtersCount {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    font-size: 9px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $internal-orange;
+    font-weight: 600;
+  }
+}
+
+.spinner {
+  [class~="spinner-border"] {
+    color: $mid-grey !important;
+    width: 1rem;
+    border-width: 0.2rem;
+    height: 1rem;
+  }
+}
+
+.searchIcon {
+  fill: $internal-orange !important;
+  svg {
+    fill: $internal-orange;
+  }
+}
+
+.input,
+.select {
+  height: 45px;
+  border-radius: 9px !important;
+  padding: 0 3rem 0 1rem !important;
+  border: none !important;
+  font-size: 12px !important;
+  &:focus {
+    outline: none;
+    // border-color: #ced4da;
+    box-shadow: 0px 4px 8px -2px rgb(16 24 40 / 10%),
+      0px 2px 4px -2px rgb(16 24 40 / 6%);
+  }
+  @include tablet {
+    font-size: 14px !important;
+  }
+}
+
+.input {
+  font-size: 1rem !important;
+  &::placeholder {
+    font-size: 12px !important;
+  }
+}
+
+.searchInput {
+  position: relative;
+  max-width: 100%;
+  background-color: $white;
+  width: $searchWidth;
+  margin: 0;
+  border-radius: 9px;
+  @include tablet {
+    width: $searchTabletWidth;
+  }
+  svg,
+  path {
+    fill: $internal-orange !important;
+  }
+  .label {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #1e1e1e;
+  }
+}
+
+.iconSearchContainer {
+  position: absolute;
+  right: 1.2rem;
+  top: 2px;
+  border-left: 1px solid rgba(183, 183, 183, 0.7953);
+  height: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 17px;
+  background-color: $white;
+}
+
+.modalTitle {
+  color: $internal-orange;
+}
+
+.visibleOnSmallMobile {
+  display: none;
+}
+.searchIconOnSmallMobile {
+  display: none;
+}
+@media screen and (max-width: 400px) {
+  .tabContainer,
+  .searchInput {
+    width: 100%;
+  }
+
+  .filterIconOnSmallMobile {
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  .iconSearchContainer {
+    right: unset;
+    left: 0.8rem;
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .input {
+    padding-left: 2.5rem !important;
+  }
+}

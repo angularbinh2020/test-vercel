@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import LinkItem from "components/LinkItem";
 import { removeVNSuffix } from "helpers/url";
-import Link from "next/link";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { IBannerSubpageBlock } from "sites/mogivi/models/blocks/IBannerSubpageBlock";

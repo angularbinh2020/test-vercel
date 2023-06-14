@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState } from "react";
 import Slider from "components/ReactSlickSlider";
 import styles from "./styles.module.scss";

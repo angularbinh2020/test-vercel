@@ -16,7 +16,7 @@ export const GalleryPeopleInfo = (props: GalleryPeopleInfoProps) => {
         <div className="container">
           <h2 className="title-wrap">{itemTitle}</h2>
           <p>{subtitle}</p>
-          <div className={styles.galleryIntroWrap}>
+          <div className="container">
             <div
               className={classNames(
                 "row align-items-center",
@@ -29,40 +29,36 @@ export const GalleryPeopleInfo = (props: GalleryPeopleInfoProps) => {
                 const position = item.fields.title;
                 const desc = item.fields.description;
                 return (
-                  <div
-                    key={idx}
-                    className={classNames(
-                      "col-md-4 col-lg-4 p-0",
-                      styles.cardImgContainer
-                    )}
-                  >
-                    <div className={styles.cardImg}>
-                      {image && (
-                        <Image
-                          className="lazyloaded"
-                          alt={item.fields.image.system.name}
-                          src={image}
-                          width={420}
-                          height={550}
-                          objectFit="cover"
-                        />
+                  <div key={idx} className="col-12 col-md-6 col-lg-4 mb-4">
+                    <div className={styles.cardImgContainer}>
+                      <div className={styles.cardImg}>
+                        {image && (
+                          <Image
+                            alt={item.fields.image.system.name}
+                            src={image}
+                            width={420}
+                            height={550}
+                            quality={100}
+                            className="objectFitCover"
+                          />
+                        )}
+                      </div>
+                      {position && fullname && desc && (
+                        <>
+                          <div className={styles.cardContent}>
+                            <div className={styles.cardInfo}>
+                              <h3>{fullname}</h3>
+                              <p className={styles.cardPosition}>{position}</p>
+                            </div>
+                          </div>
+                          <div className={styles.cardDescription}>
+                            <h6>{position}</h6>
+                            <h4>{fullname}</h4>
+                            <p>{desc}</p>
+                          </div>
+                        </>
                       )}
                     </div>
-                    {position && fullname && desc && (
-                      <>
-                        <div className={styles.cardContent}>
-                          <div className={styles.cardInfo}>
-                            <h3>{fullname}</h3>
-                            <p className={styles.cardPosition}>{position}</p>
-                          </div>
-                        </div>
-                        <div className={styles.cardDescription}>
-                          <h6>{position}</h6>
-                          <h4>{fullname}</h4>
-                          <p>{desc}</p>
-                        </div>
-                      </>
-                    )}
                   </div>
                 );
               })}

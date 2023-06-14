@@ -5,7 +5,7 @@ import API_URL from "const/api-url";
 import { START_PAGE_INDEX } from "const/config";
 import { useGetPageDataContext } from "context/page-data.context";
 import { get } from "lodash";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { ArticleItem } from "sites/mogivi/layout/components/ArticleItem";
 import { IArticleItem } from "sites/mogivi/models/blocks/IArticleItem";
