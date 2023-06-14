@@ -151,11 +151,11 @@ export async function getStaticPaths() {
   logger.info("Start get paths");
   let paths: IPath[] = [];
 
-  try {
-    paths = await getAllPaths();
-  } catch (e) {
-    logger.error(e);
-  }
+  // try {
+  //   paths = await getAllPaths();
+  // } catch (e) {
+  //   logger.error(e);
+  // }
   logger.info(`Get paths completed: ${paths.length} pages`);
 
   return {
